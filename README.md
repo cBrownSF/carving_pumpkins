@@ -17,7 +17,7 @@
 </ul>
 
 <h2>Wireframes</h2>
-<img src="https://wireframe.cc/r8leUs">
+<img src="pumpkin_graph.jpeg">
 </br>
 <h2>Bonus Features</h2>
 <ul>
