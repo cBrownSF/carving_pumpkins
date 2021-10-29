@@ -49,7 +49,7 @@ while playing Carving Pumpkins! The game starts when a user picks their pumpkin 
 </ul>
 <h2>Bonus Features</h2>
 <ul>
-<li>A save feature could be added.This would allow users to save their carved pumpkins or download .jpeg versions of them</li> 
+<li>A save feature could be added. This would allow users to save their carved pumpkins or download .jpeg versions of them</li> 
 <li>Customized pumpkin templates(color, size, etc) are an option as well
 </li> 
 </ul>
