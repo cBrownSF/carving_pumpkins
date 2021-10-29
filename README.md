@@ -21,8 +21,6 @@ while playing Carving Pumpkins! The game starts when a user picks their pumpkin 
 <h2>Wireframes</h2>
 <br>
 <img src="pumpkin_graph2.jpeg">
-<br>
-<br>
 <ul>
 
   <li>'Reset’ will reset the pumpkin to it’s original template</li>
