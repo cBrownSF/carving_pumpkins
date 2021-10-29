@@ -1,4 +1,4 @@
-# carving_pumpkins
+# Carving Pumpkins
 <h2>Background</h2>
 <p> Users can practice their pumpkin carving skills
 while playing Carving Pumpkins! The game starts when a user picks their pumpkin from the three preset pumpkins. Users carve their pumpkin of choice by scrolling their mouse over the pumpkin.  The user can test the pumpkin while carving by pushing the “candle mode” button.  The background is darkened and the pumpkin glows in the candle light. Pumpkin marks can be cleared when the user finishes carving. The user also has the option of restarting the game with a new pumpkin or trying again with the same pumpkin.</p>
