@@ -20,7 +20,7 @@ while playing Carving Pumpkins! The game starts when a user picks their pumpkin 
 
 <h2>Wireframes</h2>
 <br>
-<img src="pumpkin_graph.jpeg">
+<img src="pumpkin_graph2.jpeg">
 <br>
 <br>
 <ul>
