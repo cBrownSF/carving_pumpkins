@@ -17,9 +17,7 @@ export default class MenuScreen{
       this.candyArray.push(corn);
       }
   }
-  drawButton(){
-    
-  }
+ 
   drawCandy(){
     for (let i = 0; i <this.candyArray; i ++){
       this.candyArray[i].drawCorn(ctx);

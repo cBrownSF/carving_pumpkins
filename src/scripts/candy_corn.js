@@ -5,6 +5,9 @@ export default class CandyCorn {
     this.y = y;
     this.dx = 5;
     this.dy = 4;
+    const canvas = document.getElementById("mycanvas");
+    const ctx = canvas.getContext('2d');
+    this.drawCorn(ctx)
   }
 
   drawCorn(ctx) {
