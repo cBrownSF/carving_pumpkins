@@ -7,26 +7,15 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (function() { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+/***/ (function() {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scripts_example__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/example */ \"./src/scripts/example.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  console.log(\"hello world\");\n  var main = document.getElementById(\"main\");\n  new _scripts_example__WEBPACK_IMPORTED_MODULE_0__[\"default\"](main);\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguanMuanMiLCJtYXBwaW5ncyI6Ijs7QUFBQTtBQUVBQyxRQUFRLENBQUNDLGdCQUFULENBQTBCLGtCQUExQixFQUE4QyxZQUFLO0FBQ25EQyxFQUFBQSxPQUFPLENBQUNDLEdBQVIsQ0FBWSxhQUFaO0FBQ0EsTUFBTUMsSUFBSSxHQUFHSixRQUFRLENBQUNLLGNBQVQsQ0FBd0IsTUFBeEIsQ0FBYjtBQUNBLE1BQUlOLHdEQUFKLENBQVlLLElBQVo7QUFDQyxDQUpEIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2FydmluZ19wdW1wa2lucy8uL3NyYy9pbmRleC5qcz9iNjM1Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBFeGFtcGxlIGZyb20gXCIuL3NjcmlwdHMvZXhhbXBsZVwiO1xuXG5kb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKFwiRE9NQ29udGVudExvYWRlZFwiLCAoKSA9PnsgXG5jb25zb2xlLmxvZyhcImhlbGxvIHdvcmxkXCIpO1xuY29uc3QgbWFpbiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwibWFpblwiKTtcbm5ldyBFeGFtcGxlKG1haW4pO1xufSkiXSwibmFtZXMiOlsiRXhhbXBsZSIsImRvY3VtZW50IiwiYWRkRXZlbnRMaXN0ZW5lciIsImNvbnNvbGUiLCJsb2ciLCJtYWluIiwiZ2V0RWxlbWVudEJ5SWQiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/index.js\n");
-
-/***/ }),
-
-/***/ "./src/scripts/example.js":
-/*!********************************!*\
-  !*** ./src/scripts/example.js ***!
-  \********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("__webpack_require__.r(__webpack_exports__);\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nvar Example = /*#__PURE__*/function () {\n  function Example(ele) {\n    _classCallCheck(this, Example);\n\n    this.ele = ele;\n    this.ele.innerHTML = \"<h1>I'm Alive!</h1>\";\n    this.handClick = this.handleClick.bind(this);\n    this.ele.addEventListener(\"click\", this.handleClick);\n  }\n\n  _createClass(Example, [{\n    key: \"handleClick\",\n    value: function handleClick() {\n      this.ele.children[0].innerText = \"Ouch!\";\n    }\n  }]);\n\n  return Example;\n}();\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Example);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvc2NyaXB0cy9leGFtcGxlLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7SUFBTUE7QUFDSixtQkFBWUMsR0FBWixFQUFnQjtBQUFBOztBQUNkLFNBQUtBLEdBQUwsR0FBV0EsR0FBWDtBQUNBLFNBQUtBLEdBQUwsQ0FBU0MsU0FBVCxHQUFxQixxQkFBckI7QUFDQSxTQUFLQyxTQUFMLEdBQWlCLEtBQUtDLFdBQUwsQ0FBaUJDLElBQWpCLENBQXNCLElBQXRCLENBQWpCO0FBQ0EsU0FBS0osR0FBTCxDQUFTSyxnQkFBVCxDQUEwQixPQUExQixFQUFtQyxLQUFLRixXQUF4QztBQUNEOzs7O1dBRUQsdUJBQWE7QUFDWCxXQUFLSCxHQUFMLENBQVNNLFFBQVQsQ0FBa0IsQ0FBbEIsRUFBcUJDLFNBQXJCLEdBQWlDLE9BQWpDO0FBQ0Q7Ozs7OztBQUdILCtEQUFlUixPQUFmIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2FydmluZ19wdW1wa2lucy8uL3NyYy9zY3JpcHRzL2V4YW1wbGUuanM/ZmNlZSJdLCJzb3VyY2VzQ29udGVudCI6WyJjbGFzcyBFeGFtcGxlIHtcbiAgY29uc3RydWN0b3IoZWxlKXtcbiAgICB0aGlzLmVsZSA9IGVsZTtcbiAgICB0aGlzLmVsZS5pbm5lckhUTUwgPSBcIjxoMT5JJ20gQWxpdmUhPC9oMT5cIjtcbiAgICB0aGlzLmhhbmRDbGljayA9IHRoaXMuaGFuZGxlQ2xpY2suYmluZCh0aGlzKTtcbiAgICB0aGlzLmVsZS5hZGRFdmVudExpc3RlbmVyKFwiY2xpY2tcIiwgdGhpcy5oYW5kbGVDbGljaylcbiAgfVxuXG4gIGhhbmRsZUNsaWNrKCl7XG4gICAgdGhpcy5lbGUuY2hpbGRyZW5bMF0uaW5uZXJUZXh0ID0gXCJPdWNoIVwiO1xuICB9XG59XG5cbmV4cG9ydCBkZWZhdWx0IEV4YW1wbGU7Il0sIm5hbWVzIjpbIkV4YW1wbGUiLCJlbGUiLCJpbm5lckhUTUwiLCJoYW5kQ2xpY2siLCJoYW5kbGVDbGljayIsImJpbmQiLCJhZGRFdmVudExpc3RlbmVyIiwiY2hpbGRyZW4iLCJpbm5lclRleHQiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/scripts/example.js\n");
+eval("// const Candy_Corn = require(\"./scripts/candy_corn.js\");\nwindow.addEventListener(\"DOMContentLoaded\", function () {\n  var canvas = document.getElementById(\"mycanvas\");\n  canvas.width = 800;\n  canvas.height = 600;\n  var ctx = canvas.getContext('2d');\n  var candyImg = document.getElementById(\"corn\");\n  var candyCorn = {\n    // width: 50,\n    // height: 69,\n    x: 200,\n    y: 200,\n    size: 30,\n    dx: 5,\n    dy: 4\n  };\n\n  function drawCorn() {\n    ctx.drawImage(candyImg, candyCorn.x, candyCorn.y, candyCorn.size);\n    console.log(\"hello\");\n  }\n\n  drawCorn();\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jYXJ2aW5nX3B1bXBraW5zLy4vc3JjL2luZGV4LmpzP2I2MzUiXSwibmFtZXMiOlsid2luZG93IiwiYWRkRXZlbnRMaXN0ZW5lciIsImNhbnZhcyIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJ3aWR0aCIsImhlaWdodCIsImN0eCIsImdldENvbnRleHQiLCJjYW5keUltZyIsImNhbmR5Q29ybiIsIngiLCJ5Iiwic2l6ZSIsImR4IiwiZHkiLCJkcmF3Q29ybiIsImRyYXdJbWFnZSIsImNvbnNvbGUiLCJsb2ciXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0FBLE1BQU0sQ0FBQ0MsZ0JBQVAsQ0FBd0Isa0JBQXhCLEVBQTRDLFlBQVk7QUFDdEQsTUFBTUMsTUFBTSxHQUFHQyxRQUFRLENBQUNDLGNBQVQsQ0FBd0IsVUFBeEIsQ0FBZjtBQUNBRixFQUFBQSxNQUFNLENBQUNHLEtBQVAsR0FBZSxHQUFmO0FBQ0FILEVBQUFBLE1BQU0sQ0FBQ0ksTUFBUCxHQUFnQixHQUFoQjtBQUNBLE1BQU1DLEdBQUcsR0FBR0wsTUFBTSxDQUFDTSxVQUFQLENBQWtCLElBQWxCLENBQVo7QUFDQSxNQUFNQyxRQUFRLEdBQUdOLFFBQVEsQ0FBQ0MsY0FBVCxDQUF3QixNQUF4QixDQUFqQjtBQUVBLE1BQU1NLFNBQVMsR0FBRztBQUNoQjtBQUNBO0FBQ0FDLElBQUFBLENBQUMsRUFBRSxHQUhhO0FBSWhCQyxJQUFBQSxDQUFDLEVBQUUsR0FKYTtBQUtoQkMsSUFBQUEsSUFBSSxFQUFDLEVBTFc7QUFNaEJDLElBQUFBLEVBQUUsRUFBRSxDQU5ZO0FBT2hCQyxJQUFBQSxFQUFFLEVBQUU7QUFQWSxHQUFsQjs7QUFVQSxXQUFTQyxRQUFULEdBQW9CO0FBQ2xCVCxJQUFBQSxHQUFHLENBQUNVLFNBQUosQ0FBY1IsUUFBZCxFQUF3QkMsU0FBUyxDQUFDQyxDQUFsQyxFQUFxQ0QsU0FBUyxDQUFDRSxDQUEvQyxFQUFrREYsU0FBUyxDQUFDRyxJQUE1RDtBQUNBSyxJQUFBQSxPQUFPLENBQUNDLEdBQVIsQ0FBWSxPQUFaO0FBRUQ7O0FBQ0RILEVBQUFBLFFBQVE7QUFDVCxDQXZCRCIsInNvdXJjZXNDb250ZW50IjpbIi8vIGNvbnN0IENhbmR5X0Nvcm4gPSByZXF1aXJlKFwiLi9zY3JpcHRzL2NhbmR5X2Nvcm4uanNcIik7XG53aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcihcIkRPTUNvbnRlbnRMb2FkZWRcIiwgZnVuY3Rpb24gKCkge1xuICBjb25zdCBjYW52YXMgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChcIm15Y2FudmFzXCIpO1xuICBjYW52YXMud2lkdGggPSA4MDA7XG4gIGNhbnZhcy5oZWlnaHQgPSA2MDA7XG4gIGNvbnN0IGN0eCA9IGNhbnZhcy5nZXRDb250ZXh0KCcyZCcpO1xuICBjb25zdCBjYW5keUltZyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiY29yblwiKTtcblxuICBjb25zdCBjYW5keUNvcm4gPSB7XG4gICAgLy8gd2lkdGg6IDUwLFxuICAgIC8vIGhlaWdodDogNjksXG4gICAgeDogMjAwLFxuICAgIHk6IDIwMCxcbiAgICBzaXplOjMwLFxuICAgIGR4OiA1LFxuICAgIGR5OiA0XG4gIH1cbiBcbiAgZnVuY3Rpb24gZHJhd0Nvcm4oKSB7XG4gICAgY3R4LmRyYXdJbWFnZShjYW5keUltZywgY2FuZHlDb3JuLngsIGNhbmR5Q29ybi55LCBjYW5keUNvcm4uc2l6ZSlcbiAgICBjb25zb2xlLmxvZyhcImhlbGxvXCIpO1xuXG4gIH1cbiAgZHJhd0Nvcm4oKTtcbn0pIl0sImZpbGUiOiIuL3NyYy9pbmRleC5qcy5qcyIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/index.js\n");
 
 /***/ }),
 
@@ -36,35 +25,15 @@ eval("__webpack_require__.r(__webpack_exports__);\nfunction _classCallCheck(inst
   \************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvaW5kZXguc2Nzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jYXJ2aW5nX3B1bXBraW5zLy4vc3JjL2luZGV4LnNjc3M/OTc0NSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/index.scss\n");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/make namespace object */
@@ -83,8 +52,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
-/******/ 	__webpack_require__("./src/index.js");
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.scss");
+/******/ 	__webpack_modules__["./src/index.js"](0, {}, __webpack_require__);
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./src/index.scss"](0, __webpack_exports__, __webpack_require__);
 /******/ 	
 /******/ })()
 ;
