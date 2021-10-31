@@ -1,16 +1,19 @@
-const CandyCorn = require("./scripts/candy_corn.js")
-const HomePage = require("./scripts/home_page.js")
+import CandyCorn from './scripts/candy_corn.js'
+import MenuScreen from './scripts/menu_screen.js'
 window.CandyCorn = CandyCorn;
-window.HomePage = HomePage;
+window.MenuScreen = MenuScreen;
 window.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("mycanvas");
-  const candyImg = document.getElementById("corn");
-  canvas.width = innerWidth;
-  canvas.height = innerWidth;
   const ctx = canvas.getContext('2d');
-  candyImg.onload = function () {
-    drawCorn();
-  }
+  canvas.width = 800;
+  canvas.height = 600;
+  const candyImg = document.getElementById("corn");
+  // candyImg.onload = function () {
+  //   drawCorn();
+  // }
+  let cc = new CandyCorn(400,400)
+
+  cc.drawCorn(ctx)
 
 })
 
