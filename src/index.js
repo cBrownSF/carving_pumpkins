@@ -7,18 +7,24 @@ window.addEventListener("DOMContentLoaded", function () {
   canvas.height = window.innerHeight;
   const ctx = canvas.getContext('2d');
   // var board = ctx.fillRect(200,100,800,600)
-  const candyImg = document.getElementById("corn");
+ 
   let candyCorn = {
     width: 50,
     height: 69,
-    x: Math.random() * innerWidth,
-    y: Math.random() * innerHeight,
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
     dx: 5,
     dy: 4
   }
   function drawCorn() {
     for (let i = 0; i < 20; i++) {
-      ctx.drawImage(candyImg, Math.random() * innerWidth, Math.random() * innerHeight, 50, 69);
+      let randomWidth = Math.random() * innerWidth;
+      let x = randomWidth;
+      let randomHeight = Math.random() * innerHeight
+      let y = randomHeight;
+      ctx.drawImage(candyImg, candyCorn.x, candyCorn.y, 50, 69);
+      candyCorn.x += candyCorn.dx;
+      candyCorn.y += candyCorn.dy;
     }
   
   }
@@ -27,13 +33,14 @@ window.addEventListener("DOMContentLoaded", function () {
      drawCorn();
     
    } 
-  function move() {
+   var x = 200;
+  function animate() {
     ctx.clearRect(0,0,canvas.width, canvas.height)
-//   //   drawCorn();
-//   // 
-    requestAnimationFrame(move);
+    drawCorn();
+    requestAnimationFrame(animate);
 //   //   // candyCorn.x += candyCorn.dx;
 //   //   // candyCorn.x += candyCorn.dx;
   }
+  animate();
 })
 

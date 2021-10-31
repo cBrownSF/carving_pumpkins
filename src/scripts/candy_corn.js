@@ -1,4 +1,31 @@
-// window.addEventListener("DOMContentLoaded", function () {
+
+class CandyCorn(){
+  const candyImg = document.getElementById("corn");
+  constructor(x,y){
+    this.x = x;
+    this.y = y;
+    this.dx = 5;
+    this.dy = 4;
+    this.drawCorn();
+  }
+
+}
+  drawCorn() {
+      ctx.drawImage(candyImg, this.x, this.y);
+    }
+}
+// function Game() {
+//   this.DIM_X = 1000;
+//   this.DIM_Y = 1000;
+//   this.NUM_ASTEROIDS = 8;
+//   this.asteroidArray = [];
+//   this.addAsteroids();
+// }
+
+
+
+
+//window.addEventListener("DOMContentLoaded", function () {
 //   const canvas = document.getElementById("mycanvas");
 //   canvas.width = 800;
 //   canvas.height = 600;
