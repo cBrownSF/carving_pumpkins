@@ -61,7 +61,7 @@
 //   // function animate(){
 //   //   ctx.clearRect(0,0,canvas.width, canvas.height)
 //   //   drawCorn();
-//   // }
+//   // 
 //   //   // requestAnimationFrame(animate);
 //   //   // candyCorn.x += candyCorn.dx;
 //   //   // candyCorn.x += candyCorn.dx;
