@@ -6,8 +6,8 @@ export default class MenuScreen{
     this.HEIGHT = 600;
     this.NUM_CANDY = 15;
     this.candyArray = [];
-    // this.populateCorn();
-    // this.drawCandy();
+    this.populateCorn();
+    this.drawCandy();
   }
   populateCorn() {
     for (let i = 0; i < this.NUM_CANDY; i++) {
@@ -15,23 +15,14 @@ export default class MenuScreen{
       let y = Math.random() * 600
       let corn = new CandyCorn(x,y)
       this.candyArray.push(corn);
-    }
-    // return this.populateCorn() maybe add return statements
+      }
   }
-
-  drawCandy(ctx){
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    // for (let i = 0; i <this.candyArray; i ++){
-    //   let candy = candyArray[i].drawCorn();
-    // }
-    // return this.drawCandy() maybe add this
-  }
-//   animateCorn(ctx){
+  drawButton(){
     
-
-//   }
-
-  
+  }
+  drawCandy(){
+    for (let i = 0; i <this.candyArray; i ++){
+      this.candyArray[i].drawCorn(ctx);
+    }
+  }
 }
-// // module.exports = MenuScreen;
-// // export default MenuScreen;

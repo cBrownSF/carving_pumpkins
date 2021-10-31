@@ -7,13 +7,15 @@ window.addEventListener("DOMContentLoaded", function () {
   const ctx = canvas.getContext('2d');
   canvas.width = 800;
   canvas.height = 600;
+  ctx.beginPath();
+  ctx.arc(80,80,50,0,Math.PI *2,true);
+  ctx.lineWidth = 7
+  ctx.stroke()
   const candyImg = document.getElementById("corn");
-  // candyImg.onload = function () {
-  //   drawCorn();
-  // }
-  let cc = new CandyCorn(400,400)
-
-  cc.drawCorn(ctx)
+  candyImg.onload = function () {
+    new MenuScreen();
+  }
+  
 
 })
 

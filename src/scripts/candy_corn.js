@@ -5,20 +5,18 @@ export default class CandyCorn {
     this.y = y;
     this.dx = 5;
     this.dy = 4;
-    // this.drawCorn();
   }
+
   drawCorn(ctx) {
       const candyImg = document.getElementById("corn");
       ctx.drawImage(candyImg, this.x, this.y);
+      console.log('drawCorn')
     }
-  
-}
-// export default CandyCorn;
-// module.exports = CandyCorn;
 
-// MovingObject.prototype.move = function () {
-//   let newX = this.x + this.dx
-// let newY = this.y + this.dy;
-//   this.x = newX;
-      // this.y = newY
-// }
+  moveCorn(){
+    newX = this.x + this.dx
+    newY = this.y + this.dy;
+    this.x = newX;
+    this.y = newY;
+  }
+}
