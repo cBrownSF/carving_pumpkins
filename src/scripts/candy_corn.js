@@ -8,6 +8,8 @@ class CandyCorn {
      const canvas = document.getElementById("mycanvas");
     const ctx = canvas.getContext('2d');
     this.drawCorn(ctx)
+    this.moveCorn()
+    // this.moveCorn(ctx)
   }
 
   drawCorn(ctx) {
@@ -15,11 +17,16 @@ class CandyCorn {
       ctx.drawImage(candyImg, this.x, this.y);
     }
 
-  moveCorn(){
-    newX = this.x + this.dx
-    newY = this.y + this.dy;
+  moveCorn(ctx){
+    const canvas = document.getElementById("mycanvas");
+    // const ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+    this.drawCorn(ctx);
+    let newX = this.x + this.dx
+    let newY = this.y + this.dy;
     this.x = newX;
     this.y = newY;
+    requestAnimationFrame(this.moveCorn);
   }
 } 
 export default CandyCorn

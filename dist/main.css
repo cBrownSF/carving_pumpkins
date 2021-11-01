@@ -32,6 +32,18 @@ body {
   display: none;
 }
 
+#greenPumpkin {
+  display: none;
+}
+
+#tallPumpkin {
+  display: none;
+}
+
+#widePumpkin {
+  display: none;
+}
+
 #main {
   color: blue;
 }

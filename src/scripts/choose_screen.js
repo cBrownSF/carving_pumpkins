@@ -1,5 +1,7 @@
 class ChooseScreen{
   constructor(){
+    const canvas = document.getElementById("mycanvas");
+    const ctx = canvas.getContext('2d');
     this.drawPumpkin(ctx);
     this.drawPumpkinGreen(ctx);
     this.drawPumpkinTall(ctx);
@@ -7,7 +9,7 @@ class ChooseScreen{
 
   drawPumpkin(ctx){
    let wide = document.getElementById("widePumpkin");
-    ctx.drawImage(wide, 300, 300, 600,591);
+  ctx.drawImage(wide, 300, 300, 600,591);
   }
   drawPumpkinGreen(ctx){
     let green = document.getElementById("greenPumpkin");
