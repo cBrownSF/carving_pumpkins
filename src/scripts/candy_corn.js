@@ -13,7 +13,6 @@ class CandyCorn {
   drawCorn(ctx) {
       const candyImg = document.getElementById("corn");
       ctx.drawImage(candyImg, this.x, this.y);
-      console.log('drawCorn')
     }
 
   moveCorn(){

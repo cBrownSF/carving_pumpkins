@@ -15,10 +15,15 @@ window.addEventListener("DOMContentLoaded",function() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   const candyImg = document.getElementById("corn");
-  
-  candyImg.onload = function () {
+  const titleImg = document.getElementById('title')
+  titleImg.onload = function(){
     new MenuScreen();
   }
+  candyImg.onload = function () {
+    new MenuScreen();
+
+  }
+  
   window.addEventListener("resize", function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
