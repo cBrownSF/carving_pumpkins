@@ -1,7 +1,6 @@
-export default class Button{
-  constructor(x,y,radius,text){
-    this.x = x;
-    this.y = y;
+ class Button{
+  constructor(pos,radius,text){
+    this.pos = pos;
     this.radius = radius
     this.START = 0;
     this.END = Math.PI *2;
@@ -14,7 +13,7 @@ export default class Button{
 
   drawButton(ctx){
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius,this.START, this.END, this.CCLOCK);
+    ctx.arc(this.pos[0], this.pos[1], this.radius,this.START, this.END, this.CCLOCK);
     ctx.lineWidth = 5
     ctx.fillStyle = "#E66C2C";
     ctx.fill();
@@ -25,3 +24,5 @@ export default class Button{
   }
 
 }
+
+export default Button;

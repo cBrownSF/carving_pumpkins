@@ -1,11 +1,11 @@
-export default class CandyCorn {
+class CandyCorn {
  
   constructor(x,y){
     this.x = x;
     this.y = y;
     this.dx = 5;
     this.dy = 4;
-    const canvas = document.getElementById("mycanvas");
+     const canvas = document.getElementById("mycanvas");
     const ctx = canvas.getContext('2d');
     this.drawCorn(ctx)
   }
@@ -22,4 +22,5 @@ export default class CandyCorn {
     this.x = newX;
     this.y = newY;
   }
-}
+} 
+export default CandyCorn
