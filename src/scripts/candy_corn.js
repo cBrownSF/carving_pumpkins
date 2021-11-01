@@ -1,4 +1,4 @@
-import { throws } from "assert";
+
 
 class CandyCorn {
  
@@ -10,7 +10,7 @@ class CandyCorn {
      const canvas = document.getElementById("mycanvas");
     const ctx = canvas.getContext('2d');
     this.drawCorn(ctx)
-    this.moveCorn()
+    // this.moveCorn()
     // this.moveCorn(ctx)
   }
 
@@ -19,17 +19,20 @@ class CandyCorn {
       ctx.drawImage(candyImg, this.x, this.y);
     }
 
-  // moveCorn(ctx){
-  //   const canvas = document.getElementById("mycanvas");
-  //   // // const ctx = canvas.getContext('2d');
-  //   //ctx.clearRect(0,0,canvas.width,canvas.height)
-  //   this.drawCorn(ctx);
-  //   let newX = this.x + this.velX
-  //   let newY = this.y + this.velY;
-  //   this.x = newX;
-  //   this.y = newY;
-  //   requestAnimationFrame(this.moveCorn(ctx));
-  // }
+  moveCorn(){
+    const canvas = document.getElementById("mycanvas");
+    let ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+    this.drawCorn(ctx);
+
+    let newX = this.x + this.velX
+    let newY = this.y + this.velY;
+     this.x = newX;
+    this.y = newY;
+    requestAnimationFrame(this.moveCorn());
+  }
+
+
   //checkWalls(){
     //if (if (this.x > canvas.width || corn.x <0){
 //     this.velX = (this.velX * -1)

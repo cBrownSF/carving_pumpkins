@@ -20,7 +20,7 @@ import CandyCorn from './candy_corn.js'
       let y = Math.random() * canvas.height;
       if (i !== 0){
         for (let j = 0; j<this.candyArray.length; j++) {
-          if (this.distBetween(x1, y1, candyArray[j].x, candyArray[j].y) <=0){
+          if (this.distBetween(x, y, this.candyArray[j].x, this.candyArray[j].y) <=0){
             x = Math.random() * canvas.width;
             y = Math.random() * canvas.height;
             //also can possibly change the value here later so that they are spaced farther apart
@@ -39,9 +39,8 @@ import CandyCorn from './candy_corn.js'
    }
   drawCandy(){
     for (let i = 0; i < this.candyArray.length; i ++){
-  
-      this.candyArray[i].drawCorn();
-    //   console.log('hey');
+      // this.candyArray[i].moveCorn();
+      console.log('hey');
     }
   }
 
