@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded",function() {
   const titleImg = document.getElementById('title');
  
   candyImg.onload = function () {
-    new MenuScreen();
+    new MenuScreen(canvas)
    
   }
 

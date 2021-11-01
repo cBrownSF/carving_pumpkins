@@ -7,11 +7,9 @@ class CandyCorn {
     this.y = y;
     this.velX = 5;
     this.velY = 4;
-     const canvas = document.getElementById("mycanvas");
-    const ctx = canvas.getContext('2d');
-    this.drawCorn(ctx)
-    // this.moveCorn()
-    // this.moveCorn(ctx)
+   
+    // this.moveCorn = this.moveCorn.bind(this)
+    // this.moveCorn();
   }
 
   drawCorn(ctx) {
@@ -19,28 +17,45 @@ class CandyCorn {
       ctx.drawImage(candyImg, this.x, this.y);
     }
 
-  moveCorn(){
-    const canvas = document.getElementById("mycanvas");
-    let ctx = canvas.getContext('2d');
-    ctx.clearRect(0,0,canvas.width,canvas.height)
-    this.drawCorn(ctx);
+  getDist(x1, y1, x2, y2) {
+    return Math.sqrt(
+      Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)
+    );
+  }
+  isCollidedWith(otherObject) {
+    if (this.getDist(this.x,this.y, otherObject.x,otherObject.y) <= 0){
+        return true;
+      }
+    else{
+      false
+    }
+} 
 
-    let newX = this.x + this.velX
-    let newY = this.y + this.velY;
-     this.x = newX;
-    this.y = newY;
-    requestAnimationFrame(this.moveCorn());
+
+
+
+  move(timeDelta) {
+    const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
+    const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA
+    this.checkWalls()
+    let offsetX = this.velX * velocityScale;
+    let offsetY = this.velY * velocityScale;
+    this.x =this.x +offsetX
+    this.y =this.y + offsetY
   }
 
+  checkWalls() {
+    const canvas = document.getElementById("mycanvas");
+    let ctx = canvas.getContext('2d');
+    if (this.x > canvas.width || this.x < 0) {
+      this.velX = (this.velX * -1)
+    }
+    if (this.y > canvas.height || this.y < 0) {
+      this.velY = (this.velY * -1)
+    }
+  }
 
-  //checkWalls(){
-    //if (if (this.x > canvas.width || corn.x <0){
-//     this.velX = (this.velX * -1)
-// }
-// if (corn.y > canvas.height || corn.y < 0) {
-//   this.velY = (corn.dy * -1)
-// })
-  //}
+  
   // isOnTitle(){
     //example
   //   if (this.x > 200 || this.y < 600)
