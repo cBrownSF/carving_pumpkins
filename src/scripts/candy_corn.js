@@ -1,9 +1,3 @@
-
-// const DEFAULTS = {
- 
-//   SPEED: 4
-// };
-// Util.randomVec(DEFAULTS.SPEED)
 class CandyCorn {
  
   constructor(x,y,velX,velY){
@@ -40,7 +34,7 @@ class CandyCorn {
     const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
     const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA
     this.checkWalls()
-    this.checkTitle()
+    // this.checkTitle()
     let offsetX = this.velX * velocityScale;
     let offsetY = this.velY * velocityScale;
     this.x =this.x +offsetX
@@ -59,17 +53,17 @@ class CandyCorn {
   }
 
   
-  checkTitle(){
-  //   const canvas = document.getElementById("mycanvas");
-  //   let ctx = canvas.getContext('2d');
-  //   if (this.x < 600 && this.x > canvas.width - 600){
-  //     this.velX = (this.velX * -1)
-  //   //   this.velY = (this.velY * -1)
-  //   }
-  //   if (this.y > 400 && this.y > canvas.width -400){
-  //     this.velY = (this.velY * -1)
-  //   //   this.velX = (this.velX * -1)
-  //   }
-  }
+  // checkTitle(){
+  // //   const canvas = document.getElementById("mycanvas");
+  // //   let ctx = canvas.getContext('2d');
+  // //   if (this.x < 600 && this.x > canvas.width - 600){
+  // //     this.velX = (this.velX * -1)
+  // //   //   this.velY = (this.velY * -1)
+  // //   }
+  // //   if (this.y > 400 && this.y > canvas.width -400){
+  // //     this.velY = (this.velY * -1)
+  // //   //   this.velX = (this.velX * -1)
+  // //   }
+  // }
 } 
 export default CandyCorn

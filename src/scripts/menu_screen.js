@@ -24,7 +24,7 @@ import CandyCorn from './candy_corn.js'
       let velY = Math.floor((Math.random() * 5) + 3);
       if (i !== 0) {
         for (let j = 0; j < this.candyArray.length; j++) {
-          if (this.getDist(x, y, this.candyArray[j].x, this.      candyArray[j].y) < 70) {
+          if (this.getDist(x, y, this.candyArray[j].x, this.candyArray[j].y) < 70) {
             x = Math.random() * (canvas.width - 200);
             y = Math.random() * (canvas.height - 200);
             j = -1;    
@@ -87,7 +87,6 @@ checkCollisions() {
     
     const titleImage = document.getElementById("title");
      this.ctx.drawImage(titleImage, this.canvas.width/2 - 200, this.canvas.height/2 -200);
-   title.getBoundingClientRect()
   }
 //   drawButton(){
 //     new Button(500, 500, 80, "START!")
