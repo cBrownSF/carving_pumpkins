@@ -16,27 +16,22 @@ window.addEventListener("DOMContentLoaded",function() {
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  const titleImage = document.getElementById("title");
+ ctx.drawImage(titleImage,canvas.width / 2 - 200, canvas.height / 2 - 200)
+     new MenuScreen(canvas)
+    
 
-  const candyImg = document.getElementById("corn");
-  const titleImg = document.getElementById('title');
- 
-  candyImg.onload = function () {
-    new MenuScreen(canvas)
-   
-  }
-
-   // titleImg.onload = function(){
-  //  drawTitle();
-  //  console.log('hello')
-  //  }
-
+  titleImage.addEventListener("click",(e)=>
+  {console.log(hello)}
+  )
   // window.addEventListener("resize", function () {
   //   canvas.width = window.innerWidth;
   //   canvas.height = window.innerHeight;
   //   new MenuScreen();
+  //   console.log('hello')
   // })
-  // canvas.addEventListener("click",function(e){
-  //   mouseTrack.x = e.x
-  // })
+  canvas.addEventListener("click",function(e){
+    mouseTrack.x = e.x
+  })
 })
 
