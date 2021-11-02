@@ -9,7 +9,7 @@ import CandyCorn from './candy_corn.js'
     this.ctx = canvas.getContext('2d');
     this.populateCandyArray();
     this.start();
-    this.checkCollisions()
+    // this.checkCollisions()
     // this.drawButton()
     // this. drawTitle()
 
@@ -19,20 +19,17 @@ import CandyCorn from './candy_corn.js'
     for (let i = 0; i < this.NUM_CANDY; i++) {
       let x = Math.random() * canvas.width;
       let y = Math.random() * canvas.height;
-  
-      let corn = new CandyCorn(x, y)
-      this.candyArray.push(corn);
-   
+      let corn = new CandyCorn(x, y);
+      
+        this.candyArray.push(corn);
+      }
     }
-  }
-
 
 drawMenu(){
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     for (let i = 0; i < this.candyArray.length; i ++){
       this.candyArray[i].drawCorn(this.ctx)
     }
-    
   }
 
 start() {

@@ -7,9 +7,6 @@ class CandyCorn {
     this.y = y;
     this.velX = 5;
     this.velY = 4;
-   
-    // this.moveCorn = this.moveCorn.bind(this)
-    // this.moveCorn();
   }
 
   drawCorn(ctx) {
@@ -22,17 +19,18 @@ class CandyCorn {
       Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)
     );
   }
-  isCollidedWith(otherObject) {
-    if (this.getDist(this.x,this.y, otherObject.x,otherObject.y) <= 0){
-        return true;
-      }
-    else{
-      false
-    }
-} 
+  
+//   isCollidedWith(otherObject) {
+//     if (this.getDist(this.x,this.y, otherObject.x,otherObject.y) <= 0){
+//         return true;
+//       }
+//     else{
+//       false
+//     }
+// } 
 
 
-
+  
 
   move(timeDelta) {
     const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
