@@ -1,13 +1,10 @@
 import Button from './main_buttons.js'
-
+import MenuScreen from './menu_screen.js';
 class Instructions{
   constructor(canvas){
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.drawButton();
-    // this.drawFirstList();
-    // this.drawSecondList();
-    // this.drawLastList();
     this.drawBox();
   }
 

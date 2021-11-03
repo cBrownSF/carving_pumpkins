@@ -5,13 +5,10 @@ import CandyCorn from './candy_corn.js'
     this.NUM_CANDY = 25;
     this.candyArray = [];
     this.canvas = canvas;
-    this.gameState = true;
     this.ctx = canvas.getContext('2d');
     this.populateCandyArray();
     this.start();
     this.drawTitle()
-    // this.drawButton()
-
   }
  
   populateCandyArray() { 
@@ -34,55 +31,53 @@ import CandyCorn from './candy_corn.js'
     this.candyArray.push(corn);
     }
   }
- getDist(x1, y1, x2, y2) {
-     return Math.sqrt(
-       Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)
-     );
-   }
+  getDist(x1, y1, x2, y2) {
+      return Math.sqrt(
+        Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)
+      );
+    }
 
-drawMenu(){
-  this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-  for (let i = 0; i < this.candyArray.length; i ++){
-    this.candyArray[i].drawCorn(this.ctx);
+  drawMenu(){
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    for (let i = 0; i < this.candyArray.length; i ++){
+      this.candyArray[i].drawCorn(this.ctx);
+    }
+    this.drawTitle();
+    this.drawSpace();
   }
-  this.drawTitle();
-  this.drawSpace();
-}
 
-start() {
-  this.lastTime = 0;
-  requestAnimationFrame(this.animate.bind(this));
-}
-animate(time){
-  const timeDelta = time - this.lastTime;
-  this.moveObjects(timeDelta)
-  this.checkCollisions();
-  this.drawMenu()
-  this.lastTime = time;
+  start() {
+    this.lastTime = 0;
+    requestAnimationFrame(this.animate.bind(this));
+  }
+  animate(time){
+    const timeDelta = time - this.lastTime;
+    this.moveObjects(timeDelta)
+    this.checkCollisions();
+    this.drawMenu()
+    this.lastTime = time;
 
-  this.frame = requestAnimationFrame(this.animate.bind(this));
-}
+    this.frame = requestAnimationFrame(this.animate.bind(this));
+  }
 
-moveObjects(timeDelta){
-  this.candyArray.forEach(candy =>{
-    candy.move(timeDelta);
-  })
-}
+  moveObjects(timeDelta){
+    this.candyArray.forEach(candy =>{
+      candy.move(timeDelta);
+    })
+  }
 
-checkCollisions() {
-    for (let i = 0; i < this.candyArray.length; i++) {
-      for (let j = 1; j < this.candyArray.length; j++) {
-        const candy1 = this.candyArray[i];
-        const candy2 = this.candyArray[j];
+  checkCollisions() {
+      for (let i = 0; i < this.candyArray.length; i++) {
+        for (let j = 1; j < this.candyArray.length; j++) {
+          const candy1 = this.candyArray[i];
+          const candy2 = this.candyArray[j];
 
-        if (candy1.isCollidedWith(candy2)) {
-          
+          if (candy1.isCollidedWith(candy2)) {
+            
+          }
         }
       }
-    }
-  };
-
-  //relocate
+    };
 
   drawTitle() {
     
@@ -94,12 +89,5 @@ checkCollisions() {
     const spaceImage = document.getElementById("space")
     this.ctx.drawImage(spaceImage, this.canvas.width / 2, this.canvas.height / 2)
   }
-  // drawButton(){
-  //   new Button(500, 500, 80, "START!")
-  // }
-
-// }
-
-// 
- }
+}
 export default MenuScreen;
