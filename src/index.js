@@ -1,14 +1,19 @@
-import ChooseScreen from './scripts/choose_screen.js'
+import GameScreen from './scripts/game_screen.js'
 import Button from './scripts/main_buttons.js'
 import CandyCorn from './scripts/candy_corn.js'
 import MenuScreen from './scripts/menu_screen.js'
+import Instructions from './scripts/instructions.js'
 window.Button = Button;
 window.CandyCorn = CandyCorn;
 window.MenuScreen = MenuScreen;
-window.ChooseScreen = ChooseScreen;
+window.GameScreen = GameScreen;
+window.Instructions = Instructions;
 const mouseTrack = {
   x: null,
   y:null
+}
+const STATE= {
+  MENU: 0
 }
 
 window.addEventListener("DOMContentLoaded", ()=> {
@@ -24,22 +29,14 @@ window.addEventListener("DOMContentLoaded", ()=> {
   let menuScreen = new MenuScreen(canvas);
 
   window.addEventListener('keydown', e => {
-    
-    if(e.code === 'Space'){
+    if (e.code === 'Space' && menuScreen.gameState === true){
       ctx.clearRect(0,0,canvas.width,canvas.height)
       window.cancelAnimationFrame(menuScreen.frame);
+      menuScreen.gameState = false;
     }
-   ctx.drawImage(mouse, canvas.width / 2, canvas.height / 2)
+   
+   new Instructions(canvas);
 })
-  // mouse.addEventListener("click", ()=>{
-  //   console.log('hey')
-  // })
-
-// window.onload = function(){  
-//   new MenuScreen(canvas);
-// }
-
- 
 
   // titleImage.addEventListener("click",(e)=>
   // {console.log(hello)}
@@ -50,17 +47,23 @@ window.addEventListener("DOMContentLoaded", ()=> {
   //   new MenuScreen();
   //   console.log('hello')
   // })
-  // canvas.addEventListener("click",function(e){
-  //   mouseTrack.x = e.x
-  // })
-  // function getMousePos(){
-  //   console.log(mouseTrack.x);
-  // }
-  // getMousePos()
+  
   canvas.addEventListener("click", function (e) {
+    
     mouseTrack.x = e.x
     mouseTrack.y = e.y
-    console.log(`${mouseTrack.x}, ${mouseTrack.y}`)
+    let canvaslowy = canvas.height / 2 +200 - 42
+    let canvashighy = canvas.height / 2 +200 + 45;
+    // console.log(`${ mouseTrack.x }, ${ mouseTrack.y}`)
+    if ((mouseTrack.x >= canvas.width / 2 - 60 && mouseTrack.x < canvas.width / 2 + 45) &&(mouseTrack.y > canvas.height / 2 + 200 - 42 && canvas.height / 2 + 200 + 45)) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+    } else {
+      return false
+    }
+    new GameScreen(canvas)
   })
+
+    // (mouseTrack.x >= canvas.width / 2 - 60 && mouseTrack.x < canvas.width / 2 + 45)
+    // &&
 })
 

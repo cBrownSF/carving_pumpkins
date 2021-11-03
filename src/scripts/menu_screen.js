@@ -1,4 +1,3 @@
-import Button from './main_buttons.js'
 import CandyCorn from './candy_corn.js'
  class MenuScreen{
    
@@ -6,7 +5,7 @@ import CandyCorn from './candy_corn.js'
     this.NUM_CANDY = 25;
     this.candyArray = [];
     this.canvas = canvas;
-
+    this.gameState = true;
     this.ctx = canvas.getContext('2d');
     this.populateCandyArray();
     this.start();
