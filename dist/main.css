@@ -19,7 +19,16 @@ body {
   margin: 0;
 }
 
+.div {
+  display: flex;
+}
+
 #mycanvas {
+  background: #c4ddc4;
+  border-radius: 5px;
+}
+
+#secondcanvas {
   background: #c4ddc4;
   border-radius: 5px;
 }
@@ -29,6 +38,14 @@ body {
 }
 
 #title {
+  display: none;
+}
+
+#mouse {
+  display: none;
+}
+
+#space {
   display: none;
 }
 

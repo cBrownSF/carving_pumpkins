@@ -9,6 +9,7 @@
     const canvas = document.getElementById("mycanvas");
     const ctx = canvas.getContext('2d');
     this.drawButton(ctx)
+    console.log('hello')
   }
 
   drawButton(ctx){

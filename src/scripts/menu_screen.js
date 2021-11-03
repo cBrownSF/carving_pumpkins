@@ -43,11 +43,12 @@ import CandyCorn from './candy_corn.js'
 
 drawMenu(){
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-    for (let i = 0; i < this.candyArray.length; i ++){
-      this.candyArray[i].drawCorn(this.ctx)
-      this.drawTitle()
-    }
+  for (let i = 0; i < this.candyArray.length; i ++){
+    this.candyArray[i].drawCorn(this.ctx);
   }
+  this.drawTitle();
+  this.drawSpace();
+}
 
 start() {
   this.lastTime = 0;
@@ -60,8 +61,9 @@ animate(time){
   this.drawMenu()
   this.lastTime = time;
 
-  requestAnimationFrame(this.animate.bind(this));
+  this.frame = requestAnimationFrame(this.animate.bind(this));
 }
+
 moveObjects(timeDelta){
   this.candyArray.forEach(candy =>{
     candy.move(timeDelta);
@@ -88,9 +90,14 @@ checkCollisions() {
     const titleImage = document.getElementById("title");
      this.ctx.drawImage(titleImage, this.canvas.width/2 - 200, this.canvas.height/2 -200);
   }
-//   drawButton(){
-//     new Button(500, 500, 80, "START!")
-//   }
+
+  drawSpace(){
+    const spaceImage = document.getElementById("space")
+    this.ctx.drawImage(spaceImage, this.canvas.width / 2, this.canvas.height / 2)
+  }
+  // drawButton(){
+  //   new Button(500, 500, 80, "START!")
+  // }
 
 // }
 
