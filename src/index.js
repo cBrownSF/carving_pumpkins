@@ -73,9 +73,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
     
     mouseTrack.x = e.x
     mouseTrack.y = e.y
-    let canvaslowy = canvas.height / 2 +200 - 42
-    let canvashighy = canvas.height / 2 +200 + 45;
-    // console.log(`${ mouseTrack.x }, ${ mouseTrack.y}`)
+  
     if ((mouseTrack.x >= canvas.width / 2 - 60 && mouseTrack.x < canvas.width / 2 + 45) && (mouseTrack.y > canvas.height / 2 + 200 - 42 && canvas.height / 2 + 200 + 45) && clickArray.includes('instruct')) {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       clickArray.splice(0,1)

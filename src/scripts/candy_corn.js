@@ -6,13 +6,14 @@ class CandyCorn {
     this.velX = velX;
     this.velY = velY;
   }
+
   collideWith(otherObject) {
     // default do nothing
   };
   drawCorn(ctx) {
       const candyImg = document.getElementById("corn");
       ctx.drawImage(candyImg, this.x, this.y);
-    }
+  }
 
   getDist(x1, y1, x2, y2) {
     return Math.sqrt(
@@ -27,7 +28,7 @@ class CandyCorn {
     else{
       false
     }
-} 
+  } 
 
 
   move(timeDelta) {

@@ -80,7 +80,6 @@ import CandyCorn from './candy_corn.js'
     };
 
   drawTitle() {
-    
     const titleImage = document.getElementById("title");
      this.ctx.drawImage(titleImage, this.canvas.width/2 - 200, this.canvas.height/2 -200);
   }

@@ -1,5 +1,4 @@
 import Button from './main_buttons.js'
-import MenuScreen from './menu_screen.js';
 class Instructions{
   constructor(canvas){
     this.canvas = canvas;
@@ -24,5 +23,5 @@ class Instructions{
           this.ctx.fillText(splitInt[i], x, y + (i * height));
       }
     }
-}
+  }
 export default Instructions;
