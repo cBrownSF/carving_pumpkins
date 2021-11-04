@@ -21,11 +21,10 @@ window.addEventListener("DOMContentLoaded", ()=> {
 
   const candyImg = document.getElementById("corn");
   const titleImg = document.getElementById('title');
-  const keyBoard = document.getElementById("keyboard")
   const mouse = document.getElementById('mouse')
 
   let menuScreen = new MenuScreen(canvas);
-  let instruct = new Instructions(canvas);
+  // let instruct = new Instructions(canvas);
 
 
   let keysAvail = ['Space']
@@ -44,24 +43,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
     
   new Instructions(canvas);
   })
-//    boundedInstruct = null;
-//  }
 
-
-  // function firstPos(){
-  //   carving = true;
-  // }
-  // function endPos(){
-  //   carving = false;
-  // }
-  // function carve(e){
-  //   if (!carving) return false;
-  //   ctx.lineWidth = 12;
-  //   ctx.lineCap = 'round';
-  //   ctx.lineTo(e.clientX,e.clientY)
-  //   ctx.stroke()
-  // }
-  
 
   let clickArray = ['instruct']
   canvas.addEventListener("click", function (e) {
@@ -72,36 +54,27 @@ window.addEventListener("DOMContentLoaded", ()=> {
     if ((mouseTrack.x >= canvas.width / 2 - 60 && mouseTrack.x < canvas.width / 2 + 45) && (mouseTrack.y > canvas.height / 2 + 200 - 42 && canvas.height / 2 + 200 + 45) && clickArray.includes('instruct')) {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       clickArray.splice(0,1)
-      console.log('hey')
+      // new GameScreen(canvas)
     } else {
       return false
     }
     new GameScreen(canvas)
   })
 
-
-  // function firstPos(){
+  // canvas.addEventListener("click", (e) =>{
+  //   mouseTrack.x = e.x
+  //   mouseTrack.y = e.y
   //   if (clickArray.length === 0) {
-  //     carving = true;
-  //     console.log('begin')
   //   }
-  // }
-  // // function endPos() {
-  //   if (clickArray.length === 0) {
-  //   mouseTrack.x = e.clientX
-  //   mouseTrack.y = e.clientY
-  //   console.log(mouseTrack.x, mouseTrack.y)
-  //   carving = false;
-  //   ctx.beginPath();
-  //   console.log('end')
-  //   }
-  // }
+  // })
   let carving = false;
 
   let newArray =[]  
   canvas.addEventListener("mousedown", (e) => {
     
     if (clickArray.length === 0) {
+      // ctx.restore
+      // ctx.save
       carving = true;
       ctx.beginPath()
       let startX = e.clientX
@@ -113,8 +86,6 @@ window.addEventListener("DOMContentLoaded", ()=> {
 
   canvas.addEventListener("mousemove", (e)=>{
   
-
-
     mouseTrack.x = e.clientX
     mouseTrack.y = e.clientY
     if (!carving) return false;
@@ -124,37 +95,6 @@ window.addEventListener("DOMContentLoaded", ()=> {
       ctx.lineCap = "round"
       ctx.lineTo(e.clientX, e.clientY)
       ctx.stroke()
-  
-      let count = 0;
-      let mouseX = mouseTrack.x
-      let mouseY = mouseTrack.y
-      
-      // if ((mouseX - 40 < newArray[0] && mouseY + 40 > newArray[0]) && (mouseY -40 <newArray[1] && mouseY + 40 > newArray[1])){
-      //   console.log('working')
-      // }
-
-
-
-
-
-      // for (let i = mouseX - 40; i <mouseX +40; i ++){
-      //   for (let j = 0; j <newArray.length; j +=2){
-      //     if (mouseX[i] === newArray[j]){
-      //       count +=1;break;
-      //     }
-      //   }
-      //   }
-      //   for (let k = mouseY -40; k <mouseY +40; k ++){
-      //     for (let l = 1; l <newArray.length; l+=2){
-      //       if (mouseY[k] === newArray[l]){
-      //         count += 1;break;
-      //       }
-      //     }
-      //   }
-
-      //   if (count ===2){
-      //     return 'YESSSS';
-      //   }
        
       }
     
@@ -162,25 +102,31 @@ window.addEventListener("DOMContentLoaded", ()=> {
   });
      
     
-
+  let savedArray =[];
     
   canvas.addEventListener("mouseup", (e) =>{
 
-    // if (clickArray.length === 0) {
+    if (clickArray.length === 0) {
       mouseTrack.x = e.clientX
       mouseTrack.y = e.clientY
       let mouseX = mouseTrack.x
       let mouseY = mouseTrack.y
 
-      if ((mouseX - 40 < newArray[0] && mouseX + 40 > newArray[0]) && (mouseY - 40 < newArray[1] && mouseY + 40 > newArray[1])) {
-        console.log('working')
+      if ((mouseX - 20 < newArray[0] && mouseX + 20> newArray[0]) && (mouseY - 20 < newArray[1] && mouseY + 20 > newArray[1])) {
+        carving = false;
+        ctx.closePath()
+        ctx.fill()
+        // ctx.restore()
+        // ctx.save()
+        ctx.beginPath()
+        newArray.splice(0,newArray.length)
+        // console.log(ctx.getImageData(0,0,canvas.width,canvas.height))
       }
 
-      console.log(mouseTrack.x, mouseTrack.y)
+      newArray.splice(0, newArray.length)
       carving = false;
       ctx.beginPath();
-    
-    // endPos()
-    
+    }
+      
   })
 })
