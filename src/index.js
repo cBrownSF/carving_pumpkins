@@ -70,6 +70,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
   // }//&& (mouseTrack.x > 640 && mouseTrack.x< canvas.width - 582) && (mouseTrack.y < canvas.height -81 && mouseTrack.y>canvas.height/2 -79)
   // })
     // (e.clientX > 640 && e.clientX < canvas.width - 582) && (e.clientY > canvas.height - 81 && e.clientY < canvas.height / 2 - 79)
+  // if ((mouseTrack.x >= canvas.width - 145 && mouseTrack.x < canvas.width - 54) && (mouseTrack.y > 97 && mouseTrack.y < 186)) {
   let carving = false;
 
   let newArray =[]  
@@ -77,14 +78,8 @@ window.addEventListener("DOMContentLoaded", ()=> {
     
     mouseTrack.x = e.x
     mouseTrack.y = e.y
-    // console.log(mouseTrack.x)
-    // console.log(mouseTrack.y)
+    console.log(mouseTrack)
     if (clickArray.length === 0) {
-      const rect = canvas.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      console.log(x,y)
-
       ctx.beginPath();
       ctx.rect(840,300,800,550)
       ctx.closePath()
@@ -95,6 +90,13 @@ window.addEventListener("DOMContentLoaded", ()=> {
       let startY= e.clientY
       newArray.push(e.clientX, e.clientY);
     }
+    
+    if (clickArray.length === 0  && (mouseTrack.y > 50 && mouseTrack.y < 200)&& (mouseTrack.x > canvas.width-180)) {
+      new GameScreen(canvas)
+    }
+    // if (clickArray.length === 0 && (mouseTrack.y > 250 && mouseTrack.y < 400) && (mouseTrack.x > canvas.width - 180)) {
+   
+    // }
   })
 
   canvas.addEventListener("mousemove", (e)=>{
@@ -110,7 +112,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
   });
      
     
-  let savedArray =[];
+ 
   canvas.addEventListener("mouseup", (e) =>{
     if (clickArray.length === 0) {
       mouseTrack.x = e.clientX

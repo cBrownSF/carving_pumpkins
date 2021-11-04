@@ -11,9 +11,8 @@ class GameScreen{
     this.ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, 850, 838);
     const raven = document.getElementById("raven");
     this.ctx.drawImage(raven,0,200, 600,720);
-    new Button(this.canvas.width - 100, this.canvas.height - this.canvas.height + 100, 70, "RESET!", this.canvas)
-    new Button(this.canvas.width - 100, this.canvas.height - this.canvas.height + 300, 70, "NEW", this.canvas)
-    new Button(this.canvas.width - 100, this.canvas.height - this.canvas.height + 500, 70, "HOME", this.canvas)
+    new Button(this.canvas.width - 100, 100, 70, "RESET!", this.canvas)
+    // new Button(this.canvas.width - 100, 300, 70, "HOME", this.canvas)
 
   }
   
