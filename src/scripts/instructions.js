@@ -1,5 +1,6 @@
 import Button from './main_buttons.js'
 class Instructions{
+
   constructor(canvas){
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');

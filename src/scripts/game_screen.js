@@ -3,14 +3,9 @@ class GameScreen{
   constructor(canvas){
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    // this.drawPumpkin();
-    // this.drawReset();
-    // this.drawUndo();
-    // this.drawCandle();
-    // this.reset()
+  
     this.newScreen();
-    // this.drawPumpkinGreen();
-    // this.drawPumpkinTall();
+   
   }
   newScreen(){
     const wide = document.getElementById("widePumpkin");
@@ -28,7 +23,7 @@ class GameScreen{
     this.newScreen()
   }
     
-  
+
   // drawPumpkinGreen(){
   //   const green = document.getElementById("greenPumpkin");
   //   this.ctx.drawImage(green, 300, 300, 570, 594);
