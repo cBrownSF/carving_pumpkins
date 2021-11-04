@@ -25,17 +25,18 @@ import CandyCorn from './candy_corn.js'
             y = Math.random() * (canvas.height - 200);
             j = -1;    
           }
+       }
     }
-  }
     let corn = new CandyCorn(x, y,velX,velY);
     this.candyArray.push(corn);
     }
   }
+  
   getDist(x1, y1, x2, y2) {
-      return Math.sqrt(
-        Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)
-      );
-    }
+    return Math.sqrt(
+      Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)
+    );
+  }
 
   drawMenu(){
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -50,13 +51,13 @@ import CandyCorn from './candy_corn.js'
     this.lastTime = 0;
     requestAnimationFrame(this.animate.bind(this));
   }
+
   animate(time){
     const timeDelta = time - this.lastTime;
     this.moveObjects(timeDelta)
     this.checkCollisions();
     this.drawMenu()
     this.lastTime = time;
-
     this.frame = requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -71,9 +72,7 @@ import CandyCorn from './candy_corn.js'
         for (let j = 1; j < this.candyArray.length; j++) {
           const candy1 = this.candyArray[i];
           const candy2 = this.candyArray[j];
-
-          if (candy1.isCollidedWith(candy2)) {
-            
+          if (candy1.isCollidedWith(candy2)) { 
           }
         }
       }
@@ -81,12 +80,12 @@ import CandyCorn from './candy_corn.js'
 
   drawTitle() {
     const titleImage = document.getElementById("title");
-     this.ctx.drawImage(titleImage, this.canvas.width/2 - 200, this.canvas.height/2 -200);
+     this.ctx.drawImage(titleImage, this.canvas.width/2-350, this.canvas.height/2 -200);
   }
 
   drawSpace(){
     const spaceImage = document.getElementById("space")
-    this.ctx.drawImage(spaceImage, this.canvas.width / 2, this.canvas.height / 2)
+    this.ctx.drawImage(spaceImage, this.canvas.width / 2 -125, this.canvas.height / 2)
   }
 }
 export default MenuScreen;

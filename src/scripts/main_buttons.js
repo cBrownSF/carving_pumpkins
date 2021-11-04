@@ -27,7 +27,6 @@
     this.ctx.fillText(this.text,this.x,this.y + 15)
     this.ctx.stroke()
   }
-
 }
 
 export default Button;

@@ -13,7 +13,6 @@ class GameScreen{
     this.ctx.drawImage(raven,0,200, 600,720);
     new Button(this.canvas.width - 100, 100, 70, "RESET!", this.canvas)
     // new Button(this.canvas.width - 100, 300, 70, "HOME", this.canvas)
-
   }
   
   reset(){
