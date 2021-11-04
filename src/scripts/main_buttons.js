@@ -25,6 +25,7 @@
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = 'center';
     this.ctx.fillText(this.text,this.x,this.y + 15)
+    this.ctx.stroke()
   }
 
 }
