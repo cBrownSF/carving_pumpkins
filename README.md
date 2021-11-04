@@ -1,7 +1,7 @@
 # Carving Pumpkins
 <h2>Project Link</h2>
 
-<p><a href="https://cbrownsf.github.io/carving_pumpkins/">Project</a></p>
+<p><a href="https://cbrownsf.github.io/carving_pumpkins/">Carving Pumpkins Project</a></p>
 <br>
 <h2>Background</h2>
 <p> Users can practice their pumpkin carving skills
