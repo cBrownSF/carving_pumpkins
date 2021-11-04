@@ -19,12 +19,12 @@ window.addEventListener("DOMContentLoaded", ()=> {
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  
+
   let menuScreen = new MenuScreen(canvas);
   let keysAvail = ['Space']
   let clickArray = ['instruct']
   let carving = false;
-  let newArray = [];
+  let coordinatesArray = [];
 
   window.addEventListener('keydown', (e)=>{
     if (e.code === 'Space' && !keysAvail.includes('Space')) {
@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
       ctx.clip();
       carving = true;
       ctx.beginPath()
-      newArray.push(mouseTrack.x, mouseTrack.y);
+      coordinatesArray.push(mouseTrack.x, mouseTrack.y);
     }
     if (clickArray.length === 0  && (mouseTrack.y > 50 && mouseTrack.y < 200)&& (mouseTrack.x > canvas.width-180 && mouseTrack.x < canvas.width -15)) {
       new GameScreen(canvas)
@@ -86,14 +86,15 @@ window.addEventListener("DOMContentLoaded", ()=> {
       mouseTrack.y = e.clientY
       let mouseX = mouseTrack.x
       let mouseY = mouseTrack.y
-        if ((mouseX - 10 < newArray[0] && mouseX + 10> newArray[0]) && (mouseY - 10 < newArray[1] && mouseY + 10 > newArray[1])) {
+        if ((mouseX - 10 < coordinatesArray[0] && mouseX + 10> coordinatesArray[0]) && (mouseY - 10 < coordinatesArray[1] && mouseY + 10 > coordinatesArray[1])) {
           carving = false;
           ctx.closePath()
+          ctx.fillStyle = "#ffbd2e"
           ctx.fill()
           ctx.beginPath()
-          newArray.splice(0,newArray.length)
+          coordinatesArray.splice(0,coordinatesArray.length)
         }
-      newArray.splice(0, newArray.length)
+      coordinatesArray.splice(0, coordinatesArray.length)
       carving = false;
       ctx.beginPath();
     }
