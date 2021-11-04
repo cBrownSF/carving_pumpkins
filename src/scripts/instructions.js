@@ -12,15 +12,16 @@ class Instructions{
     new Button(this.canvas.width/2, this.canvas.height/2 +200, 70, "START!",this.canvas)
   }
   drawBox() {
-    let instructions = ' 1. Use your mouse to carve the pumpkin   ?2. The Reset button resets your pumpkin  ?    3. The Undo button reverses your last carve ? 4. The Candle button lights your pumpkin!';
-    let x = this.canvas.width / 2;
-    let y = this.canvas.height - this.canvas.height + 200;
+    let instructions = '1. Click and hold the mouse to begin carving?2. Carve the pumpkin by moving the mouse?3. Move the black line back to the starting point?4. Let go of the mouse to complete the carve ?5. Repeat the process and keep carvin!   ?*The Reset button clears all of the carves*?*The Pumpkin button allows you to choose a new pumpkin*'
+    let x = this.canvas.width / 2 - 300;
+    let y = 100;
     let height = 100;
     let splitInt = instructions.split('?');
 
     for (let i = 0;  i < splitInt.length; i++){
-          this.ctx.font = '35pt Sans Serif'
+          this.ctx.font = '30pt Arial'
           this.ctx.fillStyle = "black"
+          this.ctx.textAlign = "left"
           this.ctx.fillText(splitInt[i], x, y + (i * height));
       }
     }
