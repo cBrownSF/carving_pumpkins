@@ -59,18 +59,36 @@ window.addEventListener("DOMContentLoaded", ()=> {
     }
   })
 
-  canvas.addEventListener("click", (e) =>{
-    mouseTrack.x = e.x
-    mouseTrack.y = e.y
-    if (clickArray.length === 0) {
-
-    }
-  })
+  // canvas.addEventListener("click", (e) =>{
+    
+  //   mouseTrack.x = e.x
+  //   mouseTrack.y = e.y
+  //   if (clickArray.length === 0) {
+  //     if ((mouseTrack.x >= canvas.width -145 && mouseTrack.x < canvas.width - 54) && (mouseTrack.y > 97 && mouseTrack.y <186)) {
+  //       console.log('reset')
+  //   }
+  // }//&& (mouseTrack.x > 640 && mouseTrack.x< canvas.width - 582) && (mouseTrack.y < canvas.height -81 && mouseTrack.y>canvas.height/2 -79)
+  // })
+    // (e.clientX > 640 && e.clientX < canvas.width - 582) && (e.clientY > canvas.height - 81 && e.clientY < canvas.height / 2 - 79)
   let carving = false;
 
   let newArray =[]  
   canvas.addEventListener("mousedown", (e) => {
+    
+    mouseTrack.x = e.x
+    mouseTrack.y = e.y
+    // console.log(mouseTrack.x)
+    // console.log(mouseTrack.y)
     if (clickArray.length === 0) {
+      const rect = canvas.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      console.log(x,y)
+
+      ctx.beginPath();
+      ctx.rect(840,300,800,550)
+      ctx.closePath()
+      ctx.clip();
       carving = true;
       ctx.beginPath()
       let startX = e.clientX
@@ -111,6 +129,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
       newArray.splice(0, newArray.length)
       carving = false;
       ctx.beginPath();
+      // console.log(mouseX,mouseY)
     }
   })
 })

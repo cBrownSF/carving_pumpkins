@@ -22,6 +22,10 @@ body {
   background: #c4ddc4;
 }
 
+#raven {
+  display: none;
+}
+
 #corn {
   display: none;
 }
