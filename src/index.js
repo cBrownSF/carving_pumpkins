@@ -81,7 +81,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
     console.log(mouseTrack)
     if (clickArray.length === 0) {
       ctx.beginPath();
-      ctx.rect(840,300,800,550)
+      ctx.rect(canvas.width/2 -400,canvas.height/2 - 200,800,550)
       ctx.closePath()
       ctx.clip();
       carving = true;
