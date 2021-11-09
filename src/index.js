@@ -28,9 +28,9 @@ window.addEventListener("DOMContentLoaded", ()=> {
 
   window.addEventListener('keydown', loadInstructions)
   canvas.addEventListener("click", loadGameScreen)
-  canvas.addEventListener("mousemove", beginCarve)
-  canvas.addEventListener("mouseup", carve)
-  canvas.addEventListener("mousedown", finishCarve)
+  canvas.addEventListener("mousemove", carve)
+  canvas.addEventListener("mouseup", finishCarve)
+  canvas.addEventListener("mousedown", beginCarve)
 
 
   function loadInstructions(e){
@@ -57,37 +57,22 @@ window.addEventListener("DOMContentLoaded", ()=> {
       return false
     }
   }
-  function finishCarve(e){
-    mouseTrack.x = e.clientX
-    mouseTrack.y = e.clientY
-    if (clickArray.length === 0) {
-      ctx.beginPath();
-      ctx.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)
-      ctx.closePath()
-      ctx.clip();
-      carving = true;
-      ctx.beginPath()
-      coordinatesArray.push(mouseTrack.x, mouseTrack.y);
-    }
-    if (clickArray.length === 0 && (mouseTrack.y > 50 && mouseTrack.y < 200) && (mouseTrack.x > canvas.width - 180 && mouseTrack.x < canvas.width - 15)) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      new GameScreen(canvas)
-    }
-  }
+  
 
-  function beginCarve(e){
+  function carve(e){
     mouseTrack.x = e.clientX
     mouseTrack.y = e.clientY
     if (!carving) return false;
     if (clickArray.length === 0) {
       ctx.lineWidth = 11;
       ctx.lineCap = "round"
+      // let path = Path2D()
       ctx.lineTo(mouseTrack.x, mouseTrack.y)
       ctx.stroke()
     }
   }
 
-  function carve(e){
+  function finishCarve(e){
       if (clickArray.length === 0) {
         mouseTrack.x = e.clientX
         mouseTrack.y = e.clientY
@@ -106,4 +91,22 @@ window.addEventListener("DOMContentLoaded", ()=> {
         ctx.beginPath();
       }
     }
+
+  function beginCarve(e) {
+    mouseTrack.x = e.clientX
+    mouseTrack.y = e.clientY
+    if (clickArray.length === 0) {
+      ctx.beginPath();
+      ctx.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)
+      ctx.closePath()
+      ctx.clip();
+      carving = true;
+      ctx.beginPath()
+      coordinatesArray.push(mouseTrack.x, mouseTrack.y);
+    }
+    if (clickArray.length === 0 && (mouseTrack.y > 50 && mouseTrack.y < 200) && (mouseTrack.x > canvas.width - 180 && mouseTrack.x < canvas.width - 15)) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      new GameScreen(canvas)
+    }
+  }
 })
