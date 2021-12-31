@@ -8,8 +8,7 @@ class Instructions{
   this.drawButton();
     this.drawBox();
     this.startButton;
-    this.getMousePos(e)
-    // this.loadGameScreen()
+    this.loadGameScreen()
   }
 
   drawButton(){
@@ -21,19 +20,19 @@ class Instructions{
   loadGameScreen(){
     let clickArray = ['instruct']
     let button = this.startButton
-    // let ctx = this.ctx
-    // let canvas = this.canvas
+    let ctx = this.ctx
+    let canvas = this.canvas
     // let offX = ctx.canvas.offsetLeft;
     // let offY = ctx.canvas.offsetTop;
-  let rect = this.canvas.getBoundingClientRect(), // abs. size of element
-   scaleX = this.canvas.width / rect.width,    // relationship bitmap vs. element for X
-   scaleY = this.canvas.height / rect.height;  // relationship bitmap vs. element for Y
+  let rect = canvas.getBoundingClientRect(), // 
+   scaleX = canvas.width / rect.width,    
+   scaleY = canvas.height / rect.height;  
 
-    this.canvas.addEventListener('click', function (e) {
-       
+    canvas.addEventListener('click', function (e) {
+      
       // let mouseX = e.clientX -offX
       // let mouseY = e.clientY-offY
-      let mouseX= (e.clientX - rect.left) * scaleX  // scale mouse coordinates after they have
+      let mouseX= (e.clientX - rect.left) * scaleX  
   let mouseY= (e.clientY - rect.top) * scaleY 
       console.log(`buttonX:${button.x},MX:${mouseX}`)
       console.log(`buttonY:${button.y}, MY:${mouseY}`)

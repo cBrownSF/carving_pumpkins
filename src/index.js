@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
   let coordinatesArray = [];
 
   window.addEventListener('keydown', loadInstructions)
-  canvas.addEventListener("click", loadGameScreen)
+  // canvas.addEventListener("click", loadGameScreen)
   canvas.addEventListener("mousemove", carve)
   canvas.addEventListener("mouseup", finishCarve)
   canvas.addEventListener("mousedown", beginCarve)
@@ -50,23 +50,23 @@ window.addEventListener("DOMContentLoaded", ()=> {
     }
   }
 
-  function loadGameScreen(e){
-    mouseTrack.x = e.clientX - ctx.canvas.offsetLeft;
-    mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
+  // function loadGameScreen(e){
+  //   mouseTrack.x = e.clientX - ctx.canvas.offsetLeft;
+  //   mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
    
-    console.log(`canvas width needed: ${canvas.width/2 -60} - ${canvas.width/2+45}`)
-    console.log(`canvas height needed: ${canvas.height / 2 + 200 - 42}-${canvas.height / 2 + 200 + 45}`)
-    console.log(`mousePosX:${mouseTrack.x},mousePosY:${mouseTrack.y}`)
-    console.log('-----------------------------------')
+  //   console.log(`canvas width needed: ${canvas.width/2 -60} - ${canvas.width/2+45}`)
+  //   console.log(`canvas height needed: ${canvas.height / 2 + 200 - 42}-${canvas.height / 2 + 200 + 45}`)
+  //   console.log(`mousePosX:${mouseTrack.x},mousePosY:${mouseTrack.y}`)
+  //   console.log('-----------------------------------')
 
-    if ((mouseTrack.x >= canvas.width / 2 - 60 && mouseTrack.x < canvas.width / 2 + 45) && (mouseTrack.y > canvas.height / 2 + 200 - 42 && canvas.height / 2 + 200 + 45) && clickArray.includes('instruct')) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      clickArray.splice(0, 1)
-      new GameScreen(canvas)
-    } else {
-      return false
-    }
-  }
+  //   if ((mouseTrack.x >= canvas.width / 2 - 60 && mouseTrack.x < canvas.width / 2 + 45) && (mouseTrack.y > canvas.height / 2 + 200 - 42 && canvas.height / 2 + 200 + 45) && clickArray.includes('instruct')) {
+  //     ctx.clearRect(0, 0, canvas.width, canvas.height)
+  //     clickArray.splice(0, 1)
+  //     new GameScreen(canvas)
+  //   } else {
+  //     return false
+  //   }
+  // }
   
 
   function carve(e){
