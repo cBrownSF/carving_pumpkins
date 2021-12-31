@@ -19,28 +19,42 @@ class Instructions {
     let canvas = this.canvas
     let button = new Path2D()
     button.arc(this.canvas.width / 2, this.canvas.height / 2 + 300, 70, 0, Math.PI * 2, true);
-    button.lineWidth = 5;
-    this.ctx.fillStyle = "#E66C2C";
-    this.ctx.fill(button);
-    this.ctx.font = '35pt Impact'
-    this.ctx.fillStyle = "black";
-    this.ctx.textAlign = 'center';
-    this.ctx.fillText("Start", this.canvas.width / 2, this.canvas.height / 2 + 315)
-    this.ctx.stroke(button)
+    ctx.lineWidth = 15;
+    // ctx.fillStyle = "#E66C2C";
+    // ctx.fill(button);
+    
 
     this.startButton = button;
 
     canvas.addEventListener('mousemove', function (event) {
       if (ctx.isPointInPath(button, event.offsetX, event.offsetY)) {
         this.hovered = true;
+        ctx.fillStyle = "#E66C2C";
+        ctx.fill(button)
        console.log(this.hovered)
+       ctx.font = '35pt Impact'
+      ctx.fillStyle = "black";
+      ctx.textAlign = 'center';
+      ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+        ctx.stroke(button)
       }
       else {
-        this.hovered = false
+        this.hovered = true;
+        ctx.fillStyle = "red";
+        ctx.fill(button)
         console.log(this.hovered)
+        ctx.font = '35pt Impact'
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+        ctx.stroke(button)
       }
     })
-    
+    // ctx.font = '35pt Impact'
+    // ctx.fillStyle = "black";
+    // ctx.textAlign = 'center';
+    // ctx.fillText("Start", this.canvas.width / 2, this.canvas.height / 2 + 315)
+    // ctx.stroke(button)
     // ctx.fill(button)
   }
 
