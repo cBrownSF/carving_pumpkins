@@ -21,6 +21,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
   canvas.height = window.innerHeight;
 
   let menuScreen = new MenuScreen(canvas);
+
   let keysAvail = ['Space']
   let clickArray = ['instruct']
   let carving = false;
@@ -42,13 +43,22 @@ window.addEventListener("DOMContentLoaded", ()=> {
       menuScreen.gameState = false;
       window.cancelAnimationFrame(menuScreen.frame);
       keysAvail.splice(0, 1);
+      // let offsetX = ctx.canvas.offsetLeft;
+      // let offsetY= ctx.canvas.offsetTop;
+     
       new Instructions(canvas);
     }
   }
 
   function loadGameScreen(e){
-    mouseTrack.x = e.x
-    mouseTrack.y = e.y
+    mouseTrack.x = e.clientX - ctx.canvas.offsetLeft;
+    mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
+   
+    console.log(`canvas width needed: ${canvas.width/2 -60} - ${canvas.width/2+45}`)
+    console.log(`canvas height needed: ${canvas.height / 2 + 200 - 42}-${canvas.height / 2 + 200 + 45}`)
+    console.log(`mousePosX:${mouseTrack.x},mousePosY:${mouseTrack.y}`)
+    console.log('-----------------------------------')
+
     if ((mouseTrack.x >= canvas.width / 2 - 60 && mouseTrack.x < canvas.width / 2 + 45) && (mouseTrack.y > canvas.height / 2 + 200 - 42 && canvas.height / 2 + 200 + 45) && clickArray.includes('instruct')) {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       clickArray.splice(0, 1)
@@ -60,8 +70,11 @@ window.addEventListener("DOMContentLoaded", ()=> {
   
 
   function carve(e){
-    mouseTrack.x = e.clientX
-    mouseTrack.y = e.clientY
+    mouseTrack.x = e.clientX -ctx.canvas.offsetLeft;
+    mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
+    
+
+
     if (!carving) return false;
     if (clickArray.length === 0) {
       ctx.lineWidth = 11;
@@ -74,8 +87,8 @@ window.addEventListener("DOMContentLoaded", ()=> {
 
   function finishCarve(e){
       if (clickArray.length === 0) {
-        mouseTrack.x = e.clientX
-        mouseTrack.y = e.clientY
+        mouseTrack.x = e.clientX - ctx.canvas.offsetLeft;
+        mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
         let mouseX = mouseTrack.x
         let mouseY = mouseTrack.y
         if ((mouseX - 10 < coordinatesArray[0] && mouseX + 10 > coordinatesArray[0]) && (mouseY - 10 < coordinatesArray[1] && mouseY + 10 > coordinatesArray[1])) {
@@ -93,8 +106,8 @@ window.addEventListener("DOMContentLoaded", ()=> {
     }
 
   function beginCarve(e) {
-    mouseTrack.x = e.clientX
-    mouseTrack.y = e.clientY
+    mouseTrack.x = e.clientX - ctx.canvas.offsetLeft;
+    mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
     if (clickArray.length === 0) {
       ctx.beginPath();
       ctx.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)
