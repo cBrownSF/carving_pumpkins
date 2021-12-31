@@ -19,9 +19,15 @@ class Instructions {
     let canvas = this.canvas
     let button = new Path2D()
     button.arc(this.canvas.width / 2, this.canvas.height / 2 + 300, 70, 0, Math.PI * 2, true);
-    ctx.lineWidth = 15;
-    // ctx.fillStyle = "#E66C2C";
-    // ctx.fill(button);
+    ctx.lineWidth = 5;
+    ctx.fillStyle = "#ffae42";
+    ctx.fill(button)
+    console.log(this.hovered)
+    ctx.font = '35pt Impact'
+    ctx.fillStyle = "black";
+    ctx.textAlign = 'center';
+    ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+    ctx.stroke(button)
     
 
     this.startButton = button;
@@ -32,22 +38,22 @@ class Instructions {
         ctx.fillStyle = "#E66C2C";
         ctx.fill(button)
        console.log(this.hovered)
-       ctx.font = '35pt Impact'
-      ctx.fillStyle = "black";
-      ctx.textAlign = 'center';
-      ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
-        ctx.stroke(button)
+      //  ctx.font = '35pt Impact'
+      // ctx.fillStyle = "black";
+      // ctx.textAlign = 'center';
+      // ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+      //   ctx.stroke(button)
       }
       else {
-        this.hovered = true;
-        ctx.fillStyle = "red";
+        this.hovered = false;
+        ctx.fillStyle = "#ffae42";
         ctx.fill(button)
         console.log(this.hovered)
-        ctx.font = '35pt Impact'
-        ctx.fillStyle = "black";
-        ctx.textAlign = 'center';
-        ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
-        ctx.stroke(button)
+        // ctx.font = '35pt Impact'
+        // ctx.fillStyle = "black";
+        // ctx.textAlign = 'center';
+        // ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+        // ctx.stroke(button)
       }
     })
     // ctx.font = '35pt Impact'
