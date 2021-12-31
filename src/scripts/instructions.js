@@ -29,7 +29,6 @@ class Instructions {
     ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
     ctx.stroke(button)
     
-
     this.startButton = button;
 
     canvas.addEventListener('mousemove', function (event) {
@@ -38,22 +37,22 @@ class Instructions {
         ctx.fillStyle = "#E66C2C";
         ctx.fill(button)
        console.log(this.hovered)
-      //  ctx.font = '35pt Impact'
-      // ctx.fillStyle = "black";
-      // ctx.textAlign = 'center';
-      // ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
-      //   ctx.stroke(button)
+       ctx.font = '35pt Impact'
+      ctx.fillStyle = "black";
+      ctx.textAlign = 'center';
+      ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+        ctx.stroke(button)
       }
       else {
         this.hovered = false;
         ctx.fillStyle = "#ffae42";
         ctx.fill(button)
         console.log(this.hovered)
-        // ctx.font = '35pt Impact'
-        // ctx.fillStyle = "black";
-        // ctx.textAlign = 'center';
-        // ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
-        // ctx.stroke(button)
+        ctx.font = '35pt Impact'
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+        ctx.stroke(button)
       }
     })
     // ctx.font = '35pt Impact'
@@ -62,6 +61,7 @@ class Instructions {
     // ctx.fillText("Start", this.canvas.width / 2, this.canvas.height / 2 + 315)
     // ctx.stroke(button)
     // ctx.fill(button)
+    
   }
 
   loadGameScreen() {
