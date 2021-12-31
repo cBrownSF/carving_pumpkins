@@ -13,27 +13,49 @@ class Instructions{
 
   drawButton(){
  
-  let button = new Button(this.canvas.width/2, this.canvas.height/2 +300, 70, "START!",this.canvas)  
-    this.startButton = button;
-  }
-  
+  // let button = new Button(this.canvas.width/2, this.canvas.height/2 +300, 70, "START!",this.canvas)
+    let ctx = this.ctx
+    let canvas = this.canvas
+    let offX = ctx.canvas.offsetLeft;
+    let offY = ctx.canvas.offsetTop;  
+  // this.ctx.beginPath()
+  let button = new Path2D()
+  button.arc(this.canvas.width / 2, this.canvas.height / 2 + 300, 70, 0, Math.PI *2 , true);
+  button.lineWidth = 25;
+  button.closePath()
+  // button.fillStyle = "#E66C2C";
+
+  this.startButton = button;
+
+   canvas.addEventListener('mousemove', function (event) {
+      if (ctx.isPointInPath(button, event.offsetX, event.offsetY)) {
+        debugger;
+      }
+      else {
+      
+      }
+  })
+}
+
   loadGameScreen(){
     let clickArray = ['instruct']
     let button = this.startButton
     let ctx = this.ctx
     let canvas = this.canvas
-    // let offX = ctx.canvas.offsetLeft;
-    // let offY = ctx.canvas.offsetTop;
+    let offX = ctx.canvas.offsetLeft;
+    let offY = ctx.canvas.offsetTop;
+ 
+
   let rect = canvas.getBoundingClientRect(), // 
    scaleX = canvas.width / rect.width,    
    scaleY = canvas.height / rect.height;  
-
+   console.log(offX)
+   console.log(rect.left)
+   console.log(rect.top)
+   console.log(offY)
     canvas.addEventListener('click', function (e) {
-      
-      // let mouseX = e.clientX -offX
-      // let mouseY = e.clientY-offY
       let mouseX= (e.clientX - rect.left) * scaleX  
-  let mouseY= (e.clientY - rect.top) * scaleY 
+    let mouseY= (e.clientY - rect.top) * scaleY 
       console.log(`buttonX:${button.x},MX:${mouseX}`)
       console.log(`buttonY:${button.y}, MY:${mouseY}`)
       
@@ -47,7 +69,7 @@ class Instructions{
           return false
         }
      
-      
+  
   })
 }
 

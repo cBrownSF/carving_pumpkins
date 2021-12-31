@@ -43,6 +43,17 @@ window.addEventListener("DOMContentLoaded", ()=> {
       menuScreen.gameState = false;
       window.cancelAnimationFrame(menuScreen.frame);
       keysAvail.splice(0, 1);
+      let offX = ctx.canvas.offsetLeft;
+      let offY = ctx.canvas.offsetTop;
+
+
+      let rect = canvas.getBoundingClientRect(), // 
+        scaleX = canvas.width / rect.width,
+        scaleY = canvas.height / rect.height;
+      console.log(offX)
+      console.log(rect.left)
+      console.log(rect.top)
+      console.log(offY)
       // let offsetX = ctx.canvas.offsetLeft;
       // let offsetY= ctx.canvas.offsetTop;
      
