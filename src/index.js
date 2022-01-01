@@ -85,7 +85,6 @@ window.addEventListener("DOMContentLoaded", ()=> {
     mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
     
 
-
     if (!carving) return false;
     if (clickArray.length === 0) {
       ctx.lineWidth = 11;

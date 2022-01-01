@@ -6,9 +6,7 @@ class Instructions {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d')
     this.hovered= false;
-    this.clicked= false;
     this.clickArray = ['instruct']
-    this.count = 0;
     this.drawButton();
     this.drawBox();
     this.startButton;
@@ -51,8 +49,7 @@ class Instructions {
     this.canvas.addEventListener('mousemove', function (e) {
     console.log("back in mouse hover")
       
-      if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) {
-        
+      if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) { 
         this.hovered = true; 
         ctx.fillStyle = "#E66C2C";
         ctx.fill(button)
