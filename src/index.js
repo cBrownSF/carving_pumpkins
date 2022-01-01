@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-
+  const global = false;
   let menuScreen = new MenuScreen(canvas);
 
   let keysAvail = ['Space']

@@ -5,16 +5,20 @@ class Instructions {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d')
+    this.hovered= false;
+    this.clicked= false;
+    this.clickArray = ['instruct']
+    this.count = 0;
     this.drawButton();
     this.drawBox();
     this.startButton;
-    this.loadGameScreen()
-    this.hovered= false;
-    this.clicked= false;
     this.mouseHover()
+    this.loadGameScreen()
+  
   }
 
   drawButton() {
+ console.log('button drawn again')
     let ctx = this.ctx
     let canvas = this.canvas
 
@@ -30,25 +34,35 @@ class Instructions {
     ctx.stroke(button)
     this.startButton = button;
   }
- mouseHover(){
-let ctx = this.ctx
-let canvas = this.canvas
-let button = this.startButton
 
 
-   canvas.addEventListener('mousemove', function(event) {
-     debugger;
-     if (this.clicked === false && ctx.isPointInPath(button, event.offsetX, event.offsetY)) {
-        this.hovered = true;
+  mouseHover() {
+    let clickArray = this.clickArray
+    let ctx = this.ctx
+    let canvas = this.canvas
+    let button = this.startButton
+    ctx.fillStyle = "#ffae42";
+    ctx.fill(button)
+    ctx.font = '35pt Impact'
+    ctx.fillStyle = "black";
+    ctx.textAlign = 'center';
+    ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+    ctx.stroke(button)
+    this.canvas.addEventListener('mousemove', function (e) {
+    console.log("back in mouse hover")
+      
+      if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) {
+        
+        this.hovered = true; 
         ctx.fillStyle = "#E66C2C";
         ctx.fill(button)
-       ctx.font = '35pt Impact'
-       ctx.fillStyle = "black";
-      ctx.textAlign = 'center';
-      ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+        ctx.font = '35pt Impact'
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
         ctx.stroke(button)
       }
-      else if (this.clicked === false && !ctx.isPointInPath(button, event.offsetX, event.offsetY) ) {
+      if (!ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')){
         this.hovered = false;
         ctx.fillStyle = "#ffae42";
         ctx.fill(button)
@@ -58,42 +72,12 @@ let button = this.startButton
         ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
         ctx.stroke(button)
       }
-      else {
-        this.hovered = false;
-        return false;
-      }
-    },true)
-}
-
-//  hover(e){
-//    let canvas = this.canvas
-//    let ctx = this.ctx
-//    let button = this.startButton
-//       if (ctx.isPointInPath(button, e.offsetX, e.offsetY)) {
-//         this.hovered = true;
-//         ctx.fillStyle = "#E66C2C";
-//         ctx.fill(button)
-//        ctx.font = '35pt Impact'
-//        ctx.fillStyle = "black";
-//       ctx.textAlign = 'center';
-//       ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
-//         ctx.stroke(button)
-//       }
-//       else {
-//         this.hovered = false;
-//         ctx.fillStyle = "#ffae42";
-//         ctx.fill(button)
-//         ctx.font = '35pt Impact'
-//         ctx.fillStyle = "black";
-//         ctx.textAlign = 'center';
-//         ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
-//         ctx.stroke(button)
-//       }
-//     }
-  
+    })
+  }
 
   loadGameScreen() {
-    let clickArray = ['instruct']
+    let clickArray = this.clickArray;
+    
     let button = this.startButton
     let ctx = this.ctx
     let canvas = this.canvas
@@ -112,11 +96,9 @@ let button = this.startButton
       
 
       if (this.hovered === true && clickArray.includes('instruct')) {
-        this.clicked = true;
         debugger;
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         clickArray.splice(0, 1)
-     
         new GameScreen(canvas)
       } else {
         return false
