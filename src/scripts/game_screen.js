@@ -33,14 +33,14 @@ drawResetButton(){
   let ctx = this.ctx
   let canvas = this.canvas
   let resetButton = new Path2D()
-  resetButton.arc(this.canvas.width / 2, this.canvas.height / 2 + 300, 70, 0, Math.PI * 2, true);
+  resetButton.arc(this.canvas.width - 100, 100, 70,0, Math.PI * 2, true);
   ctx.lineWidth = 5;
   ctx.fillStyle = "#ffae42";
   ctx.fill(resetButton)
   ctx.font = '35pt Impact'
   ctx.fillStyle = "black";
   ctx.textAlign = 'center';
-  ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+  ctx.fillText("RESET", this.canvas.width - 100, 115)
   ctx.stroke(resetButton)
   this.resetButton = resetButton;
 }
