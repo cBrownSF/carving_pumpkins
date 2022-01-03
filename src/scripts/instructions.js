@@ -12,7 +12,7 @@ class Instructions {
     this.startButton;
     this.mouseHover()
     this.loadGameScreen()
-  
+    
   }
 
   drawButton() {
