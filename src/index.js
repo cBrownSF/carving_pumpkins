@@ -50,10 +50,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
       let rect = canvas.getBoundingClientRect(), // 
         scaleX = canvas.width / rect.width,
         scaleY = canvas.height / rect.height;
-      console.log(offX)
-      console.log(rect.left)
-      console.log(rect.top)
-      console.log(offY)
+      
       // let offsetX = ctx.canvas.offsetLeft;
       // let offsetY= ctx.canvas.offsetTop;
      

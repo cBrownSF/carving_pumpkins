@@ -3,32 +3,28 @@ import Instructions from './instructions'
 
 class GameScreen{
   constructor(canvas){
-    debugger;
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d')
     this.newScreen();
     this.clickArray = []
     this.drawResetButton()
     this.resetButton;
-   
+    this.clickReset();
     this.carving = true;
   }
- beginCarve() {
-   let pumpkinn = this.pumpkinObj;
-  //  let resetButton = this.resetButton
-  // let resetButton = this.resetButton;
-   let ctx = this.ctx
-
+ clickReset() {
+   let resetButton = this.resetButton;
+   let ctx = this.ctx;
+   let canvas = this.canvas
   this.canvas.addEventListener("mousedown",function(e){
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)){
       console.log('hello')
-      debugger;
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      new GameScreen(canvas)
     }
   })
 }
 drawResetButton(){
-  debugger;
-
   let ctx = this.ctx
   let canvas = this.canvas
   let resetButton = new Path2D()
@@ -44,21 +40,36 @@ drawResetButton(){
   this.resetButton = resetButton;
 }
   newScreen(){
-   debugger;
+   
     // let curPath = new Path2D()
     // let button = new Button(this.canvas)
     // let buttonPath=button.drawButton(curPath,this.canvas.width - 100, 100, 'RESET!')
     // debugger;
     // this.startButton = buttonPath
-    const wide = document.getElementById("widePumpkin");
-    // wide.addEventListener("mouseenter",function(e){
-    //   console.log('mouseenter')
-    // })
-    // wide.addEventListener("mouseover",function(e){
-    //   console.log('mouseover')
-    // })
+   let wide = document.getElementById("widePumpkin");
+   let secondcanvas = document.getElementById("secondcanvas")
+   secondcanvas.width=wide.width;
+   secondcanvas.height=wide.height;
+   let ctx = secondcanvas.getContext('2d')
+   
+    ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400,wide.width, wide.height);
+   debugger;
+   this.canvas.addEventListener("mousemove",function(e){
+     console.log('hello')
+     console.log(e.offsetX)
+     console.log(canvas.width/2 -400)
+     if (e.offsetX === (canvas.width/2 -400)){
+       debugger;
+     }
+   })
+   console.log(canvas.width)
+   console.log(canvas.width/2 -400)
     let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, 850, 838);
-  //   let pumpkinPath = new Path2D(pumpkin)
+
+  //   canvas.addEventListener('onload',function(e){
+  //     console.log(ctx.drawImage(wide, 0, 0, wide.width, wide.height).getImageData(e.offsetX, e.offsetY, 1, 1).data)
+  //    console.log('mouseenter')
+  //  })
 
   //   this.ctx.fill(pumpkinPath)
   //  this.pumpkinObj = this.pumpkinPath; 
