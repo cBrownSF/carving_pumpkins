@@ -83,15 +83,15 @@ window.addEventListener("DOMContentLoaded", ()=> {
   function carve(e){
     mouseTrack.x = e.clientX -ctx.canvas.offsetLeft;
     mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
-    
+    let carvingPath = new Path2D()
 
     if (!carving) return false;
     if (clickArray.length === 0) {
       ctx.lineWidth = 11;
       ctx.lineCap = "round"
       // let path = Path2D()
-      ctx.lineTo(mouseTrack.x, mouseTrack.y)
-      ctx.stroke()
+      carvingPath.lineTo(mouseTrack.x, mouseTrack.y)
+      ctx.stroke(carvingPath)
     }
   }
 
@@ -103,9 +103,9 @@ window.addEventListener("DOMContentLoaded", ()=> {
         let mouseY = mouseTrack.y
         if ((mouseX - 10 < coordinatesArray[0] && mouseX + 10 > coordinatesArray[0]) && (mouseY - 10 < coordinatesArray[1] && mouseY + 10 > coordinatesArray[1])) {
           carving = false;
-          ctx.closePath()
+          carvingPath.closePath()
           ctx.fillStyle = "#ffbd2e"
-          ctx.fill()
+          ctx.fill(carvingPath)
           ctx.beginPath()
           coordinatesArray.splice(0, coordinatesArray.length)
         }
@@ -118,6 +118,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
   function beginCarve(e) {
     mouseTrack.x = e.clientX - ctx.canvas.offsetLeft;
     mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
+    let carvingPath = new Path2D()
     if (clickArray.length === 0) {
       ctx.beginPath();
       ctx.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)

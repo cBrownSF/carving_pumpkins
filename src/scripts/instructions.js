@@ -46,8 +46,8 @@ class Instructions {
     ctx.textAlign = 'center';
     ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
     ctx.stroke(button)
+
     this.canvas.addEventListener('mousemove', function (e) {
-    console.log("back in mouse hover")
       
       if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) { 
         this.hovered = true; 

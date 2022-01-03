@@ -11,13 +11,12 @@ class GameScreen{
     this.drawResetButton()
     this.resetButton;
     this.beginCarve()
+    this.carving = true;
   }
  beginCarve() {
    let pumpkinn = this.pumpkinObj;
   //  let resetButton = this.resetButton
-  console.log(this.startButton)
   let resetButton = this.resetButton;
-   console.log(resetButton)
    let ctx = this.ctx
 
   this.canvas.addEventListener("click",function(e){
@@ -62,7 +61,8 @@ drawResetButton(){
   
  
     const raven = document.getElementById("raven");
-    this.ctx.drawImage(raven,0,200, 600,720);
+    let ravImage = this.ctx.drawImage(raven,0,200, 600,720);
+    console.log(ravImage)
     // let button = new Button(this.canvas.width - 100, 100, 70, "RESET!", this.canvas)
     // button.drawButton
     // let resetButton = new Path2D(button)
@@ -73,6 +73,19 @@ drawResetButton(){
   reset(){
     this.newScreen()
   }  
+
+ carve(){
+  let carving = this.carving; 
+  let canvas = this.canvas;
+  let ctx = this.ctx;
+   let carvingPath = new Path2D()
+  this.canvas.addEventListener("mousedown", function(e) {
+    carving = true;
+  
+
+  })
+
+  }
 
   // drawPumpkinGreen(){
   //   const green = document.getElementById("greenPumpkin");
