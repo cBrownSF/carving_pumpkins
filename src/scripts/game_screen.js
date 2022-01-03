@@ -10,16 +10,16 @@ class GameScreen{
     this.clickArray = []
     this.drawResetButton()
     this.resetButton;
-    this.beginCarve()
+   
     this.carving = true;
   }
  beginCarve() {
    let pumpkinn = this.pumpkinObj;
   //  let resetButton = this.resetButton
-  let resetButton = this.resetButton;
+  // let resetButton = this.resetButton;
    let ctx = this.ctx
 
-  this.canvas.addEventListener("click",function(e){
+  this.canvas.addEventListener("mousedown",function(e){
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)){
       console.log('hello')
       debugger;
@@ -51,18 +51,25 @@ drawResetButton(){
     // debugger;
     // this.startButton = buttonPath
     const wide = document.getElementById("widePumpkin");
+    // wide.addEventListener("mouseenter",function(e){
+    //   console.log('mouseenter')
+    // })
+    // wide.addEventListener("mouseover",function(e){
+    //   console.log('mouseover')
+    // })
     let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, 850, 838);
-    let pumpkinPath = new Path2D(pumpkin)
-    this.ctx.fill(pumpkinPath)
-   this.pumpkinObj = this.pumpkinPath; 
+  //   let pumpkinPath = new Path2D(pumpkin)
+
+  //   this.ctx.fill(pumpkinPath)
+  //  this.pumpkinObj = this.pumpkinPath; 
   // let image = new Image(pumpkin)
   // let imagePath = new Path2D(image)
   
   
  
     const raven = document.getElementById("raven");
-    let ravImage = this.ctx.drawImage(raven,0,200, 600,720);
-    console.log(ravImage)
+    let ravImage = this.ctx.drawImage(raven,0,200, 300,360);
+   
     // let button = new Button(this.canvas.width - 100, 100, 70, "RESET!", this.canvas)
     // button.drawButton
     // let resetButton = new Path2D(button)
@@ -79,11 +86,11 @@ drawResetButton(){
   let canvas = this.canvas;
   let ctx = this.ctx;
    let carvingPath = new Path2D()
-  this.canvas.addEventListener("mousedown", function(e) {
-    carving = true;
+  // this.canvas.addEventListener("mousedown", function(e) {
+  //   carving = true;
   
 
-  })
+  // })
 
   }
 

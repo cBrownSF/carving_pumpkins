@@ -86,6 +86,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
     let carvingPath = new Path2D()
 
     if (!carving) return false;
+    console.log(clickArray.length)
     if (clickArray.length === 0) {
       ctx.lineWidth = 11;
       ctx.lineCap = "round"
@@ -120,6 +121,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
     mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
     let carvingPath = new Path2D()
     if (clickArray.length === 0) {
+      debugger;
       ctx.beginPath();
       ctx.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)
       ctx.closePath()
