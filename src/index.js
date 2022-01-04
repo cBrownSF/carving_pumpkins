@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
     }
     if (e.code === 'Space' && keysAvail.includes('Space')) {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      menuScreen.gameState = false;
+      // menuScreen.gameState = false;
       window.cancelAnimationFrame(menuScreen.frame);
       keysAvail.splice(0, 1);
       let offX = ctx.canvas.offsetLeft;

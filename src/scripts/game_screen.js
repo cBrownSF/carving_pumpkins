@@ -16,7 +16,7 @@ class GameScreen{
    let resetButton = this.resetButton;
    let ctx = this.ctx;
    let canvas = this.canvas
-  this.canvas.addEventListener("mousedown",function(e){
+  this.canvas.addEventListener("click",function(e){
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)){
       console.log('hello')
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -41,12 +41,7 @@ drawResetButton(){
   this.resetButton = resetButton;
 }
   newScreen(){
-   
-    // let curPath = new Path2D()
-    // let button = new Button(this.canvas)
-    // let buttonPath=button.drawButton(curPath,this.canvas.width - 100, 100, 'RESET!')
-    // debugger;
-    // this.startButton = buttonPath
+ 
    let wide = document.getElementById("widePumpkin");
   //  let secondcanvas = document.getElementById("secondcanvas")
   //  secondcanvas.width=wide.width;
@@ -58,6 +53,7 @@ drawResetButton(){
   //  secondcanvas.addEventListener("mouseenter",function(e){
   //    console.log('hello')
   //  })
+  
 
     let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, 850, 838);
 
