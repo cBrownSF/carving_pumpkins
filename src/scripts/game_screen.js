@@ -5,8 +5,8 @@ class GameScreen{
   constructor(canvas){
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d')
+    this.hoverArray = ['one'];
     this.newScreen();
-    this.clickArray = []
     this.drawResetButton()
     this.drawInstructionButton()
     this.resetButton;
@@ -15,16 +15,64 @@ class GameScreen{
     this.carving = true;
   }
  clickReset() {
+   let hoverArray=this.hoverArray
    let resetButton = this.resetButton;
    let ctx = this.ctx;
    let canvas = this.canvas
+   let instructButton=this.instructButton
+   console.log(hoverArray.includes('one'))
   this.canvas.addEventListener("click",function(e){
-    if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)){
-      console.log('hello')
+    if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)&& hoverArray.length ===1){
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      new Instructions(canvas)
-      debugger;
+      hoverArray.splice(0, 1)
+      new GameScreen(canvas)
     }
+    if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+      ctx.clearRect(0,0,canvas.width,canvas.height)
+      hoverArray.splice(0, 1)
+      new Instructions(canvas)
+    }
+  })
+  this.canvas.addEventListener("mousemove",function(e){
+    if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+      console.log(hoverArray.length)
+      ctx.fillStyle = "#E66C2C";
+      ctx.fill(resetButton)
+      ctx.font = '35pt Impact'
+      ctx.fillStyle = "black";
+      ctx.textAlign = 'center';
+      ctx.fillText("RESET", canvas.width - 100, 115)
+      ctx.stroke(resetButton)
+    }
+    if (!ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+      ctx.fillStyle = "#ffae42";
+      ctx.fill(resetButton)
+      ctx.font = '35pt Impact'
+      ctx.fillStyle = "black";
+      ctx.textAlign = 'center';
+      ctx.fillText("RESET", canvas.width - 100, 115)
+      ctx.stroke(resetButton)
+    }
+    if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+      ctx.fillStyle = "#E66C2C";
+      ctx.fill(instructButton)
+      ctx.font = '35pt Impact'
+      ctx.fillStyle = "black";
+      ctx.textAlign = 'center';
+      ctx.fillText("BACK", canvas.width - 100, 315)
+      ctx.stroke(instructButton)
+    }
+    if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+      ctx.fillStyle = "#ffae42";
+      ctx.fill(instructButton)
+      ctx.font = '35pt Impact'
+      ctx.fillStyle = "black";
+      ctx.textAlign = 'center';
+      ctx.fillText("BACK", canvas.width - 100, 315)
+      ctx.stroke(instructButton)
+    }
+    
+    
   })
 }
 drawResetButton(){
@@ -46,14 +94,14 @@ drawResetButton(){
     let ctx = this.ctx
     let canvas = this.canvas
     let instructionButton = new Path2D()
-    instructionButton.arc(this.canvas.width - 100, 200, 70, 0, Math.PI * 2, true);
+    instructionButton.arc(this.canvas.width - 100, 300, 70, 0, Math.PI * 2, true);
     ctx.lineWidth = 5;
     ctx.fillStyle = "#ffae42";
     ctx.fill(instructionButton)
     ctx.font = '35pt Impact'
     ctx.fillStyle = "black";
     ctx.textAlign = 'center';
-    ctx.fillText("BACK", this.canvas.width - 100, 215)
+    ctx.fillText("BACK", this.canvas.width - 100, 315)
     ctx.stroke(instructionButton)
     this.instructButton = instructionButton;
   }
