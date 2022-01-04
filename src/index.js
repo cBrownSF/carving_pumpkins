@@ -22,12 +22,12 @@ window.addEventListener("DOMContentLoaded", ()=> {
   const global = false;
   let menuScreen = new MenuScreen(canvas);
 
-  let keysAvail = ['Space']
+  
   let clickArray = ['instruct']
   let carving = false;
   let coordinatesArray = [];
 
-  window.addEventListener('keydown', loadInstructions)
+  window.addEventListener('keydown', loadInstructions,{once:true})
   // canvas.addEventListener("click", loadGameScreen)
   canvas.addEventListener("mousemove", carve)
   canvas.addEventListener("mouseup", finishCarve)
@@ -35,25 +35,9 @@ window.addEventListener("DOMContentLoaded", ()=> {
 
 
   function loadInstructions(e){
-    // if (e.code === 'Space' && !keysAvail.includes('Space')) {
-    //   return false;
-    // }
-    if (e.code === 'Space' && keysAvail.includes('Space')) {
+    if (e.code === 'Space') {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      // menuScreen.gameState = false;
       window.cancelAnimationFrame(menuScreen.frame);
-      keysAvail.splice(0, 1);
-      // let offX = ctx.canvas.offsetLeft;
-      // let offY = ctx.canvas.offsetTop;
-
-
-      // let rect = canvas.getBoundingClientRect(), // 
-      //   scaleX = canvas.width / rect.width,
-      //   scaleY = canvas.height / rect.height;
-      
-      // let offsetX = ctx.canvas.offsetLeft;
-      // let offsetY= ctx.canvas.offsetTop;
-     
       new Instructions(canvas);
     }
   }
@@ -94,7 +78,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
   }
 
   function finishCarve(e){
-      if (clickArray.length === 0) {
+      if (clickArray.length === 1) {
         mouseTrack.x = e.clientX - ctx.canvas.offsetLeft;
         mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
         let mouseX = mouseTrack.x
@@ -118,7 +102,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
     mouseTrack.y = e.clientY - ctx.canvas.offsetTop;
     let carvingPath = new Path2D()
     if (clickArray.length === 0) {
-      debugger;
+   
       ctx.beginPath();
       ctx.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)
       ctx.closePath()

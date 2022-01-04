@@ -1,6 +1,6 @@
 import Button from './main_buttons.js'
 import Instructions from './instructions'
-
+import Util from './carving_actions.js';
 class GameScreen{
   constructor(canvas){
     this.canvas = canvas;
@@ -12,7 +12,12 @@ class GameScreen{
     this.resetButton;
     this.instructButton;
     this.buttonActions();
-    this.carving = true;
+    this.carving = false;
+    this.carvingPath;
+    this.carveCount=0;
+    this.beginCoordArray=[]
+    this.carve()
+    this.beginCarve()
   }
  buttonActions() {
    let hoverArray=this.hoverArray
@@ -21,7 +26,7 @@ class GameScreen{
    let canvas = this.canvas
    let instructButton=this.instructButton
    
-  this.canvas.addEventListener("click",function(e){
+  this.canvas.addEventListener("click",e =>{
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)&& hoverArray.length ===1){
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       hoverArray.splice(0, 1)
@@ -40,9 +45,8 @@ class GameScreen{
       new Instructions(canvas)
     }
   })
-  this.canvas.addEventListener("mouseover",function(e){
+  this.canvas.addEventListener("mouseover",e =>{
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-      console.log(hoverArray.length)
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
       ctx.font = '35pt Impact'
@@ -52,7 +56,8 @@ class GameScreen{
       ctx.stroke(resetButton)
     }
   })
-  this.canvas.addEventListener("mousemove",function(e){
+  this.canvas.addEventListener("mousemove",
+  e =>{
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
       console.log(hoverArray.length)
       ctx.fillStyle = "#E66C2C";
@@ -90,6 +95,7 @@ class GameScreen{
       ctx.fillText("BACK", canvas.width - 100, 315)
       ctx.stroke(instructButton)
     }
+    
   })
 }
 drawResetButton(){
@@ -163,26 +169,52 @@ drawResetButton(){
     this.newScreen()
   }  
 
- carve(){
+ beginCarve(){
   let carving = this.carving; 
   let canvas = this.canvas;
+  let carvingPath=this.carvingPath
   let ctx = this.ctx;
-   let carvingPath = new Path2D()
-  // this.canvas.addEventListener("mousedown", function(e) {
-  //   carving = true;
+  let beginCoordArray=this.beginCoordArray;
+  let hoverArray=this.hoverArray;
+  this.canvas.addEventListener("mousedown", function(e) {
+
+    if (hoverArray.length ===1){
+     this.carveCount +=1;
+    this.carvingPath = new Path2D()
+    ctx.beginPath()
+    beginCoordArray.push(e.offsetX,e.offsetY)
+    }
+  })
+  console.log(this.carveCount)
+  console.log(this.carvingPath)
+  console.log(this.beginCoordArray)
   
+}
 
-  // })
 
-  }
+carve(){
+  let carvingPath =this.carvingPath;
+  let hoverArray = this.hoverArray;
+  let carving = this.carving; 
+  let ctx = this.ctx;
 
-  // drawPumpkinGreen(){
-  //   const green = document.getElementById("greenPumpkin");
-  //   this.ctx.drawImage(green, 300, 300, 570, 594);
-  // }
-  // drawPumpkinTall(){
-  //   const tall = document.getElementById("tallPumpkin");
-  //   this.ctx.drawImage(tall, 300, 300, 414,464);
-  // }
+  console.log(this.carving)
+  console.log(this.carveCount)
+  debugger;
+  debugger;
+  this.canvas.addEventListener("mousemove", function(e){
+    if (this.carveCount ===1){
+    
+      debugger;
+      ctx.lineWidth = 11;
+      ctx.lineCap = "round"
+      
+      carvingPath.lineTo(e.offsetX, e.offsetY)
+      ctx.stroke(carvingPath)
+    }
+  
+  })
+}
+
 }
 export default GameScreen;

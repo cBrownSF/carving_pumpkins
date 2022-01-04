@@ -47,7 +47,7 @@ class Instructions {
     ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
     ctx.stroke(button)
 
-    this.canvas.addEventListener('mousemove', function (e) {
+    this.canvas.addEventListener('mousemove', e => {
       
       if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) { 
         this.hovered = true; 
@@ -87,13 +87,12 @@ class Instructions {
       scaleX = canvas.width / rect.width,
       scaleY = canvas.height / rect.height;
   
-    canvas.addEventListener('click', function (e) {
+    canvas.addEventListener('click', e => {
       let mouseX = (e.clientX - rect.left) * scaleX
       let mouseY = (e.clientY - rect.top) * scaleY
       
 
       if (this.hovered === true && clickArray.includes('instruct')) {
-        debugger;
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         clickArray.splice(0, 1)
         new GameScreen(canvas)
