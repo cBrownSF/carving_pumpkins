@@ -20,7 +20,8 @@ class GameScreen{
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)){
       console.log('hello')
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      new GameScreen(canvas)
+      new Instructions(canvas)
+      debugger;
     }
   })
 }
@@ -47,23 +48,17 @@ drawResetButton(){
     // debugger;
     // this.startButton = buttonPath
    let wide = document.getElementById("widePumpkin");
-   let secondcanvas = document.getElementById("secondcanvas")
-   secondcanvas.width=wide.width;
-   secondcanvas.height=wide.height;
-   let ctx = secondcanvas.getContext('2d')
+  //  let secondcanvas = document.getElementById("secondcanvas")
+  //  secondcanvas.width=wide.width;
+  //  secondcanvas.height=wide.height;
+  //  let ctx = secondcanvas.getContext('2d')
    
-    ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400,wide.width, wide.height);
-   debugger;
-   this.canvas.addEventListener("mousemove",function(e){
-     console.log('hello')
-     console.log(e.offsetX)
-     console.log(canvas.width/2 -400)
-     if (e.offsetX === (canvas.width/2 -400)){
-       debugger;
-     }
-   })
-   console.log(canvas.width)
-   console.log(canvas.width/2 -400)
+  //   ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400,wide.width, wide.height);
+  //  debugger;
+  //  secondcanvas.addEventListener("mouseenter",function(e){
+  //    console.log('hello')
+  //  })
+
     let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, 850, 838);
 
   //   canvas.addEventListener('onload',function(e){
