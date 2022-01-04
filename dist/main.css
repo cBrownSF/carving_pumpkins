@@ -19,7 +19,9 @@ body {
 }
 
 #mycanvas {
+  position:absolute;
   background: #c4ddc4;
+  z-index:2
 }
 
 #raven {
