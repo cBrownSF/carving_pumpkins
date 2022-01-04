@@ -35,21 +35,21 @@ window.addEventListener("DOMContentLoaded", ()=> {
 
 
   function loadInstructions(e){
-    if (e.code === 'Space' && !keysAvail.includes('Space')) {
-      return false;
-    }
+    // if (e.code === 'Space' && !keysAvail.includes('Space')) {
+    //   return false;
+    // }
     if (e.code === 'Space' && keysAvail.includes('Space')) {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       // menuScreen.gameState = false;
       window.cancelAnimationFrame(menuScreen.frame);
       keysAvail.splice(0, 1);
-      let offX = ctx.canvas.offsetLeft;
-      let offY = ctx.canvas.offsetTop;
+      // let offX = ctx.canvas.offsetLeft;
+      // let offY = ctx.canvas.offsetTop;
 
 
-      let rect = canvas.getBoundingClientRect(), // 
-        scaleX = canvas.width / rect.width,
-        scaleY = canvas.height / rect.height;
+      // let rect = canvas.getBoundingClientRect(), // 
+      //   scaleX = canvas.width / rect.width,
+      //   scaleY = canvas.height / rect.height;
       
       // let offsetX = ctx.canvas.offsetLeft;
       // let offsetY= ctx.canvas.offsetTop;

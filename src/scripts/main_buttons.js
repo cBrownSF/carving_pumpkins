@@ -28,16 +28,16 @@
     // this.ctx.stroke()
     let canvas = this.canvas
     let ctx = this.ctx
-    let diffPath = new Path2D()
-    diffPath.arc(x, y, 70, 0, Math.PI * 2, true);
+    let path = new Path2D()
+    path.arc(x, y, 70, 0, Math.PI * 2, true);
     ctx.lineWidth = 5;
     ctx.fillStyle = "#ffae42";
-    ctx.fill(diffPath)
+    ctx.fill(path)
     ctx.font = '35pt Impact'
     ctx.fillStyle = "black";
     ctx.textAlign = 'center';
     ctx.fillText(text, x, y + 15)
-    ctx.stroke(diffPath)
+    ctx.stroke(path)
     debugger;
   }
 }

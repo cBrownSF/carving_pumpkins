@@ -8,7 +8,9 @@ class GameScreen{
     this.newScreen();
     this.clickArray = []
     this.drawResetButton()
+    this.drawInstructionButton()
     this.resetButton;
+    this.instructButton;
     this.clickReset();
     this.carving = true;
   }
@@ -40,6 +42,21 @@ drawResetButton(){
   ctx.stroke(resetButton)
   this.resetButton = resetButton;
 }
+  drawInstructionButton() {
+    let ctx = this.ctx
+    let canvas = this.canvas
+    let instructionButton = new Path2D()
+    instructionButton.arc(this.canvas.width - 100, 200, 70, 0, Math.PI * 2, true);
+    ctx.lineWidth = 5;
+    ctx.fillStyle = "#ffae42";
+    ctx.fill(instructionButton)
+    ctx.font = '35pt Impact'
+    ctx.fillStyle = "black";
+    ctx.textAlign = 'center';
+    ctx.fillText("BACK", this.canvas.width - 100, 215)
+    ctx.stroke(instructionButton)
+    this.instructButton = instructionButton;
+  }
   newScreen(){
  
    let wide = document.getElementById("widePumpkin");

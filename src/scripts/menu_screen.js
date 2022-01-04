@@ -1,4 +1,5 @@
 import CandyCorn from './candy_corn.js'
+import Instructions from './instructions.js';
  class MenuScreen{
    
   constructor(canvas){
@@ -12,7 +13,7 @@ import CandyCorn from './candy_corn.js'
   }
  
   populateCandyArray() { 
-    const canvas = document.getElementById("mycanvas");
+    const canvas = this.canvas;
     for (let i = 0; i < this.NUM_CANDY; i++) {
       let x = Math.random() * (canvas.width - 200);
       let y = Math.random() * (canvas.height - 200);
@@ -31,9 +32,23 @@ import CandyCorn from './candy_corn.js'
     this.candyArray.push(corn);
     }
   }
-  loadInstructions(){
-    let canvas = this.canvas
-  }
+//   loadInstructions(){
+//     debugger;
+//     let keyArray = this.keysAvail;
+//     let canvas = this.canvas;
+//     let ctx = this.ctx;
+    
+//     this.canvas.addEventListener("keydown", function(e) {
+//       debugger;
+//       if (e.code === 'Space') {
+//         debugger;
+//         ctx.clearRect(0, 0, canvas.width, canvas.height)
+//         window.cancelAnimationFrame(MenuScreen.frame);
+//         keysAvail.splice(0, 1);
+//         new Instructions(canvas)
+//       }
+//     })
+// }
   getDist(x1, y1, x2, y2) {
     return Math.sqrt(
       Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)
