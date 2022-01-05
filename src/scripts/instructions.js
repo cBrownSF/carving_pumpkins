@@ -1,5 +1,6 @@
 import Button from './main_buttons.js'
 import GameScreen from './game_screen.js';
+import Defaults from './util.js';
 class Instructions {
 
   constructor(canvas) {
@@ -16,18 +17,17 @@ class Instructions {
   }
 
   drawButton() {
- console.log('button drawn again')
     let ctx = this.ctx
     let canvas = this.canvas
 
     let button = new Path2D()
     button.arc(this.canvas.width / 2, this.canvas.height / 2 + 300, 70, 0, Math.PI * 2, true);
-    ctx.lineWidth = 5;
-    ctx.fillStyle = "#ffae42";
+    ctx.lineWidth = Defaults.buttonLineWidth();
+    ctx.fillStyle = Defaults.buttonColor();
     ctx.fill(button)
-    ctx.font = '35pt Impact'
-    ctx.fillStyle = "black";
-    ctx.textAlign = 'center';
+    ctx.font = Defaults.buttonFont()
+    ctx.fillStyle = Defaults.fontColor();
+    ctx.textAlign = Defaults.fontAlign();
     ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
     ctx.stroke(button)
     this.startButton = button;
@@ -38,60 +38,34 @@ class Instructions {
     let clickArray = this.clickArray
     let ctx = this.ctx
     let canvas = this.canvas
-    let button = this.startButton
-    ctx.fillStyle = "#ffae42";
-    ctx.fill(button)
-    ctx.font = '35pt Impact'
-    ctx.fillStyle = "black";
-    ctx.textAlign = 'center';
-    ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
-    ctx.stroke(button)
-
+    let button = this.startButton;
+  
     this.canvas.addEventListener('mousemove', e => {
-      
-      if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) { 
-        this.hovered = true; 
-        ctx.fillStyle = "#E66C2C";
-        ctx.fill(button)
-        ctx.font = '35pt Impact'
-        ctx.fillStyle = "black";
-        ctx.textAlign = 'center';
-        ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
-        ctx.stroke(button)
-      }
-      if (!ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')){
-        this.hovered = false;
-        ctx.fillStyle = "#ffae42";
-        ctx.fill(button)
-        ctx.font = '35pt Impact'
-        ctx.fillStyle = "black";
-        ctx.textAlign = 'center';
-        ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
-        ctx.stroke(button)
+        if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) { 
+          this.hovered = true; 
+          ctx.lineWidth = Defaults.buttonLineWidth();
+          ctx.fillStyle = Defaults.buttonHover();
+          ctx.fill(button)
+          ctx.font = Defaults.buttonFont()
+          ctx.fillStyle = Defaults.fontColor();
+          ctx.textAlign = Defaults.fontAlign();
+          ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+          ctx.stroke(button)
+        }
+        if (!ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')){
+          this.hovered = false;
+          this.drawButton()
       }
     })
+  
   }
 
   loadGameScreen() {
     let clickArray = this.clickArray;
-    
-    let button = this.startButton
     let ctx = this.ctx
     let canvas = this.canvas
-    let offX = ctx.canvas.offsetLeft;
-    let offY = ctx.canvas.offsetTop;
-    
-
-
-    let rect = canvas.getBoundingClientRect(), // 
-      scaleX = canvas.width / rect.width,
-      scaleY = canvas.height / rect.height;
   
     canvas.addEventListener('click', e => {
-      let mouseX = (e.clientX - rect.left) * scaleX
-      let mouseY = (e.clientY - rect.top) * scaleY
-      
-
       if (this.hovered === true && clickArray.includes('instruct')) {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         clickArray.splice(0, 1)
@@ -100,7 +74,6 @@ class Instructions {
         return false
       }
     })
-
   }
 
 

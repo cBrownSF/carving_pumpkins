@@ -1,3 +1,4 @@
+ import Defaults from "./util";
  class Button{
   constructor(canvas){
     // this.x = x;
@@ -13,7 +14,7 @@
     
   }
 
-  drawButton(x,y,text){
+  drawButton(x,y,ctx,text,path){
     // this.ctx.beginPath();
     // this.ctx.arc(this.x, this.y, this.radius,this.START, this.END, this.CCLOCK);
     // this.ctx.lineWidth = 5
@@ -26,9 +27,7 @@
     // this.ctx.textAlign = 'center';
     // this.ctx.fillText(this.text,this.x,this.y + 15)
     // this.ctx.stroke()
-    let canvas = this.canvas
-    let ctx = this.ctx
-    let path = new Path2D()
+   
     path.arc(x, y, 70, 0, Math.PI * 2, true);
     ctx.lineWidth = 5;
     ctx.fillStyle = "#ffae42";
