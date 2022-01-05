@@ -14,10 +14,10 @@ class GameScreen{
     this.buttonActions();
     this.carving = false;
     this.carvingPath;
-    this.carveCount=0;
-    this.beginCoordArray=[]
-    this.carve()
+    this.carveCount=[];
+    this.coordinatesArray=[]
     this.beginCarve()
+    this.carve()
   }
  buttonActions() {
    let hoverArray=this.hoverArray
@@ -140,9 +140,10 @@ drawResetButton(){
   //   debugger;
   //  })
   
-  
+    debugger;
     let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, 850, 838);
-
+    console.log(wide)
+    console.log(pumpkin)
   //   canvas.addEventListener('onload',function(e){
   //     console.log(ctx.drawImage(wide, 0, 0, wide.width, wide.height).getImageData(e.offsetX, e.offsetY, 1, 1).data)
   //    console.log('mouseenter')
@@ -174,20 +175,45 @@ drawResetButton(){
   let canvas = this.canvas;
   let carvingPath=this.carvingPath
   let ctx = this.ctx;
-  let beginCoordArray=this.beginCoordArray;
+  let coordinatesArray=this.coordinatesArray;
   let hoverArray=this.hoverArray;
-  this.canvas.addEventListener("mousedown", function(e) {
-
+  canvas.addEventListener("mousedown", e=> {
     if (hoverArray.length ===1){
-     this.carveCount +=1;
-    this.carvingPath = new Path2D()
-    ctx.beginPath()
-    beginCoordArray.push(e.offsetX,e.offsetY)
+      carving = true;
+      coordinatesArray.push(e.offsetX, e.offsetY);
+      canvas.addEventListener("mousemove", e => {
+        if (!carving) return false;
+    
+          carvingPath = new Path2D()
+          ctx.beginPath()
+          ctx.lineWidth = 11;
+          ctx.lineCap = "round"
+          carvingPath.lineTo(e.offsetX, e.offsetY)
+          ctx.stroke(carvingPath)
+        
+      })
+      canvas.addEventListener("mouseup", e =>{
+        if ((e.offsetX - 10 < coordinatesArray[0] && e.offsetX + 10 > coordinatesArray[0]) && (e.offsetY - 10 < coordinatesArray[1] && e.offsetY + 10 > coordinatesArray[1])) {
+          debugger;
+          carving = false;
+          carvingPath.closePath()
+          ctx.fillStyle = "#ffbd2e"
+          ctx.fill(carvingPath)
+          ctx.beginPath()
+          coordinatesArray.splice(0, coordinatesArray.length)
+          hoverArray.splice(0, 1)
+        }
+        coordinatesArray.splice(0, coordinatesArray.length)
+        carving = false;
+        ctx.beginPath();
+        })
+      
+    
     }
   })
-  console.log(this.carveCount)
+
   console.log(this.carvingPath)
-  console.log(this.beginCoordArray)
+  console.log(this.coordinatesArray)
   
 }
 
@@ -197,24 +223,28 @@ carve(){
   let hoverArray = this.hoverArray;
   let carving = this.carving; 
   let ctx = this.ctx;
-
+  let carveCount = this.carveCount
   console.log(this.carving)
   console.log(this.carveCount)
-  debugger;
-  debugger;
-  this.canvas.addEventListener("mousemove", function(e){
-    if (this.carveCount ===1){
-    
-      debugger;
-      ctx.lineWidth = 11;
-      ctx.lineCap = "round"
-      
-      carvingPath.lineTo(e.offsetX, e.offsetY)
-      ctx.stroke(carvingPath)
-    }
-  
-  })
-}
+ 
 
+  // this.canvas.addEventListener("mousemove", e=>{
+  //   console.log(carvingPath)
+  //   if (this.carveCount.length ===1){
+     
+  //     carvingPath = new Path2D()
+  //     ctx.beginPath()
+  //     ctx.lineWidth = 11;
+  //     ctx.lineCap = "round"
+      
+  //     carvingPath.lineTo(e.offsetX, e.offsetY)
+  //     ctx.stroke(carvingPath)
+  //   }
+  
+  // })
+}
+finishCarve(){
+  this.canvas.addEventListener()
+}
 }
 export default GameScreen;
