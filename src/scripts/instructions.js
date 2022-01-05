@@ -41,6 +41,7 @@ class Instructions {
     let button = this.startButton;
   
     this.canvas.addEventListener('mousemove', e => {
+    
         if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) { 
           this.hovered = true; 
           ctx.lineWidth = Defaults.buttonLineWidth();

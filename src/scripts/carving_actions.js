@@ -1,7 +1,6 @@
 const Util={
   
-  resetButtonactions(e) {
-    let ctx = this.ctx;
+  resetButtonactions(e,ctx,resetButton) {
   if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
     ctx.fillStyle = "#E66C2C";
     ctx.fill(resetButton)
