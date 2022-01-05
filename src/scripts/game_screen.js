@@ -190,11 +190,26 @@ let canvas = this.canvas
 
 let start={x:this.canvas.width/2-194+25, y:this.canvas.height/2-328 +120 -5}
   let end = { x: this.canvas.width / 2 - 400,y:this.canvas.height/2+100}
-  let mid = { x: this.canvas.width / 2 - 394+25, y: this.canvas.height / 2 - 328 + 120}
+  let mid = { x: this.canvas.width / 2 - 369, y: this.canvas.height / 2 - 328 + 120}
+  let secondend={x:this.canvas.width/2-169,y:this.canvas.height/2+400}
+  let secondmid={x:this.canvas.width/2-369,y:this.canvas.height/2+395}
+  let thirdend={x:this.canvas.width/2-50, y:this.canvas.height/2+415}
+
 this.ctx.beginPath()
 this.ctx.moveTo(start.x,start.y)
 // this.ctx.arc(this.canvas.width/2-400,this.canvas.height/2,100,0,Math.PI,false)
 this.ctx.quadraticCurveTo(mid.x,mid.y,end.x,end.y)
+
+this.ctx.moveTo(end.x,end.y)
+
+this.ctx.quadraticCurveTo(secondmid.x,secondmid.y,secondend.x,secondend.y)
+this.ctx.moveTo(secondend.x,secondend.y)
+this.ctx.quadraticCurveTo(this.canvas.width/2-86,this.canvas.height/2+445,thirdend.x,thirdend.y)
+this.ctx.moveTo(thirdend.x,thirdend.y)
+this.ctx.quadraticCurveTo(this.canvas.width/2,this.canvas.height/2+460,thirdend.x+160,thirdend.y)
+this.ctx.moveTo(thirdend.x + 160, thirdend.y)
+this.ctx.quadraticCurveTo(this.canvas.width / 2+140, this.canvas.height / 2 + 450, thirdend.x + 275, thirdend.y-20)
+
 this.ctx.stroke()
 } 
 beginCarve(){
