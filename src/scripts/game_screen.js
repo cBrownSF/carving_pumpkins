@@ -61,8 +61,15 @@ class GameScreen{
   })
   this.canvas.addEventListener("mousemove",
   e =>{
+    console.log(`canvaswidth':${canvas.width}`)
+    console.log(`canvasheight':${canvas.height}`)
+    console.log(`offSetY':${e.offsetY}`)
+    console.log(`offSetX':${e.offsetX}`)
+
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+  
       console.log(hoverArray.length)
+
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
       ctx.font = '35pt Impact'
@@ -81,6 +88,7 @@ class GameScreen{
       ctx.stroke(resetButton)
     }
     if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+      console.log(e.offsetX, e.offsetY)
       ctx.fillStyle = "#E66C2C";
       ctx.fill(instructButton)
       ctx.font = '35pt Impact'
@@ -135,12 +143,17 @@ drawResetButton(){
   newScreen(){
  
    let wide = document.getElementById("widePumpkin");
+  let canvas=this.canvas;
+  let ctx = this.ctx;
+
     let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, 850, 838);
     const raven = document.getElementById("raven");
     let ravImage = this.ctx.drawImage(raven, 0, 200, 300, 360);
     this.drawInstructionButton()
     this.drawResetButton()
     this.drawPumpkinGoodPath()
+    this.drawBezierCurve()
+    // this.getPixelData()
   //   this.secondctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, wide.width,wide.height)
   //  debugger;
   //  this.secondcanvas.addEventListener("mouseenter",function(e){
@@ -172,7 +185,19 @@ drawResetButton(){
     // new Button(this.canvas.width - 100, 300, 70, "HOME", this.canvas)
   }
 
- beginCarve(){
+drawBezierCurve(){
+let canvas = this.canvas
+
+let start={x:this.canvas.width/2-194+25, y:this.canvas.height/2-328 +120 -5}
+  let end = { x: this.canvas.width / 2 - 400,y:this.canvas.height/2+100}
+  let mid = { x: this.canvas.width / 2 - 394+25, y: this.canvas.height / 2 - 328 + 120}
+this.ctx.beginPath()
+this.ctx.moveTo(start.x,start.y)
+// this.ctx.arc(this.canvas.width/2-400,this.canvas.height/2,100,0,Math.PI,false)
+this.ctx.quadraticCurveTo(mid.x,mid.y,end.x,end.y)
+this.ctx.stroke()
+} 
+beginCarve(){
   let carving = this.carving; 
   let canvas = this.canvas;
   let ctx = canvas.getContext('2d')
@@ -225,7 +250,20 @@ drawResetButton(){
       }
   })
 }
-
+  // const xCoord = 50;
+  // const yCoord = 100;
+  // const canvasWidth = 1024;
+getPixelData(){
+  // const getColorIndicesForCoord = (x, y, width) => {
+  //   const red = y * (width * 4) + x * 4;
+  //   return [red, red + 1, red + 2, red + 3];
+  // };
+  // const colorIndices=getColorIndicesForCoord(1514,337,this.canvas.width)
+  // const [redIndex, greenIndex, blueIndex, alphaIndex] = colorIndices;
+  // console.log(redIndex,greenIndex,blueIndex,alphaIndex)
+  const data = this.ctx.getImageData(1514, 337, 1, 1).data
+  console.log(data)
+}
   drawPumpkinSquare(){
     let canvas = this.canvas
     let pumpkinP= new Path2D()
@@ -252,6 +290,7 @@ drawPumpkinGoodPath(){
   pumpkinP.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)
   pumpkinP.closePath()
   this.goodPath = pumpkinP;
+  console.log(pumpkinP)
 }
 }
 
