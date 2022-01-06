@@ -19,15 +19,17 @@ class Instructions {
   drawButton() {
     let ctx = this.ctx
     let canvas = this.canvas
+    let textSize = this.canvas.height / 15.47 / 2.0
     let button = new Path2D()
-    button.arc(this.canvas.width / 2, this.canvas.height / 2 + 300, 70, 0, Math.PI * 2, true);
-    ctx.lineWidth = Defaults.buttonLineWidth();
+    console.log(canvas.height)
+    button.arc(this.canvas.width / 2, this.canvas.height * .81, canvas.height / 15.47, 0, Math.PI * 2, true);
+    ctx.lineWidth = textSize / 7;
     ctx.fillStyle = Defaults.buttonColor();
     ctx.fill(button)
-    ctx.font = Defaults.buttonFont()
+    ctx.font = `${textSize}pt Impact`
     ctx.fillStyle = Defaults.fontColor();
     ctx.textAlign = Defaults.fontAlign();
-    ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+    ctx.fillText("Start", canvas.width / 2, canvas.height *.825)
     ctx.stroke(button)
     this.startButton = button;
   }
@@ -38,18 +40,18 @@ class Instructions {
     let ctx = this.ctx
     let canvas = this.canvas
     let button = this.startButton;
-  
+    let textSize = this.canvas.height / 15.47 / 2.0
     this.canvas.addEventListener('mousemove', e => {
     
         if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) { 
           this.hovered = true; 
-          ctx.lineWidth = Defaults.buttonLineWidth();
+          ctx.lineWidth = textSize/7;
           ctx.fillStyle = Defaults.buttonHover();
           ctx.fill(button)
-          ctx.font = Defaults.buttonFont()
+          ctx.font = `${textSize}pt Impact`
           ctx.fillStyle = Defaults.fontColor();
           ctx.textAlign = Defaults.fontAlign();
-          ctx.fillText("Start", canvas.width / 2, canvas.height / 2 + 315)
+          ctx.fillText("Start", canvas.width / 2, canvas.height * .825)
           ctx.stroke(button)
         }
         if (!ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')){
