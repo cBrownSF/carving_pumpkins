@@ -21,7 +21,7 @@ class Instructions {
     let canvas = this.canvas
     let textSize = this.canvas.height / 15.47 / 2.0
     let button = new Path2D()
-    console.log(canvas.height)
+  
     button.arc(this.canvas.width / 2, this.canvas.height * .81, canvas.height / 15.47, 0, Math.PI * 2, true);
     ctx.lineWidth = textSize / 7;
     ctx.fillStyle = Defaults.buttonColor();
@@ -80,14 +80,16 @@ class Instructions {
 
 
   drawBox() {
-    let instructions = '                         ----GAMEPLAY----?1. Click and hold the mouse to begin carving?2. Carve the pumpkin by moving the mouse?3. Move the black line back to the starting point?4. Let go of the mouse to complete the carve ?5. Repeat the process and keep carvin!'
-    let x = this.canvas.width / 2 - 450;
-    let y = 100;
-    let height = 100;
+    let canvas = this.canvas
+    let instructions = '                         ---GAMEPLAY---?1. Click and hold the mouse to begin carving?2. Carve the pumpkin by moving the mouse?3. Move the black line back to the starting point?4. Let go of the mouse to complete the carve ?5. Repeat the process and keep carvin!'
+    let x = canvas.width / 3.9;
+    let y = canvas.width / 19.4;
+    let height = canvas.width/19.4;
+    let textSize=canvas.height/32.3
     let splitInt = instructions.split('?');
 
     for (let i = 0; i < splitInt.length; i++) {
-      this.ctx.font = 'bold 30pt Arial'
+      this.ctx.font = `${textSize}pt Arial`
       this.ctx.fillStyle = "black"
       this.ctx.textAlign = "left"
       this.ctx.fillText(splitInt[i], x, y + (i * height));
