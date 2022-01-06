@@ -20,7 +20,7 @@ class GameScreen{
     this.carvingPath;
     this.carveCount=[];
     this.coordinatesArray=[]
-    this.beginCarve()
+    // this.beginCarve()
     this.drawPumpkinArray;
     this.pumpkinOutline;
   }
@@ -31,16 +31,17 @@ class GameScreen{
    let resetButton = this.resetButton;
    let instructButton=this.instructButton
    let pumpkin = this.pumpkinOutline;
-  this.canvas.addEventListener("click",e =>{
+   let textSize = this.canvas.height / 15.47 / 2.0
+  canvas.addEventListener("click",e =>{
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)&& hoverArray.length ===1){
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       this.newScreen()
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
-      ctx.font = '35pt Impact'
+      ctx.font = `${textSize}pt Impact`
       ctx.fillStyle = "black";
       ctx.textAlign = 'center';
-      ctx.fillText("RESET", canvas.width - 100, 115)
+      ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
       ctx.stroke(resetButton)
     }
     if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
@@ -49,20 +50,21 @@ class GameScreen{
       new Instructions(canvas)
     }
   })
-  this.canvas.addEventListener("mouseover",e =>{
+  canvas.addEventListener("mouseover",e =>{
+   
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
-      ctx.font = '35pt Impact'
+      ctx.font = `${textSize}pt Impact`
       ctx.fillStyle = "black";
       ctx.textAlign = 'center';
-      ctx.fillText("RESET", canvas.width - 100, 115)
+      ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
       ctx.stroke(resetButton)
     }
   })
-  this.canvas.addEventListener("mousemove",
+  canvas.addEventListener("mousemove",
   e =>{
-    // console.log(`X':${e.offsetX},Y:${e.offsetY}`)
+    console.log(`X':${e.offsetX},Y:${e.offsetY}`)
     
    
    
@@ -71,38 +73,41 @@ class GameScreen{
 
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
-      ctx.font = '35pt Impact'
+      ctx.font = `${textSize}pt Impact`
       ctx.fillStyle = "black";
       ctx.textAlign = 'center';
-      ctx.fillText("RESET", canvas.width - 100, 115)
+      console.log(canvas.height/9.75)
+      ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
       ctx.stroke(resetButton)
     }
     if (!ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+      console.log(canvas.height)
       ctx.fillStyle = "#ffae42";
       ctx.fill(resetButton)
-      ctx.font = '35pt Impact'
+      ctx.font = `${textSize}pt Impact`
       ctx.fillStyle = "black";
       ctx.textAlign = 'center';
-      ctx.fillText("RESET", canvas.width - 100, 115)
+    
+      ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
       ctx.stroke(resetButton)
     }
     if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-   
+
       ctx.fillStyle = "#E66C2C";
       ctx.fill(instructButton)
-      ctx.font = '35pt Impact'
+      ctx.font = `${textSize}pt Impact`
       ctx.fillStyle = "black";
       ctx.textAlign = 'center';
-      ctx.fillText("BACK", canvas.width - 100, 315)
+      ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
       ctx.stroke(instructButton)
     }
     if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
       ctx.fillStyle = "#ffae42";
       ctx.fill(instructButton)
-      ctx.font = '35pt Impact'
+      ctx.font = `${textSize}pt Impact`
       ctx.fillStyle = "black";
       ctx.textAlign = 'center';
-      ctx.fillText("BACK", canvas.width - 100, 315)
+      ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
       ctx.stroke(instructButton)
     }
     
@@ -112,14 +117,17 @@ drawResetButton(){
   let ctx = this.ctx
   let canvas = this.canvas
   let resetButton = new Path2D()
-  resetButton.arc(this.canvas.width - 100, 100, 70,0, Math.PI * 2, true);
+  let textSize =this.canvas.height/15.47/2.0
+  console.log(this.canvas.width * .945)
+  
+  resetButton.arc(canvas.width*.945, canvas.height/9.75, canvas.height/15.47,0, Math.PI * 2, true);
   ctx.lineWidth = 5;
   ctx.fillStyle = "#ffae42";
   ctx.fill(resetButton)
-  ctx.font = '35pt Impact'
+  ctx.font = `${textSize}pt Impact`
   ctx.fillStyle = "black";
   ctx.textAlign = 'center';
-  ctx.fillText("RESET", this.canvas.width - 100, 115)
+  ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
   ctx.stroke(resetButton)
   this.resetButton = resetButton;
 }
@@ -127,14 +135,17 @@ drawResetButton(){
     let ctx = this.ctx
     let canvas = this.canvas
     let instructionButton = new Path2D()
-    instructionButton.arc(this.canvas.width - 100, 300, 70, 0, Math.PI * 2, true);
+    let textSize = this.canvas.height / 15.47 / 2.0
+    console.log(this.canvas.height/4.0)
+    instructionButton.arc(canvas.width * .945, this.canvas.height / 4.0, this.canvas.height / 15.47, 0, Math.PI * 2, true);
+    console.log(instructionButton)
     ctx.lineWidth = 5;
     ctx.fillStyle = "#ffae42";
     ctx.fill(instructionButton)
-    ctx.font = '35pt Impact'
+    ctx.font = `${textSize}pt Impact`
     ctx.fillStyle = "black";
     ctx.textAlign = 'center';
-    ctx.fillText("BACK", this.canvas.width - 100, 315)
+    ctx.fillText("Back", this.canvas.width * .945, canvas.height / 3.77)
     ctx.stroke(instructionButton)
     ctx.closePath()
     this.instructButton = instructionButton;
@@ -147,7 +158,7 @@ drawResetButton(){
     console.log(canvas.height)
     let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 3.72, this.canvas.height/11.41, this.canvas.width / 2 - 15, this.canvas.height/1.15);
     const raven = document.getElementById("raven");
-    let ravImage = this.ctx.drawImage(raven, 0, 200, 300, 360);
+    let ravImage = this.ctx.drawImage(raven, 0, this.canvas.height/ 4.85, this.canvas.width/5.9, this.canvas.height / 3.23);
     this.drawInstructionButton()
     this.drawResetButton()
     this.drawPumpkinGoodPath()
