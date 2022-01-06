@@ -26,9 +26,9 @@ class GameScreen{
   }
  buttonActions() {
    let hoverArray=this.hoverArray
-   let resetButton = this.resetButton;
    let ctx = this.ctx;
    let canvas = this.canvas
+   let resetButton = this.resetButton;
    let instructButton=this.instructButton
    let pumpkin = this.pumpkinOutline;
   this.canvas.addEventListener("click",e =>{
@@ -62,8 +62,8 @@ class GameScreen{
   })
   this.canvas.addEventListener("mousemove",
   e =>{
-    // console.log(`canvaswidth':${canvas.width}`)
-    // console.log(`canvasheight':${canvas.height}`)
+    // console.log(`X':${e.offsetX},Y:${e.offsetY}`)
+    
    
    
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
@@ -151,6 +151,7 @@ drawResetButton(){
     this.drawInstructionButton()
     this.drawResetButton()
     this.drawPumpkinGoodPath()
+    // this.getPixelData()
     // this.drawBezierCurve()
   
   }
@@ -198,8 +199,10 @@ beginCarve(){
   let coordinatesArray=this.coordinatesArray;
   let hoverArray=this.hoverArray;
   let pumpkin = this.pumpkinOutline;
+  let resetButton = this.resetButton;
+  let instructButton = this.instructButton
   canvas.addEventListener("mousedown", e=> {
-    if (ctx.isPointInPath(pumpkinPath, e.offsetX, e.offsetY)){
+   
      
       let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       let index = (e.offsetY * imgData.width + e.offsetX) * 4;
@@ -207,19 +210,40 @@ beginCarve(){
       let green = imgData.data[index + 1];
       let blue = imgData.data[index + 2];
       let alpha = imgData.data[index + 3];
-      if (red !== 0) {
+    if (red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
         carving = true;
         ctx.beginPath()
         coordinatesArray.push(e.offsetX, e.offsetY);
-      } 
+      }
+    
       canvas.addEventListener("mousemove", e => {
-        if (!carving) return false;
+      console.log(coordinatesArray);
+        if (!carving){
+          return false;
+        } 
+      
+        let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let index = (e.offsetY * imgData.width + e.offsetX) * 4;
+        let red = imgData.data[index];
+        let blue = imgData.data[index + 2]
+        if (red !== 0 && blue < 45  && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
           ctx.lineWidth = 11;
           ctx.lineCap = "round"
           ctx.lineTo(e.offsetX, e.offsetY)
           ctx.stroke()
-        
-          
+          coordinatesArray.push(e.offsetX, e.offsetY);
+        }
+        if (coordinatesArray.length > 10 && (e.offsetX - 5< coordinatesArray[0] && e.offsetX + 5 > coordinatesArray[0]) && (e.offsetY - 5 < coordinatesArray[1] && e.offsetY + 5 > coordinatesArray[1])) {
+          carving = false;
+          ctx.closePath()
+          // ctx.closePath()
+          //can add the path to an array here
+          ctx.fillStyle = "#ffbd2e"
+          ctx.fill()
+         
+
+          coordinatesArray.splice(0, coordinatesArray.length)
+        }
           // if (!ctx.isPointInPath(pumpkinPath, e.offsetX, e.offsetY)) {
           //   carving = false;
           // }
@@ -249,11 +273,11 @@ beginCarve(){
         
        
         })  
-      }
+      
   })
 }
 
-getPixelData(x,y){
+getPixelData(){
   
   // let imgData = false; 
 
@@ -263,8 +287,8 @@ getPixelData(x,y){
     let ctx = this.canvas.getContext("2d");
     // }
     // Prepare your X Y coordinates which you will be fetching from your mouse loc
-    // let x = 1514;   // 
-    // let y = 337;
+    let x = 1029;   // 
+    let y = 480;
     
     // locate index of current pixel
   let imgData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
@@ -273,19 +297,20 @@ getPixelData(x,y){
   let green = imgData.data[index + 1];
   let blue = imgData.data[index + 2];
   let alpha = imgData.data[index + 3];
-  console.log('pix x ' + x + ' y ' + y + ' index ' + index + ' COLOR ' + red + ',' + green + ',' + blue + ',' + alpha);
-  if (red === 0){
-    debugger;
-    return false
-  }else{
-    return true;
-  }
+  console.log('pix x ' + x + ' y ' + y + ' index ' + index + ' COLOR R:' + red + ',G:' + green + ',B:' + blue + ',A' + alpha);
+  // if (red === 0){
+  //   debugger;
+  //   return false
+  // }else{
+  //   return true;
+  // }
 }
   drawPumpkinSquare(){
     let canvas = this.canvas
     let pumpkinP= new Path2D()
      pumpkinP.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)
      pumpkinP.closePath()
+     this.ctx.fill(pumpkinP)
      this.pumpkinPath.push(pumpkinP);
   }
 drawPumpkinArray(){
@@ -304,7 +329,7 @@ drawPumpkinArray(){
 drawPumpkinGoodPath(){
   let canvas = this.canvas
   let pumpkinP = new Path2D()
-  pumpkinP.rect(canvas.width / 2 - 400, canvas.height / 2 - 242, 1000, 750)
+  pumpkinP.rect(canvas.width / 2 - 600, canvas.height / 2 - 250, 1200, 750)
   // this.ctx.fill(pumpkinP)
   pumpkinP.closePath()
   this.goodPath = pumpkinP;
