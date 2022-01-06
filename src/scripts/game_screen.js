@@ -22,6 +22,7 @@ class GameScreen{
     this.coordinatesArray=[]
     this.beginCarve()
     this.drawPumpkinArray;
+    this.pumpkinOutline;
   }
  buttonActions() {
    let hoverArray=this.hoverArray
@@ -29,7 +30,7 @@ class GameScreen{
    let ctx = this.ctx;
    let canvas = this.canvas
    let instructButton=this.instructButton
-   
+   let pumpkin = this.pumpkinOutline;
   this.canvas.addEventListener("click",e =>{
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)&& hoverArray.length ===1){
       ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -61,14 +62,12 @@ class GameScreen{
   })
   this.canvas.addEventListener("mousemove",
   e =>{
-    console.log(`canvaswidth':${canvas.width}`)
-    console.log(`canvasheight':${canvas.height}`)
-    console.log(`offSetY':${e.offsetY}`)
-    console.log(`offSetX':${e.offsetX}`)
-
+    // console.log(`canvaswidth':${canvas.width}`)
+    // console.log(`canvasheight':${canvas.height}`)
+   
+   
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
   
-      console.log(hoverArray.length)
 
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
@@ -88,7 +87,7 @@ class GameScreen{
       ctx.stroke(resetButton)
     }
     if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-      console.log(e.offsetX, e.offsetY)
+   
       ctx.fillStyle = "#E66C2C";
       ctx.fill(instructButton)
       ctx.font = '35pt Impact'
@@ -152,37 +151,8 @@ drawResetButton(){
     this.drawInstructionButton()
     this.drawResetButton()
     this.drawPumpkinGoodPath()
-    this.drawBezierCurve()
-    // this.getPixelData()
-  //   this.secondctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, wide.width,wide.height)
-  //  debugger;
-  //  this.secondcanvas.addEventListener("mouseenter",function(e){
-  //   console.log('hello')
-  //   debugger;
-  //  })
+    // this.drawBezierCurve()
   
-
-    
-   
-  //   canvas.addEventListener('onload',function(e){
-  //     console.log(ctx.drawImage(wide, 0, 0, wide.width, wide.height).getImageData(e.offsetX, e.offsetY, 1, 1).data)
-  //    console.log('mouseenter')
-  //  })
-
-  //   this.ctx.fill(pumpkinPath)
-  //  this.pumpkinObj = this.pumpkinPath; 
-  // let image = new Image(pumpkin)
-  // let imagePath = new Path2D(image)
-  
-  
- 
-    
-   
-    // let button = new Button(this.canvas.width - 100, 100, 70, "RESET!", this.canvas)
-    // button.drawButton
-    // let resetButton = new Path2D(button)
-    // this.resetButton = resetButton;
-    // new Button(this.canvas.width - 100, 300, 70, "HOME", this.canvas)
   }
 
 drawBezierCurve(){
@@ -190,27 +160,34 @@ let canvas = this.canvas
 
 let start={x:this.canvas.width/2-194+25, y:this.canvas.height/2-328 +120 -5}
   let end = { x: this.canvas.width / 2 - 400,y:this.canvas.height/2+100}
-  let mid = { x: this.canvas.width / 2 - 369, y: this.canvas.height / 2 - 328 + 120}
+  let mid = { x: this.canvas.width / 2 - 369, y: this.canvas.height / 2 - 328 + 115}
   let secondend={x:this.canvas.width/2-169,y:this.canvas.height/2+400}
   let secondmid={x:this.canvas.width/2-369,y:this.canvas.height/2+395}
   let thirdend={x:this.canvas.width/2-50, y:this.canvas.height/2+415}
-
+let outline = new Path2D;
 this.ctx.beginPath()
-this.ctx.moveTo(start.x,start.y)
-// this.ctx.arc(this.canvas.width/2-400,this.canvas.height/2,100,0,Math.PI,false)
-this.ctx.quadraticCurveTo(mid.x,mid.y,end.x,end.y)
+outline.moveTo(start.x,start.y)
+outline.quadraticCurveTo(mid.x,mid.y,end.x,end.y)
+outline.quadraticCurveTo(start.x + 20, start.y-30,start.x+113,start.y-18)
+outline.moveTo(end.x,end.y)
+outline.quadraticCurveTo(secondmid.x,secondmid.y,secondend.x,secondend.y)
 
-this.ctx.moveTo(end.x,end.y)
 
-this.ctx.quadraticCurveTo(secondmid.x,secondmid.y,secondend.x,secondend.y)
-this.ctx.moveTo(secondend.x,secondend.y)
-this.ctx.quadraticCurveTo(this.canvas.width/2-86,this.canvas.height/2+445,thirdend.x,thirdend.y)
-this.ctx.moveTo(thirdend.x,thirdend.y)
-this.ctx.quadraticCurveTo(this.canvas.width/2,this.canvas.height/2+460,thirdend.x+160,thirdend.y)
-this.ctx.moveTo(thirdend.x + 160, thirdend.y)
-this.ctx.quadraticCurveTo(this.canvas.width / 2+140, this.canvas.height / 2 + 450, thirdend.x + 275, thirdend.y-20)
-
-this.ctx.stroke()
+  outline.moveTo(secondend.x, secondend.y)
+outline.quadraticCurveTo(this.canvas.width/2-86,this.canvas.height/2+445,thirdend.x,thirdend.y)
+outline.moveTo(thirdend.x,thirdend.y)
+outline.quadraticCurveTo(this.canvas.width/2,this.canvas.height/2+460,thirdend.x+160,thirdend.y)
+outline.moveTo(thirdend.x + 160, thirdend.y)
+outline.quadraticCurveTo(this.canvas.width / 2+140, this.canvas.height / 2 + 450, thirdend.x + 270, thirdend.y-15)
+outline.moveTo(thirdend.x + 270, thirdend.y - 15)
+  outline.quadraticCurveTo(thirdend.x + 302, thirdend.y + 10, thirdend.x + 398, thirdend.y - 58)
+  outline.moveTo(thirdend.x+398,thirdend.y-58)
+  outline.quadraticCurveTo(thirdend.x + 608, this.canvas.height / 2 +60, thirdend.x + 390, thirdend.y - 586)
+  outline.moveTo(thirdend.x + 390, thirdend.y - 586)
+  outline.lineTo(this.canvas.width / 2 - 194 + 25, this.canvas.height / 2 - 328 + 120 - 5)
+  this.ctx.fill(outline)
+outline.closePath()
+  this.pumpkinOutline=outline;
 } 
 beginCarve(){
   let carving = this.carving; 
@@ -220,17 +197,27 @@ beginCarve(){
   let carvingPath=this.carvingPath
   let coordinatesArray=this.coordinatesArray;
   let hoverArray=this.hoverArray;
+  let pumpkin = this.pumpkinOutline;
   canvas.addEventListener("mousedown", e=> {
     if (ctx.isPointInPath(pumpkinPath, e.offsetX, e.offsetY)){
-      carving = true;
-      let carvep=new Path2D()
-      coordinatesArray.push(e.offsetX, e.offsetY);
+     
+      let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      let index = (e.offsetY * imgData.width + e.offsetX) * 4;
+      let red = imgData.data[index];
+      let green = imgData.data[index + 1];
+      let blue = imgData.data[index + 2];
+      let alpha = imgData.data[index + 3];
+      if (red !== 0) {
+        carving = true;
+        ctx.beginPath()
+        coordinatesArray.push(e.offsetX, e.offsetY);
+      } 
       canvas.addEventListener("mousemove", e => {
         if (!carving) return false;
           ctx.lineWidth = 11;
           ctx.lineCap = "round"
-          carvep.lineTo(e.offsetX, e.offsetY)
-          ctx.stroke(carvep)
+          ctx.lineTo(e.offsetX, e.offsetY)
+          ctx.stroke()
         
           
           // if (!ctx.isPointInPath(pumpkinPath, e.offsetX, e.offsetY)) {
@@ -243,11 +230,11 @@ beginCarve(){
         
         if ((e.offsetX - 10 < coordinatesArray[0] && e.offsetX + 10 > coordinatesArray[0]) && (e.offsetY - 10 < coordinatesArray[1] && e.offsetY + 10 > coordinatesArray[1])) {
           carving = false;
-          carvep.closePath()
+          ctx.closePath()
           // ctx.closePath()
           //can add the path to an array here
           ctx.fillStyle = "#ffbd2e"
-          ctx.fill(carvep)
+          ctx.fill()
           debugger;
           
           coordinatesArray.splice(0, coordinatesArray.length)
@@ -265,19 +252,34 @@ beginCarve(){
       }
   })
 }
-  // const xCoord = 50;
-  // const yCoord = 100;
-  // const canvasWidth = 1024;
-getPixelData(){
-  // const getColorIndicesForCoord = (x, y, width) => {
-  //   const red = y * (width * 4) + x * 4;
-  //   return [red, red + 1, red + 2, red + 3];
-  // };
-  // const colorIndices=getColorIndicesForCoord(1514,337,this.canvas.width)
-  // const [redIndex, greenIndex, blueIndex, alphaIndex] = colorIndices;
-  // console.log(redIndex,greenIndex,blueIndex,alphaIndex)
-  const data = this.ctx.getImageData(1514, 337, 1, 1).data
-  console.log(data)
+
+getPixelData(x,y){
+  
+  // let imgData = false; 
+
+
+  // if (imgData === false) {
+  //   // fetch once canvas data     
+    let ctx = this.canvas.getContext("2d");
+    // }
+    // Prepare your X Y coordinates which you will be fetching from your mouse loc
+    // let x = 1514;   // 
+    // let y = 337;
+    
+    // locate index of current pixel
+  let imgData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+  let index = (y * imgData.width + x) * 4;
+  let red = imgData.data[index];
+  let green = imgData.data[index + 1];
+  let blue = imgData.data[index + 2];
+  let alpha = imgData.data[index + 3];
+  console.log('pix x ' + x + ' y ' + y + ' index ' + index + ' COLOR ' + red + ',' + green + ',' + blue + ',' + alpha);
+  if (red === 0){
+    debugger;
+    return false
+  }else{
+    return true;
+  }
 }
   drawPumpkinSquare(){
     let canvas = this.canvas
@@ -302,7 +304,8 @@ drawPumpkinArray(){
 drawPumpkinGoodPath(){
   let canvas = this.canvas
   let pumpkinP = new Path2D()
-  pumpkinP.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)
+  pumpkinP.rect(canvas.width / 2 - 400, canvas.height / 2 - 242, 1000, 750)
+  // this.ctx.fill(pumpkinP)
   pumpkinP.closePath()
   this.goodPath = pumpkinP;
   console.log(pumpkinP)

@@ -19,7 +19,6 @@ class Instructions {
   drawButton() {
     let ctx = this.ctx
     let canvas = this.canvas
-
     let button = new Path2D()
     button.arc(this.canvas.width / 2, this.canvas.height / 2 + 300, 70, 0, Math.PI * 2, true);
     ctx.lineWidth = Defaults.buttonLineWidth();
