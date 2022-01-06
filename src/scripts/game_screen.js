@@ -39,6 +39,7 @@ class GameScreen{
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
       ctx.font = `${textSize}pt Impact`
+      ctx.lineWidth = textSize / 7;
       ctx.fillStyle = "black";
       ctx.textAlign = 'center';
       ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
@@ -53,6 +54,7 @@ class GameScreen{
   canvas.addEventListener("mouseover",e =>{
    
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+      ctx.lineWidth = textSize / 7;
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
       ctx.font = `${textSize}pt Impact`
@@ -69,8 +71,7 @@ class GameScreen{
    
    
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-  
-
+      ctx.lineWidth = textSize / 7;
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
       ctx.font = `${textSize}pt Impact`
@@ -87,12 +88,12 @@ class GameScreen{
       ctx.font = `${textSize}pt Impact`
       ctx.fillStyle = "black";
       ctx.textAlign = 'center';
-    
+      ctx.lineWidth = textSize / 7;
       ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
       ctx.stroke(resetButton)
     }
     if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-
+      ctx.lineWidth = textSize / 7;
       ctx.fillStyle = "#E66C2C";
       ctx.fill(instructButton)
       ctx.font = `${textSize}pt Impact`
@@ -102,6 +103,7 @@ class GameScreen{
       ctx.stroke(instructButton)
     }
     if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+      ctx.lineWidth = textSize / 7;
       ctx.fillStyle = "#ffae42";
       ctx.fill(instructButton)
       ctx.font = `${textSize}pt Impact`
@@ -121,7 +123,7 @@ drawResetButton(){
   console.log(this.canvas.width * .945)
   
   resetButton.arc(canvas.width*.945, canvas.height/9.75, canvas.height/15.47,0, Math.PI * 2, true);
-  ctx.lineWidth = 5;
+  ctx.lineWidth = textSize / 7;
   ctx.fillStyle = "#ffae42";
   ctx.fill(resetButton)
   ctx.font = `${textSize}pt Impact`
@@ -136,10 +138,11 @@ drawResetButton(){
     let canvas = this.canvas
     let instructionButton = new Path2D()
     let textSize = this.canvas.height / 15.47 / 2.0
+    
     console.log(this.canvas.height/4.0)
     instructionButton.arc(canvas.width * .945, this.canvas.height / 4.0, this.canvas.height / 15.47, 0, Math.PI * 2, true);
     console.log(instructionButton)
-    ctx.lineWidth = 5;
+    ctx.lineWidth = textSize/7;
     ctx.fillStyle = "#ffae42";
     ctx.fill(instructionButton)
     ctx.font = `${textSize}pt Impact`
