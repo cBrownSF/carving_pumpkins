@@ -144,8 +144,8 @@ drawResetButton(){
    let wide = document.getElementById("widePumpkin");
   let canvas=this.canvas;
   let ctx = this.ctx;
-
-    let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 2 - 400, this.canvas.height / 2 - 400, 850, 838);
+    console.log(canvas.height)
+    let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 3.72, this.canvas.height/11.41, this.canvas.width / 2 - 15, this.canvas.height/1.15);
     const raven = document.getElementById("raven");
     let ravImage = this.ctx.drawImage(raven, 0, 200, 300, 360);
     this.drawInstructionButton()
