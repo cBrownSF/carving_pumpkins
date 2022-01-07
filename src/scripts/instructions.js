@@ -56,7 +56,14 @@ class Instructions {
         }
         if (!ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')){
           this.hovered = false;
-          this.drawButton()
+          ctx.lineWidth = textSize / 7;
+    ctx.fillStyle = Defaults.buttonColor();
+    ctx.fill(button)
+    ctx.font = `${textSize}pt Impact`
+    ctx.fillStyle = Defaults.fontColor();
+    ctx.textAlign = Defaults.fontAlign();
+    ctx.fillText("Start", canvas.width / 2, canvas.height *.825)
+    ctx.stroke(button)
       }
     })
   
