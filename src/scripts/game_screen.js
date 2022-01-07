@@ -28,7 +28,6 @@ class GameScreen{
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       this.newScreen()
       this.carve=null;
-      debugger;
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
       ctx.font = `${textSize}pt Impact`
@@ -47,7 +46,7 @@ class GameScreen{
   canvas.addEventListener("mousemove",e =>{
     // console.log(`X':${e.offsetX},Y:${e.offsetY}`)
     if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-      ctx.lineWidth = textSize / 7;
+      // ctx.lineWidth = textSize / 7;
       ctx.fillStyle = "#E66C2C";
       ctx.fill(resetButton)
       ctx.font = `${textSize}pt Impact`

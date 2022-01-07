@@ -28,7 +28,7 @@ import Instructions from './instructions.js';
           }
        }
     }
-    let corn = new CandyCorn(x, y,velX,velY);
+    let corn = new CandyCorn(x, y,velX,velY,canvas);
     this.candyArray.push(corn);
     }
   }
@@ -97,12 +97,14 @@ import Instructions from './instructions.js';
 
   drawTitle() {
     const titleImage = document.getElementById("title");
-     this.ctx.drawImage(titleImage, this.canvas.width/2-350, this.canvas.height/2 -200);
+    this.ctx.drawImage(titleImage, this.canvas.width / 3.45, this.canvas.height / 3.403, this.canvas.width / 2.378, this.canvas.height / 7.29);
   }
 
   drawSpace(){
     const spaceImage = document.getElementById("space")
-    this.ctx.drawImage(spaceImage, this.canvas.width / 2 -125, this.canvas.height / 2)
+    console.log(`height:${this.canvas.height}`)
+    console.log(`width:${this.canvas.width}`)
+    this.ctx.drawImage(spaceImage, this.canvas.width / 2.353, this.canvas.height / 2, this.canvas.width / 6.937,this.canvas.height/16.16)
   }
 }
 export default MenuScreen;
