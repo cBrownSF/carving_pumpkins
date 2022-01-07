@@ -88,8 +88,8 @@ class Instructions {
 
   drawBox() {
     let canvas = this.canvas
-    let instructions = '                         ---GAMEPLAY---?1. Click and hold the mouse to begin carving?2. Carve the pumpkin by moving the mouse?3. Move the black line back to the starting point?4. Let go of the mouse to complete the carve ?5. Repeat the process and keep carvin!'
-    let x = canvas.width / 3.9;
+    let instructions = '                      ---GAMEPLAY---?1. Click and hold the mouse to begin carving?2. Carve the pumpkin by moving the mouse?3. Move the black line back to the starting point?4. Let go of the mouse to complete the carve ?5. Repeat the process and keep carvin!'
+    let x = canvas.width / 3.3;
     let y = canvas.width / 19.4;
     let height = canvas.width/19.4;
     let textSize=canvas.height/32.3
