@@ -15,88 +15,94 @@ class GameScreen{
     this.coordinatesArray=[]
     this.beginCarve()
   }
- buttonActions() {
-   let hoverArray=this.hoverArray
-   let ctx = this.ctx;
-   let canvas = this.canvas
-   let resetButton = this.resetButton;
-   let instructButton=this.instructButton
-   let pumpkin = this.pumpkinOutline;
-   let textSize = this.canvas.height / 15.47 / 2.0
-  canvas.addEventListener("click",e =>{
-    if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)&& hoverArray.length ===1){
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      this.newScreen()
-      this.carve=null;
-      ctx.fillStyle = "#E66C2C";
-      ctx.fill(resetButton)
-      ctx.font = `${textSize}pt Impact`
-      ctx.lineWidth = textSize / 7;
-      ctx.fillStyle = "black";
-      ctx.textAlign = 'center';
-      ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
-      ctx.stroke(resetButton)
-    }
-    if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-      ctx.clearRect(0,0,canvas.width,canvas.height)
-      hoverArray.splice(0, 1)
-      new Instructions(canvas)
-    }
-  })
-  canvas.addEventListener("mousemove",e =>{
-    // console.log(`X':${e.offsetX},Y:${e.offsetY}`)
-    if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-      // ctx.lineWidth = textSize / 7;
-      ctx.fillStyle = "#E66C2C";
-      ctx.fill(resetButton)
-      ctx.font = `${textSize}pt Impact`
-      ctx.fillStyle = "black";
-      ctx.textAlign = 'center';
-      ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
-      ctx.stroke(resetButton)
-    }
-    if (!ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-      ctx.fillStyle = "#ffae42";
-      ctx.fill(resetButton)
-      ctx.font = `${textSize}pt Impact`
-      ctx.fillStyle = "black";
-      ctx.textAlign = 'center';
-      ctx.lineWidth = textSize / 7;
-      ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
-      ctx.stroke(resetButton)
-      this.drawResetButton
-    }
-    if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-      ctx.lineWidth = textSize / 7;
-      ctx.fillStyle = "#E66C2C";
-      ctx.fill(instructButton)
-      ctx.font = `${textSize}pt Impact`
-      ctx.fillStyle = "black";
-      ctx.textAlign = 'center';
-      ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
-      ctx.stroke(instructButton)
-    }
-    if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-      ctx.lineWidth = textSize / 7;
-      ctx.fillStyle = "#ffae42";
-      ctx.fill(instructButton)
-      ctx.font = `${textSize}pt Impact`
-      ctx.fillStyle = "black";
-      ctx.textAlign = 'center';
-      ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
-      ctx.stroke(instructButton)
-    } 
-  })
-}
-sound(){
-  let audio=document.getElementById("audio")
-  audio.play()
-}
-drawResetButton(){
-  let ctx = this.ctx
-  let canvas = this.canvas
-  let resetButton = new Path2D()
-  let textSize =this.canvas.height/15.47/2.0
+  buttonActions() {
+    let hoverArray=this.hoverArray
+    let ctx = this.ctx;
+    let canvas = this.canvas
+    let resetButton = this.resetButton;
+    let instructButton=this.instructButton
+    let pumpkin = this.pumpkinOutline;
+    let textSize = this.canvas.height / 15.47 / 2.0
+    canvas.addEventListener("click",e =>{
+      if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)&& hoverArray.length ===1){
+        this.buttonClick();
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        this.newScreen()
+        this.carve=null;
+        ctx.fillStyle = "#E66C2C";
+        ctx.fill(resetButton)
+        ctx.font = `${textSize}pt Impact`
+        ctx.lineWidth = textSize / 7;
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
+        ctx.stroke(resetButton)
+      }
+      if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+        this.buttonClick()
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+        hoverArray.splice(0, 1)
+        new Instructions(canvas)
+      }
+    })
+    canvas.addEventListener("mousemove",e =>{
+      // console.log(`X':${e.offsetX},Y:${e.offsetY}`)
+      if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+        // ctx.lineWidth = textSize / 7;
+        ctx.fillStyle = "#E66C2C";
+        ctx.fill(resetButton)
+        ctx.font = `${textSize}pt Impact`
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
+        ctx.stroke(resetButton)
+      }
+      if (!ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+        ctx.fillStyle = "#ffae42";
+        ctx.fill(resetButton)
+        ctx.font = `${textSize}pt Impact`
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.lineWidth = textSize / 7;
+        ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
+        ctx.stroke(resetButton)
+        this.drawResetButton
+      }
+      if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+        ctx.lineWidth = textSize / 7;
+        ctx.fillStyle = "#E66C2C";
+        ctx.fill(instructButton)
+        ctx.font = `${textSize}pt Impact`
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
+        ctx.stroke(instructButton)
+      }
+      if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+        ctx.lineWidth = textSize / 7;
+        ctx.fillStyle = "#ffae42";
+        ctx.fill(instructButton)
+        ctx.font = `${textSize}pt Impact`
+        ctx.fillStyle = "black";
+        ctx.textAlign = 'center';
+        ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
+        ctx.stroke(instructButton)
+      } 
+    })
+  }
+  carveSound(){
+    let audio=document.getElementById("carveSound")
+    audio.play()
+  }
+  buttonClick(){
+    let buttonSound = document.getElementById("buttonClick")
+    buttonSound.play()
+  }
+  drawResetButton(){
+    let ctx = this.ctx
+    let canvas = this.canvas
+    let resetButton = new Path2D()
+    let textSize =this.canvas.height/15.47/2.0
   
   resetButton.arc(canvas.width*.945, canvas.height/9.75, canvas.height/15.47,0, Math.PI * 2, true);
   ctx.lineWidth = textSize / 7;
@@ -177,27 +183,30 @@ beginCarve(){
         ctx.stroke()
         coordinatesArray.push(e.offsetX, e.offsetY);
       }
-      if (coordinatesArray.length > 10 && (e.offsetX - 5< coordinatesArray[0] && e.offsetX + 5 > coordinatesArray[0]) && (e.offsetY - 5 < coordinatesArray[1] && e.offsetY + 5 > coordinatesArray[1])) {
-        carving = false;
+      if (coordinatesArray.length > 10 && (e.offsetX - 10< coordinatesArray[0] && e.offsetX + 10 > coordinatesArray[0]) && (e.offsetY - 10 < coordinatesArray[1] && e.offsetY + 10 > coordinatesArray[1])) {
         ctx.fillStyle = "#ffbd2e"
         ctx.fill()
+        ctx.stroke()
         ctx.closePath()
-        this.sound()
+        this.carveSound()
+        carving = false;
         // ctx.closePath()
         //can add the path to an array here
         coordinatesArray.splice(0, coordinatesArray.length)
         ctx.beginPath();
       }  
+      
+      
     })
     canvas.addEventListener("mouseup", e =>{
-      if ((e.offsetX - 10 < coordinatesArray[0] && e.offsetX + 10 > coordinatesArray[0]) && (e.offsetY - 10 < coordinatesArray[1] && e.offsetY + 10 > coordinatesArray[1])) {
-        carving = false;
-        ctx.closePath()
-        ctx.fillStyle = "#ffbd2e"
-        ctx.fill()
+      // if ((e.offsetX - 10 < coordinatesArray[0] && e.offsetX + 10 > coordinatesArray[0]) && (e.offsetY - 10 < coordinatesArray[1] && e.offsetY + 10 > coordinatesArray[1])) {
+      //   carving = false;
+      //   ctx.closePath()
+      //   ctx.fillStyle = "#ffbd2e"
+      //   ctx.fill()
         
-        coordinatesArray.splice(0, coordinatesArray.length)
-      }
+      //   coordinatesArray.splice(0, coordinatesArray.length)
+      // }
     //  this.carve=carve
       coordinatesArray.splice(0, coordinatesArray.length)
       carving = false;
