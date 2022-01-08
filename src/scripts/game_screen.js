@@ -186,11 +186,15 @@ beginCarve(){
       if (coordinatesArray.length > 10 && (e.offsetX - 10< coordinatesArray[0] && e.offsetX + 10 > coordinatesArray[0]) && (e.offsetY - 10 < coordinatesArray[1] && e.offsetY + 10 > coordinatesArray[1])) {
         ctx.fillStyle = "#ffbd2e"
         ctx.fill()
-        ctx.stroke()
         ctx.closePath()
         this.carveSound()
-        carving = false;
+        // ctx.beginPath()
+        // // ctx.moveTo(coordinatesArray[coordinatesArray.length - 1], coordinatesArray[coordinatesArray.length - 2])
+        // ctx.lineTo(coordinatesArray[0],coordinatesArray[1])
+        // ctx.stroke()
         // ctx.closePath()
+        carving = false;
+        ctx.closePath()
         //can add the path to an array here
         coordinatesArray.splice(0, coordinatesArray.length)
         ctx.beginPath();

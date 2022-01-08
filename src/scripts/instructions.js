@@ -66,9 +66,11 @@ class Instructions {
     ctx.stroke(button)
       }
     })
-  
   }
-
+  buttonClick() {
+    let buttonSound = document.getElementById("buttonClick")
+    buttonSound.play()
+  }
   loadGameScreen() {
     let clickArray = this.clickArray;
     let ctx = this.ctx
@@ -76,6 +78,7 @@ class Instructions {
   
     canvas.addEventListener('click', e => {
       if (this.hovered === true && clickArray.includes('instruct')) {
+        this.buttonClick()
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         clickArray.splice(0, 1)
         new GameScreen(canvas)
