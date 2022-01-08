@@ -102,8 +102,7 @@ import Instructions from './instructions.js';
 
   drawSpace(){
     const spaceImage = document.getElementById("space")
-    console.log(`height:${this.canvas.height}`)
-    console.log(`width:${this.canvas.width}`)
+   
     this.ctx.drawImage(spaceImage, this.canvas.width / 2.353, this.canvas.height / 2, this.canvas.width / 6.937,this.canvas.height/16.16)
   }
 }

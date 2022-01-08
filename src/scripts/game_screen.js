@@ -1,6 +1,7 @@
 import Button from './main_buttons.js'
 import Instructions from './instructions'
 import Util from './carving_actions.js';
+import Sound from './sound.js';
 class GameScreen{
   constructor(canvas){
     this.canvas = canvas;
@@ -13,7 +14,6 @@ class GameScreen{
     this.carving = false;
     this.coordinatesArray=[]
     this.beginCarve()
-    // this.pumpkinPath = []
   }
  buttonActions() {
    let hoverArray=this.hoverArray
@@ -88,6 +88,10 @@ class GameScreen{
     } 
   })
 }
+sound(){
+  let audio=document.getElementById("audio")
+  audio.play()
+}
 drawResetButton(){
   let ctx = this.ctx
   let canvas = this.canvas
@@ -145,6 +149,7 @@ beginCarve(){
   let resetButton = this.resetButton;
   let instructButton = this.instructButton
   // let carve = new Path2D;
+  let soundEffect = this.soundEffect;
   this.canvas.addEventListener("mousedown", e=> {
     let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let index = (e.offsetY * imgData.width + e.offsetX) * 4;
@@ -177,6 +182,7 @@ beginCarve(){
         ctx.fillStyle = "#ffbd2e"
         ctx.fill()
         ctx.closePath()
+        this.sound()
         // ctx.closePath()
         //can add the path to an array here
         coordinatesArray.splice(0, coordinatesArray.length)
