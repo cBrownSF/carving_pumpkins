@@ -22,22 +22,13 @@ class GameScreen{
     let canvas = this.canvas
     let resetButton = this.resetButton;
     let instructButton=this.instructButton
-    let pumpkin = this.pumpkinOutline;
     let textSize = this.canvas.height / 15.47 / 2.0
     canvas.addEventListener("click",e =>{
       if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)&& hoverArray.length ===1){
         this.buttonClick();
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         this.newScreen()
-        this.carve=null;
-        ctx.fillStyle = "#E66C2C";
-        ctx.fill(resetButton)
-        ctx.font = `${textSize}pt Impact`
-        ctx.lineWidth = textSize / 7;
-        ctx.fillStyle = "black";
-        ctx.textAlign = 'center';
-        ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
-        ctx.stroke(resetButton)
+        Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
         this.buttonClick()
@@ -49,54 +40,16 @@ class GameScreen{
     canvas.addEventListener("mousemove",e =>{
       // console.log(`X':${e.offsetX},Y:${e.offsetY}`)
       if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-        Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43)
-        // ctx.lineWidth = textSize / 7;
-        // ctx.fillStyle = "#E66C2C";
-        // ctx.fill(resetButton)
-        // ctx.font = `${textSize}pt Impact`
-        // ctx.fillStyle = "black";
-        // ctx.textAlign = 'center';
-        // ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
-        // ctx.stroke(resetButton)
+        Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
       if (!ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-        // ctx.fillStyle = "#ffae42";
-        // ctx.fill(resetButton)
-        // ctx.font = `${textSize}pt Impact`
-        // ctx.fillStyle = "black";
-        // ctx.textAlign = 'center';
-        // ctx.lineWidth = textSize / 7;
-        // ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
-        // ctx.stroke(resetButton)
-        Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#ffae42", "Reset", 8.43)
-        // this.drawResetButton
+        Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#ffae42", "Reset", 8.43,.945)
       }
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-        console.log("inside instruct")
-        // Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#E66C2C", "Back")
-        // Defaults.buttonStyleHoverInstruct()
-        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#E66C2C", "Back", 3.77)
-
-        // ctx.fillStyle = "#E66C2C";
-        // ctx.fill(instructButton)
-        // ctx.lineWidth = textSize / 7;
-        // ctx.font = `${textSize}pt Impact`
-        // ctx.fillStyle = "black";
-        // ctx.textAlign = 'center';
-        // ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
-        // ctx.stroke(instructButton)
+        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#E66C2C", "Back", 3.77,.945)
       }
       if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#ffae42", "Back", 3.77)
-
-        // ctx.lineWidth = textSize / 7;
-        // ctx.fillStyle = "#ffae42";
-        // ctx.fill(instructButton)
-        // ctx.font = `${textSize}pt Impact`
-        // ctx.fillStyle = "black";
-        // ctx.textAlign = 'center';
-        // ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
-        // ctx.stroke(instructButton)
+        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#ffae42", "Back", 3.77,.945)
       } 
     })
   }
@@ -109,21 +62,13 @@ class GameScreen{
     buttonSound.play()
   }
   drawResetButton(){
-    let ctx = this.ctx
-    let canvas = this.canvas
-    let resetButton = new Path2D()
-    let textSize =this.canvas.height/15.47/2.0
+  let ctx = this.ctx
+  let canvas = this.canvas
+  let resetButton = new Path2D()
+  let textSize =this.canvas.height/15.47/2.0
   
   resetButton.arc(canvas.width*.945, canvas.height/9.75, canvas.height/15.47,0, Math.PI * 2, true);
-  // ctx.lineWidth = textSize / 7;
-  // ctx.fillStyle = "#ffae42";
-  // ctx.fill(resetButton)
-  // ctx.font = `${textSize}pt Impact`
-  // ctx.fillStyle = "black";
-  // ctx.textAlign = 'center';
-  // ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
-  // ctx.stroke(resetButton)
-    Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#ffae42", "Reset",8.43)
+    Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#ffae42", "Reset", 8.43, .945)
   this.resetButton = resetButton;
 }
 drawInstructionButton() {
@@ -134,17 +79,7 @@ drawInstructionButton() {
     let textSize = this.canvas.height / 15.47 / 2.0
     
     instructionButton.arc(canvas.width * .945, canvas.height / 4.0, canvas.height / 15.47, 0, Math.PI * 2, true);
-    // ctx.lineWidth = textSize/7;
-    // ctx.fillStyle = "#ffae42";
-    // ctx.fill(instructionButton)
-    // ctx.font = `${textSize}pt Impact`
-    // ctx.fillStyle = "black";
-    // ctx.textAlign = 'center';
-    // ctx.fillText("Back", this.canvas.width * .945, canvas.height / 3.77)
-    // ctx.stroke(instructionButton)
-    // // ctx.closePath()
-    // console.log(instructionButton)
-  Defaults.buttonStyles(ctx, canvas, instructionButton, textSize, "#ffae42", "Back", 3.77)
+  Defaults.buttonStyles(ctx, canvas, instructionButton, textSize, "#ffae42", "Back", 3.77, .945)
 
     this.instructButton = instructionButton;
 }
