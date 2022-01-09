@@ -2,6 +2,7 @@ import Button from './main_buttons.js'
 import Instructions from './instructions'
 import Util from './carving_actions.js';
 import Sound from './sound.js';
+import Defaults from './util.js';
 class GameScreen{
   constructor(canvas){
     this.canvas = canvas;
@@ -48,45 +49,54 @@ class GameScreen{
     canvas.addEventListener("mousemove",e =>{
       // console.log(`X':${e.offsetX},Y:${e.offsetY}`)
       if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
+        Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43)
         // ctx.lineWidth = textSize / 7;
-        ctx.fillStyle = "#E66C2C";
-        ctx.fill(resetButton)
-        ctx.font = `${textSize}pt Impact`
-        ctx.fillStyle = "black";
-        ctx.textAlign = 'center';
-        ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
-        ctx.stroke(resetButton)
+        // ctx.fillStyle = "#E66C2C";
+        // ctx.fill(resetButton)
+        // ctx.font = `${textSize}pt Impact`
+        // ctx.fillStyle = "black";
+        // ctx.textAlign = 'center';
+        // ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
+        // ctx.stroke(resetButton)
       }
       if (!ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-        ctx.fillStyle = "#ffae42";
-        ctx.fill(resetButton)
-        ctx.font = `${textSize}pt Impact`
-        ctx.fillStyle = "black";
-        ctx.textAlign = 'center';
-        ctx.lineWidth = textSize / 7;
-        ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
-        ctx.stroke(resetButton)
-        this.drawResetButton
+        // ctx.fillStyle = "#ffae42";
+        // ctx.fill(resetButton)
+        // ctx.font = `${textSize}pt Impact`
+        // ctx.fillStyle = "black";
+        // ctx.textAlign = 'center';
+        // ctx.lineWidth = textSize / 7;
+        // ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43 )
+        // ctx.stroke(resetButton)
+        Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#ffae42", "Reset", 8.43)
+        // this.drawResetButton
       }
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-        ctx.lineWidth = textSize / 7;
-        ctx.fillStyle = "#E66C2C";
-        ctx.fill(instructButton)
-        ctx.font = `${textSize}pt Impact`
-        ctx.fillStyle = "black";
-        ctx.textAlign = 'center';
-        ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
-        ctx.stroke(instructButton)
+        console.log("inside instruct")
+        // Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#E66C2C", "Back")
+        // Defaults.buttonStyleHoverInstruct()
+        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#E66C2C", "Back", 3.77)
+
+        // ctx.fillStyle = "#E66C2C";
+        // ctx.fill(instructButton)
+        // ctx.lineWidth = textSize / 7;
+        // ctx.font = `${textSize}pt Impact`
+        // ctx.fillStyle = "black";
+        // ctx.textAlign = 'center';
+        // ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
+        // ctx.stroke(instructButton)
       }
       if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
-        ctx.lineWidth = textSize / 7;
-        ctx.fillStyle = "#ffae42";
-        ctx.fill(instructButton)
-        ctx.font = `${textSize}pt Impact`
-        ctx.fillStyle = "black";
-        ctx.textAlign = 'center';
-        ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
-        ctx.stroke(instructButton)
+        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#ffae42", "Back", 3.77)
+
+        // ctx.lineWidth = textSize / 7;
+        // ctx.fillStyle = "#ffae42";
+        // ctx.fill(instructButton)
+        // ctx.font = `${textSize}pt Impact`
+        // ctx.fillStyle = "black";
+        // ctx.textAlign = 'center';
+        // ctx.fillText("Back", canvas.width * .945, canvas.height / 3.77)
+        // ctx.stroke(instructButton)
       } 
     })
   }
@@ -105,38 +115,42 @@ class GameScreen{
     let textSize =this.canvas.height/15.47/2.0
   
   resetButton.arc(canvas.width*.945, canvas.height/9.75, canvas.height/15.47,0, Math.PI * 2, true);
-  ctx.lineWidth = textSize / 7;
-  ctx.fillStyle = "#ffae42";
-  ctx.fill(resetButton)
-  ctx.font = `${textSize}pt Impact`
-  ctx.fillStyle = "black";
-  ctx.textAlign = 'center';
-  ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
-  ctx.stroke(resetButton)
+  // ctx.lineWidth = textSize / 7;
+  // ctx.fillStyle = "#ffae42";
+  // ctx.fill(resetButton)
+  // ctx.font = `${textSize}pt Impact`
+  // ctx.fillStyle = "black";
+  // ctx.textAlign = 'center';
+  // ctx.fillText("Reset", canvas.width * .945, canvas.height / 8.43)
+  // ctx.stroke(resetButton)
+    Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#ffae42", "Reset",8.43)
   this.resetButton = resetButton;
 }
 drawInstructionButton() {
+  console.log('insideInstruct')
     let ctx = this.ctx
     let canvas = this.canvas
     let instructionButton = new Path2D()
     let textSize = this.canvas.height / 15.47 / 2.0
     
-    instructionButton.arc(canvas.width * .945, this.canvas.height / 4.0, this.canvas.height / 15.47, 0, Math.PI * 2, true);
-    ctx.lineWidth = textSize/7;
-    ctx.fillStyle = "#ffae42";
-    ctx.fill(instructionButton)
-    ctx.font = `${textSize}pt Impact`
-    ctx.fillStyle = "black";
-    ctx.textAlign = 'center';
-    ctx.fillText("Back", this.canvas.width * .945, canvas.height / 3.77)
-    ctx.stroke(instructionButton)
-    ctx.closePath()
+    instructionButton.arc(canvas.width * .945, canvas.height / 4.0, canvas.height / 15.47, 0, Math.PI * 2, true);
+    // ctx.lineWidth = textSize/7;
+    // ctx.fillStyle = "#ffae42";
+    // ctx.fill(instructionButton)
+    // ctx.font = `${textSize}pt Impact`
+    // ctx.fillStyle = "black";
+    // ctx.textAlign = 'center';
+    // ctx.fillText("Back", this.canvas.width * .945, canvas.height / 3.77)
+    // ctx.stroke(instructionButton)
+    // // ctx.closePath()
+    // console.log(instructionButton)
+  Defaults.buttonStyles(ctx, canvas, instructionButton, textSize, "#ffae42", "Back", 3.77)
+
     this.instructButton = instructionButton;
 }
 newScreen(){
    let wide = document.getElementById("widePumpkin");
-  let canvas=this.canvas;
-  let ctx = this.ctx;
+ 
   let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 3.72, this.canvas.height/11.41, this.canvas.width / 2 - 15, this.canvas.height/1.15);
   const raven = document.getElementById("raven");
   let ravImage = this.ctx.drawImage(raven, 0, this.canvas.height/ 4.85, this.canvas.width/5.9, this.canvas.height / 3.23);
