@@ -72,19 +72,17 @@ class GameScreen{
   this.resetButton = resetButton;
 }
 drawInstructionButton() {
-  console.log('insideInstruct')
-    let ctx = this.ctx
-    let canvas = this.canvas
-    let instructionButton = new Path2D()
-    let textSize = this.canvas.height / 15.47 / 2.0
+  let ctx = this.ctx
+  let canvas = this.canvas
+  let instructionButton = new Path2D()
+  let textSize = this.canvas.height / 15.47 / 2.0
     
-    instructionButton.arc(canvas.width * .945, canvas.height / 4.0, canvas.height / 15.47, 0, Math.PI * 2, true);
+  instructionButton.arc(canvas.width * .945, canvas.height / 4.0, canvas.height / 15.47, 0, Math.PI * 2, true);
   Defaults.buttonStyles(ctx, canvas, instructionButton, textSize, "#ffae42", "Back", 3.77, .945)
-
-    this.instructButton = instructionButton;
+  this.instructButton = instructionButton;
 }
 newScreen(){
-   let wide = document.getElementById("widePumpkin");
+  let wide = document.getElementById("widePumpkin");
  
   let pumpkin = this.ctx.drawImage(wide, this.canvas.width / 3.72, this.canvas.height/11.41, this.canvas.width / 2 - 15, this.canvas.height/1.15);
   const raven = document.getElementById("raven");
@@ -126,13 +124,23 @@ beginCarve(){
       let red = imgData.data[index];
       let blue = imgData.data[index + 2]
       if (red !== 0 && blue < 45  && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
-        ctx.lineWidth = 11;
+        ctx.lineWidth = 8;
         ctx.lineCap = "round"
+        ctx.lineJoin='round'
+        // ctx.strokeStyle('rgba(0, 0, 0, 0.7)')
         ctx.lineTo(e.offsetX, e.offsetY)
         ctx.stroke()
         coordinatesArray.push(e.offsetX, e.offsetY);
+        
       }
-      if (coordinatesArray.length > 10 && (e.offsetX - 10< coordinatesArray[0] && e.offsetX + 10 > coordinatesArray[0]) && (e.offsetY - 10 < coordinatesArray[1] && e.offsetY + 10 > coordinatesArray[1])) {
+      if (coordinatesArray.length > 10 && (e.offsetX - 3< coordinatesArray[0] && e.offsetX + 3 > coordinatesArray[0]) && (e.offsetY - 3 < coordinatesArray[1] && e.offsetY + 3 > coordinatesArray[1])) {
+        // ctx.lineTo(coordinatesArray[0], coordinatesArray[1])
+        console.log(`offset y:${e.offsetY}`)
+        console.log(`offset x:${e.offsetX}`)
+        console.log(`x coord: ${coordinatesArray[0]}`)
+        console.log(`y coord: ${coordinatesArray[1]}`)
+     
+        ctx.stroke()
         ctx.fillStyle = "#ffbd2e"
         ctx.fill()
         ctx.closePath()
