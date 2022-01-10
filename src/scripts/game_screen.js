@@ -14,7 +14,11 @@ class GameScreen{
     this.buttonActions();
     this.carving = false;
     this.coordinatesArray=[]
-    this.beginCarve()
+    this.firstCarve()
+    // this.beginCarve()
+    // this.pumpkinArray=[]
+    // this.drawingPumpkin()
+    // this.pumpkinDrawArray()
   }
   buttonActions() {
     let hoverArray=this.hoverArray
@@ -28,6 +32,9 @@ class GameScreen{
         this.buttonClick();
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         this.newScreen()
+  //       this.pumpkinArray = []
+  // this.drawingPumpkin()
+  this.pumpkinDrawArray()
         Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1){
@@ -89,10 +96,44 @@ newScreen(){
   let ravImage = this.ctx.drawImage(raven, 0, this.canvas.height/ 4.85, this.canvas.width/5.9, this.canvas.height / 3.23);
   this.drawInstructionButton()
   this.drawResetButton()
+
 }
 
+firstCarve(){
+  let carving = this.carving;
+  let canvas = this.canvas;
+  let ctx = canvas.getContext('2d')
+  // let pumpkinPath=this.pumpkinPath;
+  let coordinatesArray = this.coordinatesArray;
+  let hoverArray = this.hoverArray;
+  let resetButton = this.resetButton;
+  let instructButton = this.instructButton
+  this.canvas.addEventListener("mousedown", e => {
+    
+    let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let index = (e.offsetY * imgData.width + e.offsetX) * 4;
+    let red = imgData.data[index];
+    let green = imgData.data[index + 1];
+    let blue = imgData.data[index + 2];
+    let alpha = imgData.data[index + 3];
+    // let contextPath;
+    if (red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
+      
+     carving = true;
+      ctx.beginPath()
+      // newPath = contextPath;
+      coordinatesArray.push(e.offsetX, e.offsetY);
+      
+    }
+    this.carving=true;;
+    // carving = true;
+    this.beginCarve()
+})
+
+}
 
 beginCarve(){
+  
   let carving = this.carving; 
   let canvas = this.canvas;
   let ctx = canvas.getContext('2d')
@@ -103,33 +144,44 @@ beginCarve(){
   let instructButton = this.instructButton
   // let carve = new Path2D;
   let soundEffect = this.soundEffect;
-  this.canvas.addEventListener("mousedown", e=> {
-    let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    let index = (e.offsetY * imgData.width + e.offsetX) * 4;
-    let red = imgData.data[index];
-    let green = imgData.data[index + 1];
-    let blue = imgData.data[index + 2];
-    let alpha = imgData.data[index + 3];
-    if (red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
-      carving = true;
-      ctx.beginPath()
-      coordinatesArray.push(e.offsetX, e.offsetY);
-    }
+  // this.canvas.addEventListener("mousedown", e=> {
+  //   let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  //   let index = (e.offsetY * imgData.width + e.offsetX) * 4;
+  //   let red = imgData.data[index];
+  //   let green = imgData.data[index + 1];
+  //   let blue = imgData.data[index + 2];
+  //   let alpha = imgData.data[index + 3];
+  //   // let contextPath;
+  //   if (red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
+  //     carving = true;
+  //     // let newPath = new Path2D()
+  //     ctx.beginPath()  
+  //     // newPath = contextPath;
+  //     coordinatesArray.push(e.offsetX, e.offsetY);
+
+  //   }
     canvas.addEventListener("mousemove", e => {
       if (!carving){
+       
         return false;
       } 
+    
       let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       let index = (e.offsetY * imgData.width + e.offsetX) * 4;
       let red = imgData.data[index];
       let blue = imgData.data[index + 2]
+      // Defaults.mouseMove(e,red,carving,blue,instructButton,resetButton,ctx,coordinatesArray)
+      
       if (red !== 0 && blue < 45  && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
         ctx.lineWidth = 8;
         ctx.lineCap = "round"
-        ctx.lineJoin='round'
+        // ctx.lineJoin='round'
         // ctx.strokeStyle('rgba(0, 0, 0, 0.7)')
-        ctx.lineTo(e.offsetX, e.offsetY)
+        // ctx.moveTo(e.offsetX,e.offsetY)
+        // let newPath = contextPath;
+       ctx.lineTo(e.offsetX, e.offsetY)
         ctx.stroke()
+    
         coordinatesArray.push(e.offsetX, e.offsetY);
         
       }
@@ -140,18 +192,19 @@ beginCarve(){
         console.log(`x coord: ${coordinatesArray[0]}`)
         console.log(`y coord: ${coordinatesArray[1]}`)
      
-        ctx.stroke()
+        carving = false;
+
+        ctx.closePath()
+        // ctx.stroke()
         ctx.fillStyle = "#ffbd2e"
         ctx.fill()
-        ctx.closePath()
         this.carveSound()
         // ctx.beginPath()
         // // ctx.moveTo(coordinatesArray[coordinatesArray.length - 1], coordinatesArray[coordinatesArray.length - 2])
         // ctx.lineTo(coordinatesArray[0],coordinatesArray[1])
         // ctx.stroke()
         // ctx.closePath()
-        carving = false;
-        ctx.closePath()
+        // ctx.closePath()
         //can add the path to an array here
         coordinatesArray.splice(0, coordinatesArray.length)
         ctx.beginPath();
@@ -159,6 +212,7 @@ beginCarve(){
       
       
     })
+    
     canvas.addEventListener("mouseup", e =>{
       // if ((e.offsetX - 10 < coordinatesArray[0] && e.offsetX + 10 > coordinatesArray[0]) && (e.offsetY - 10 < coordinatesArray[1] && e.offsetY + 10 > coordinatesArray[1])) {
       //   carving = false;
@@ -174,7 +228,29 @@ beginCarve(){
       ctx.beginPath();
           // this.pumpkinPath.push(carve)
       }) 
-    })
+    
+  }
+  drawingPumpkin() {
+    let canvas = this.canvas;
+    let testPath = new Path2D;
+    testPath.rect(canvas.width / 2 - 400, canvas.height / 2 - 200, 800, 550)
+    testPath.closePath()
+    this.ctx.fill(testPath)
+    this.pumpkinArray.push(testPath);
+  }
+  pumpkinDrawArray(){
+    let array=this.pumpkinArray;
+    let ctx=this.ctx;
+    this.newScreen();
+    let i=0;
+    for(let i=0;i<array.length; i++){
+  debugger;
+    ctx.fillStyle='orange'
+    ctx.lineWidth=5
+    ctx.fill(new Path2D(this.pumpkinArray[i]))
+    // ctx.stroke(new Path2D(this.pumpkinArray[i]))
+     
+    }
   }
 }
 
