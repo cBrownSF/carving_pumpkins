@@ -21,17 +21,7 @@ body {
 #mycanvas {
   background: #c4ddc4;
 }
-.icons{
- display: flex;
- align-content:flex-end;
- margin-left:auto;
- padding-right:10px;
- padding-top: 5px;
- padding-bottom:px;
-}
-.linkedin{
-  margin-right:10px;
-}
+
 #raven {
   display: none;
 }
