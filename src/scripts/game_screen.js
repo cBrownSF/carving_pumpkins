@@ -8,15 +8,16 @@ class GameScreen {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d')
     this.hoverArray = ['one'];
+    this.newScreen();
     this.resetButton;
     this.instructButton;
     this.undoButton;
-    this.pumpkinArray = []
     this.coordinatesArray = []
-    this.carving = false;
-    this.newScreen();
+    this.pumpkinArray = []
     this.buttonActions();
+    this.carving = false;
     this.firstCarve()
+    this.noFinishArray=[]
     this.newPath;
   }
   buttonActions() {
@@ -32,9 +33,9 @@ class GameScreen {
       if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
         console.log('click reset')
         this.buttonClick();
-        this.pumpkinArray =[]
-        ctx.closePath()
         ctx.clearRect(0, 0, canvas.width, canvas.height)
+        this.pumpkinArray =[]
+        this.noFinishArray=[]
         this.newScreen()
         Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
@@ -49,9 +50,12 @@ class GameScreen {
       }
       if (ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
         console.log('click undo')
+        console.log(this.pumpkinArray)
         this.buttonClick()
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         this.carving=false;
+        debugger;
+        this.noFinishArray=[]
         this.pumpkinArray.pop()
         this.pumpkinDrawArray()
       }
@@ -139,6 +143,8 @@ class GameScreen {
     
     this.canvas.addEventListener("mousedown", e => {
       console.log('mousedown')
+      this.noFinishArray = []
+      console.log(this.noFinishArray)
       let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       let index = (e.offsetY * imgData.width + e.offsetX) * 4;
       let red = imgData.data[index];
@@ -157,7 +163,7 @@ class GameScreen {
       coordinatesArray.push(e.offsetX, e.offsetY);
     }
     if (carving){
-        console.log('carving')
+        
         this.carving = true;
         this.carve()
       }else{
@@ -176,6 +182,7 @@ class GameScreen {
     let newP = this.newPath;
 
     canvas.addEventListener("mousemove", e => {
+      
       if (!carving) {
         return false
       };
@@ -183,23 +190,25 @@ class GameScreen {
       let index = (e.offsetY * imgData.width + e.offsetX) * 4;
       let red = imgData.data[index];
       let blue = imgData.data[index + 2]
-      console.log(carving)
-      console.log(this.carving)
       if (red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)) {
         console.log('stil carving')
         ctx.lineWidth = 8;
         ctx.lineCap = "round"
         newP.lineTo(e.offsetX, e.offsetY)
         ctx.stroke(newP)
+        console.log(newP)
         coordinatesArray.push(e.offsetX, e.offsetY);
+        
       }
       if (coordinatesArray.length > 10 && (e.offsetX - 3 < coordinatesArray[0] && e.offsetX + 3 > coordinatesArray[0]) && (e.offsetY - 3 < coordinatesArray[1] && e.offsetY + 3 > coordinatesArray[1])) {
-        console.log('hits closure')
+        coordinatesArray.splice(0, coordinatesArray.length)
+        
         carving=false
         ctx.fillStyle = "#ffbd2e"
         ctx.fill(newP)
         ctx.closePath(newP)
-        // ctx.closePath()
+        console.log(newP)
+        debugger;
         this.pumpkinArray.push(newP)
         this.carveSound()
           carving=false
@@ -207,16 +216,23 @@ class GameScreen {
         ctx.beginPath();
       }
       canvas.addEventListener("mouseup", e => {
-        console.log('mouseup')
         coordinatesArray.splice(0, coordinatesArray.length)
+        console.log('mouseup')
         carving = false;
-        ctx.closePath(newP);
-        ctx.beginPath();
-      })
+        ctx.closePath();
+        this.noFinishArray.push(newP)
+        // this.pumpkinArray.push(newP)
+          // let diffPath = new Path2D(newP)
+          console.log(this.noFinishArray)
+        
+        ctx.beginPath(); 
+        })
+     
     })
   }
   pumpkinDrawArray() {
     this.newScreen()
+    debugger;
     let array = this.pumpkinArray;
     let ctx = this.ctx;
     let i = 0;
