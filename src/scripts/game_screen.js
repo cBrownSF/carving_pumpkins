@@ -55,22 +55,24 @@ class GameScreen {
        
         this.buttonClick()
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        this.carving=false;
-        if (this.noFinishArray.length > 0) {
-          console.log(this.noFinishArray)
-          debugger;
-          this.noFinishArray.pop()
+        // this.carving=false;
+        // if (this.noFinishArray.length > 0) {
           
-        }
-        else if (this.pumpkinArray.length ===1){
+        //   debugger;
+        //   this.noFinishArray.pop()
           
-          this.pumpkinArray.pop()
-        }else{
+        // }
+        // else if (this.pumpkinArray.length ===1){
           
-          this.pumpkinArray.pop()
-        }
-        
-        this.drawNoFinishArray()
+        //   this.pumpkinArray.pop()
+        //   console.log('else if')
+        // }else{
+        //   console.log('else')
+        //   console.log(this.pumpkinArray)
+        //   this.pumpkinArray.pop()
+        // }
+        this.pumpkinArray.pop()
+        // this.drawNoFinishArray()
         this.pumpkinDrawArray()
       }
     })
@@ -234,10 +236,15 @@ class GameScreen {
               ctx.closePath()
               return false;
             }else{
+            newP.lineTo(e.offsetX, e.offsetY)
               coordinatesArray.splice(0, coordinatesArray.length)
+              ctx.fill(newP)
               ctx.closePath(newP);
               let mediumArray = this.mediumArray;
-              mediumArray.push(newP);
+              this.pumpkinArray.push(newP);
+              console.log(this.pumpkinArray)
+              let diffPath=new Path2D()
+              diffPath.addPath(newP)
               // console.log(`mediumArraylength:${mediumArray.length}`)
               // console.log(`finishLength:${this.noFinishArray.length}`)
               // this.noFinishArray.push(mediumArray)
@@ -266,7 +273,7 @@ class GameScreen {
      
   
       
-      ctx.lineWidth = 11
+      ctx.lineWidth = 8
      
       ctx.stroke(new Path2D(path))
       // ctx.closePath(new Path2D(path))
@@ -274,13 +281,15 @@ class GameScreen {
     debugger;
   }
   pumpkinDrawArray() {
-   
+    this.newScreen()
     let array = this.pumpkinArray;
     let ctx = this.ctx;
+    console.log(this.pumpkinArray)
     let i = 0;
+    debugger;
     for (let i = 0; i < array.length; i++) {
       ctx.fillStyle = "#ffbd2e"
-      ctx.lineWidth = 11
+      ctx.lineWidth = 8
       ctx.fill(new Path2D(this.pumpkinArray[i]))
       ctx.stroke(new Path2D(this.pumpkinArray[i]))
       ctx.closePath(new Path2D(this.pumpkinArray[i]))
