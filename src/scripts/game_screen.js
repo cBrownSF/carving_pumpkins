@@ -14,15 +14,23 @@ class GameScreen {
     this.undoButton;
     this.closed=false;
     this.coordinatesArray = []
-    this.pumpkinArray = []
-    this.unfinishedArray=[]
+    this.tempPumpArray=[];
+    this.tempLineArray=[];
+    this.pumpkinArray = [];
+    this.lineArray=[];
+    this.unfinishedArray=[];
     this.buttonActions();
     this.carving = false;
     this.firstCarve()
-    this.lastNoFinish = false;
     this.newPath;
     this.diffPath
     this.combinedPath;
+  }
+  tempArrayFunc(){
+    this.pumpkinArray.push(this.tempPumpArray)
+    this.lineArray.push(this.tempLineArray)
+    this.tempPumpArray=[];
+    this.tempLineArray=[];
   }
   buttonActions() {
     let hoverArray = this.hoverArray
@@ -39,7 +47,7 @@ class GameScreen {
         this.buttonClick();
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         this.pumpkinArray =[]
-        this.noFinishArray=[]
+        this.lineArray=[]
         this.newScreen()
         Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
@@ -73,8 +81,10 @@ class GameScreen {
         //   console.log(this.pumpkinArray)
         //   this.pumpkinArray.pop()
         // }
+        // this.drawcombinedPath()
+        this.tempPumpArray=[]
+        this.tempLineArray=[]
         this.pumpkinDrawArray()
-        this.drawcombinedPath()
         // this.drawNoFinishArray()
         // this.pumpkinArray.pop()
       }
@@ -162,11 +172,7 @@ class GameScreen {
     let combinePath=this.combinedPath;
     
     this.canvas.addEventListener("mousedown", e => {
-      console.log(this.unfinishedArray)
-      this.pumpkinArray.push(this.unfinishedArray)
-      console.log(this.pumpkinArray)
-      // this.unfinishedArray.splice(0,this.unfinishedArray.length)
-      console.log(this.pumpkinArray)
+      
       let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       let index = (e.offsetY * imgData.width + e.offsetX) * 4;
       let red = imgData.data[index];
@@ -178,7 +184,9 @@ class GameScreen {
       return false;
     }
     if (red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
-  
+      
+       
+      
       this.carving = true;
       this.newPath = new Path2D()
       ctx.beginPath()
@@ -209,20 +217,16 @@ class GameScreen {
     let combinePath = this.combinedPath;
     let diffP=this.diffPath;
     canvas.addEventListener("mousemove", e => {
-     
       if (!carving) return false;
       let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       let index = (e.offsetY * imgData.width + e.offsetX) * 4;
       let red = imgData.data[index];
       let blue = imgData.data[index + 2]
       if (red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)) {
-     
         ctx.lineWidth = 8;
         ctx.lineCap = "round"
         newP.lineTo(e.offsetX, e.offsetY)
-        // diffP.lineto(e.offsetX,e.offsetY)
         ctx.stroke(newP)
-        // ctx.stroke(diffP)
         coordinatesArray.push(e.offsetX, e.offsetY);
         this.down=true;
       }
@@ -232,7 +236,8 @@ class GameScreen {
         ctx.fillStyle = "#ffbd2e"
         ctx.fill(newP)
         ctx.closePath(newP)
-        this.pumpkinArray.push(newP)
+        this.tempArrayFunc()
+        this.tempPumpArray.push(newP)
         this.carveSound()
         carving=false
         this.closed=true;
@@ -248,11 +253,25 @@ class GameScreen {
             this.closed=false;
               return false;
             }else{
+         
               coordinatesArray.splice(0, coordinatesArray.length)
               ctx.closePath(newP);
-              this.combinePath=null;
-              this.unfinishedArray.push(newP)
-              this.unfinishedArray.splice(1,this.unfinishedArray.length)
+              let unclosedPath = new Path2D(newP)
+              console.log(unclosedPath)
+              this.unfinishedArray.push(unclosedPath)
+              console.log(this.unfinishedArray)
+              // if (this.unfinishedArray.length ===0){
+              //   this.lineArray.push(newP)
+              // }else{
+              //   debugger;
+              //   console.log(this.unfinishedArray)
+              //   this.unfinishedArray.push(newP)
+              // }
+              console.log(newP)
+              console.log(this.unfinishedArray.length)
+              this.linthis.unfinishedArray[0]
+              console.log(this.lineArray.length)
+              // this.unfinishedArray.splice(1,this.unfinishedArray.length)
               carving = false;
               ctx.beginPath();
               return false;
@@ -264,37 +283,44 @@ class GameScreen {
   drawcombinedPath(){
     this.newScreen()
     let ctx = this.ctx;
-      ctx.lineWidth = 2
-
-      ctx.stroke(this.unfinishedArray)
-      ctx.closePath(this.unfinishedArray)
+    debugger;
+    console.log(this.unfinishedArray)
+    this.unfinishedArray.forEach((path) =>{
+      ctx.lineWidth = 8
+      ctx.stroke(new Path2D(path))
+     
+      ctx.closePath(new Path2D(path))
+      ctx.closePath()
+    }
+    )
+      // ctx.stroke(this.unfinishedArray)
+      // ctx.closePath(this.unfinishedArray)
       ctx.closePath()
       // ctx.closePath(new Path2D(path))
   
   }
-  drawNoFinishArray(){
-    this.newScreen()
-    this.mediumArray=[]
-    console.log(this.noFinishArray);
-    let noFinArray=this.noFinishArray.flat();
+  // drawNoFinishArray(){
+  //   this.mediumArray=[]
+  //   console.log(this.noFinishArray);
+  //   let noFinArray=this.noFinishArray.flat();
 
-    let ctx = this.ctx;
-    noFinArray.forEach((path)=>{
+  //   let ctx = this.ctx;
+  //   noFinArray.forEach((path)=>{
      
   
       
-      ctx.lineWidth = 8
+  //     ctx.lineWidth = 8
      
-      ctx.stroke(new Path2D(path))
-      // ctx.closePath(new Path2D(path))
-    })
+  //     ctx.stroke(new Path2D(path))
+  //     ctx.closePath(new Path2D(path))
+  //   })
   
-  }
+  // }
   pumpkinDrawArray() {
     this.newScreen()
-    let array = this.pumpkinArray;
+    let array = this.pumpkinArray.flat();
     let ctx = this.ctx;
-    console.log(this.pumpkinArray)
+  
     debugger;
     let i = 0;
    
@@ -302,11 +328,12 @@ class GameScreen {
       ctx.fillStyle = "#ffbd2e"
       ctx.lineWidth = 8
       ctx.beginPath()
+      console.log(array[i])
+      ctx.stroke(new Path2D(array[i]))
+      ctx.fill(new Path2D(array[i]))
     
-      ctx.fill(new Path2D(this.pumpkinArray[i]))
-      ctx.stroke(new Path2D(this.pumpkinArray[i]))
+      ctx.closePath(new Path2D(array[i]))
       
-      ctx.closePath(new Path2D(this.pumpkinArray[i]))
     }
     ctx.closePath(0)
     this.carving=false;
