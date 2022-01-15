@@ -69,6 +69,7 @@ class GameScreen {
         this.tempPumpArray=[]
         this.tempLineArray=[]
         this.pumpkinDrawArray()
+        this.drawLineArray()
         // this.drawNoFinishArray()
         // this.pumpkinArray.pop()
       }
@@ -168,16 +169,12 @@ class GameScreen {
       return false;
     }
     if (red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
-      
-       
-      
       this.carving = true;
       this.newPath = new Path2D()
       ctx.beginPath()
       // newPath = contextPath;
       coordinatesArray.push(e.offsetX, e.offsetY);
       carving=true
-    
     }
     if (carving){
         this.closed=false;
@@ -254,7 +251,6 @@ class GameScreen {
   }
   
   drawLineArray(){
-    this.newScreen()
     let ctx = this.ctx;
     this.drawLineArray.forEach((path) =>{
       ctx.lineWidth = 8
