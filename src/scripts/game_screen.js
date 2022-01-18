@@ -22,7 +22,7 @@ class GameScreen {
     this.carving = false;
     this.firstCarve()
     this.offScreen()
-    this.newPath;
+    // this.newPath;
     this.left=false;
    
   }
@@ -183,7 +183,7 @@ class GameScreen {
     }
     if (this.hoverArray.length ===1 && red !== 0 && red!==72 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
       this.carving = true;
-      this.newPath = new Path2D()
+      // this.newPath = new Path2D()
       ctx.beginPath()
       coordinatesArray.push(e.offsetX, e.offsetY);
       carving=true
@@ -216,7 +216,7 @@ class GameScreen {
     let resetButton = this.resetButton;
     let instructButton = this.instructButton
     let undoButton=this.undoButton;
-    let newP = this.newPath;
+    let newP = new Path2D;
  
     canvas.addEventListener("mousemove", e => {
       if (!carving) return false;
@@ -291,9 +291,10 @@ class GameScreen {
   drawLineArray(){
     let ctx = this.ctx;
     let lines= this.lineArray.flat();
- 
+    console.log(this.lineArray.length)
  
     for (let i = 0; i <lines.length; i++) {
+      debugger;
       ctx.lineWidth = 8
       ctx.beginPath()
       ctx.stroke(new Path2D(lines[i]))
