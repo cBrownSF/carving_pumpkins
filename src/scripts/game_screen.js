@@ -19,7 +19,6 @@ class GameScreen {
     this.pumpkinArray = [];
     this.lineArray=[];
     this.unfinishedArray=[];
-    this.linePath;
     this.buttonActions();
     this.carving = false;
     this.firstCarve()
@@ -29,8 +28,8 @@ class GameScreen {
     this.down=false;
     this.mouseUp=false;
   }
+ 
   tempArrayFunc(){
-   
     this.pumpkinArray.push(this.tempPumpArray)
     this.lineArray.push(this.tempLineArray)
     this.tempPumpArray=[];
@@ -55,6 +54,7 @@ class GameScreen {
         this.lineArray = []
         this.unfinishedArray = []
         this.newScreen()
+        
         Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
@@ -71,16 +71,12 @@ class GameScreen {
         new Instructions(canvas)
       }
       if (ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-        this.buttonClick()
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        this.unfinishedArray=[]
         this.tempPumpArray=[]
         this.tempLineArray=[]
-        
+        this.buttonClick()
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
         this.pumpkinDrawArray()
         this.drawLineArray()
-        // this.drawNoFinishArray()
-        // this.pumpkinArray.pop()
       }
     })
     canvas.addEventListener("mousemove", e => {
@@ -153,7 +149,7 @@ class GameScreen {
     this.drawResetButton()
     this.drawUndoButton()
   }
-
+ 
   firstCarve() {
     
     let carving = this.carving;
@@ -206,7 +202,7 @@ class GameScreen {
     let undoButton=this.undoButton;
     let newP = this.newPath;
    this.combinedPath = new Path2D()
-   this.linePath= new Path2D()
+  
     let combinePath = this.combinedPath;
     let diffP=this.diffPath;
     canvas.addEventListener("mousemove", e => {
@@ -244,59 +240,48 @@ class GameScreen {
       }
     })
         canvas.addEventListener("mouseup", e=>{
-          
           if (ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)|| ctx.isPointInPath(resetButton,e.offsetX,e.offsetY) || ctx.isPointInPath(instructButton,e.offsetX,e.offsetY) || this.closed===true){
-           
             this.down = false
-              carving=false;
-              // ctx.closePath()
+            carving=false;
+            ctx.closePath()
             coordinatesArray.splice(0, coordinatesArray.length)
-              return false;
-          } else if (this.down = true){
-              this.down=false
-            
-              
+            return false;
+          } else{
               coordinatesArray.splice(0, coordinatesArray.length)
-              ctx.closePath(newP);
-
-            if (!this.mouseUp) {
-              this.tempArrayFunc()
-              this.tempLineArray.push(newP)
-            }
-            this.mouseUp = true;
-            //   this.linePath.addPath(newP)
-            //   this.linePath.closePath()
-              // e.preventDefault()
-              // this.unfinishedArray.push(newP)
-  
-            
-             
-              
               carving = false;
-            ctx.beginPath();
+              ctx.closePath(newP);
+              if (!this.mouseUp){
+                
+                this.tempArrayFunc()
+                console.log(this.lineArray.length)
+                this.tempLineArray.push(newP)
+                carving = false;
+                ctx.beginPath();
+                
+              }
+              console.log('hello')
+              this.mouseUp = true;
+              carving = false;
+              ctx.beginPath();
               return false;
-            
           }
-        })
-      
+        }, { once: true })
   }
   
   drawLineArray(){
     let ctx = this.ctx;
     let lines= this.lineArray.flat();
-    console.log(lines)
-    
-    for (let i = 0; i < lines.length; i++) {
-    
+    console.log(this.lineArray.length)
+ 
+    for (let i = lines.length-1; i >=0; i--) {
       ctx.lineWidth = 8
+      debugger;
       ctx.beginPath()
       ctx.stroke(new Path2D(lines[i]))
-      ctx.closePath(new Path2D(lines[i]))
-      console.log(i)
+      ctx.closePath()
     }
+    this.carving=false;
     ctx.closePath()
-    this.carving = false;
-
   }
  
   
