@@ -13,7 +13,7 @@ class Instructions {
     this.startButton;
     this.mouseHover()
     this.loadGameScreen()
-    
+  
   }
 
   drawButton() {
@@ -45,6 +45,7 @@ class Instructions {
       }
     })
   }
+ 
   buttonClick() {
     let buttonSound = document.getElementById("buttonClick")
     buttonSound.play()
@@ -67,20 +68,20 @@ class Instructions {
     })
   }
 
-
+  
   drawBox() {
     let canvas = this.canvas
-    let instructions = '                      ---GAMEPLAY---?1. Click and hold the mouse to begin carving?2. Carve the pumpkin by moving the mouse?3. Move the black line back to the starting point?4. Let go of the mouse to complete the carve ?5. Repeat the process and keep carvin!'
-    let x = canvas.width / 3.3;
-    let y = canvas.width / 19.4;
-    let height = canvas.width/19.4;
+    let instructions = '---GAMEPLAY---?1. Hold and drag the mouse down to begin carving?2. Continue to hold the mouse down while carving?3. Connect the black line to the starting point         ?4. Finished! Repeat the process and keep carving!?5.You are only allowed to undo one carve at a time?'
+    let x = canvas.width / 2;
+    let y = canvas.height / 19.4;
+    let height = canvas.height/10;
     let textSize=canvas.height/32.3
     let splitInt = instructions.split('?');
 
     for (let i = 0; i < splitInt.length; i++) {
       this.ctx.font = `${textSize}pt Arial`
       this.ctx.fillStyle = "black"
-      this.ctx.textAlign = "left"
+      this.ctx.textAlign = "center"
       this.ctx.fillText(splitInt[i], x, y + (i * height));
     }
   }
