@@ -290,7 +290,7 @@ class GameScreen {
     this.carving=false;
     ctx.closePath()
   }
- 
+  
   
   pumpkinDrawArray() {
     this.newScreen()
