@@ -11,7 +11,7 @@ class GameScreen {
     this.newScreen();
     this.resetButton;
     this.instructButton;
-    this.undoButton;
+    // this.undoButton;
     this.closed=false;
     this.coordinatesArray = []
     this.tempPumpArray=[];
@@ -38,7 +38,7 @@ class GameScreen {
     let ctx = this.ctx;
     let canvas = this.canvas
     let resetButton = this.resetButton;
-    let undoButton=this.undoButton;
+    // let undoButton=this.undoButton;
     let instructButton = this.instructButton
     let textSize = this.canvas.height / 15.47 / 2.0
     canvas.addEventListener("click", e => {
@@ -76,16 +76,17 @@ class GameScreen {
    
         this.pumpkinDrawArray()
         this.drawLineArray()
+        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#E66C2C", "Undo", 3.77, .945);
       }
-      if (ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-        this.tempPumpArray=[]
-        this.tempLineArray=[]
-        this.buttonClick()
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+      // if (ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+      //   this.tempPumpArray=[]
+      //   this.tempLineArray=[]
+      //   this.buttonClick()
+      //   ctx.clearRect(0, 0, canvas.width, canvas.height)
  
-        this.pumpkinDrawArray()
-        this.drawLineArray()
-      }
+      //   this.pumpkinDrawArray()
+      //   this.drawLineArray()
+      // }
     })
     canvas.addEventListener("mousemove", e => {
       // console.log(`X':${e.offsetX},Y:${e.offsetY}`)
@@ -101,12 +102,12 @@ class GameScreen {
       if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
         Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#ffae42", "Undo", 3.77, .945)
       }
-      if (ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-        Defaults.buttonStyles(ctx, canvas, undoButton, textSize, "#E66C2C", "Undo", 1.77, .945)
-      }
-      if (!ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-        Defaults.buttonStyles(ctx, canvas, undoButton, textSize, "#ffae42", "Undo", 1.77, .945)
-      }
+      // if (ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+      //   Defaults.buttonStyles(ctx, canvas, undoButton, textSize, "#E66C2C", "Undo", 1.77, .945)
+      // }
+      // if (!ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+      //   Defaults.buttonStyles(ctx, canvas, undoButton, textSize, "#ffae42", "Undo", 1.77, .945)
+      // }
     })
   }
   carveSound() {
@@ -137,16 +138,16 @@ class GameScreen {
     Defaults.buttonStyles(ctx, canvas, instructionButton, textSize, "#ffae42", "Undo", 3.77, .945)
     this.instructButton = instructionButton;
   }
-  drawUndoButton(){
-    let ctx = this.ctx
-    let canvas = this.canvas
-    let undoButton = new Path2D()
-    let textSize = this.canvas.height / 15.47 / 2.0
+  // drawUndoButton(){
+  //   let ctx = this.ctx
+  //   let canvas = this.canvas
+  //   let undoButton = new Path2D()
+  //   let textSize = this.canvas.height / 15.47 / 2.0
 
-    undoButton.arc(canvas.width * .945, canvas.height / 2.0, canvas.height / 15.47, 0, Math.PI * 2, true);
-    Defaults.buttonStyles(ctx, canvas, undoButton, textSize, "#ffae42", "Undo", 1.77, .945)
-    this.undoButton = undoButton;
-  }
+  //   undoButton.arc(canvas.width * .945, canvas.height / 2.0, canvas.height / 15.47, 0, Math.PI * 2, true);
+  //   Defaults.buttonStyles(ctx, canvas, undoButton, textSize, "#ffae42", "Undo", 1.77, .945)
+  //   this.undoButton = undoButton;
+  // }
   newScreen() {
     let wide = document.getElementById("widePumpkin");
     this.ctx.drawImage(wide, this.canvas.width / 3.72, this.canvas.height / 11.41, this.canvas.width / 2 - 15, this.canvas.height / 1.15);
@@ -155,7 +156,6 @@ class GameScreen {
     this.carving=false;
     this.drawInstructionButton()
     this.drawResetButton()
-    this.drawUndoButton()
   }
  
   firstCarve() {
@@ -166,7 +166,7 @@ class GameScreen {
     let coordinatesArray = this.coordinatesArray;
     let resetButton = this.resetButton;
     let instructButton = this.instructButton;
-    let undoButton=this.undoButton;
+    // let undoButton=this.undoButton;
     let combinePath=this.combinedPath;
     
     this.canvas.addEventListener("mousedown", e => {
@@ -177,7 +177,7 @@ class GameScreen {
       let blue = imgData.data[index + 2];
       let alpha = imgData.data[index + 3];
       console.log(`red:${red},green:${green},blue:${blue}, alpha:${alpha}`)
-    if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) || ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) ||ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)){
+    if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY)  ||ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)){
       this.carving=false;
       return false;
     }
@@ -216,7 +216,7 @@ class GameScreen {
     let coordinatesArray = this.coordinatesArray;
     let resetButton = this.resetButton;
     let instructButton = this.instructButton
-    let undoButton=this.undoButton;
+    // let undoButton=this.undoButton;
     let newP = new Path2D;
  
     canvas.addEventListener("mousemove", e => {
@@ -226,7 +226,7 @@ class GameScreen {
       let red = imgData.data[index];
       let blue = imgData.data[index + 2]
       let green = imgData.data[index + 1];
-      if (this.left === false && red !== 0 && blue < 45 && red !== 72 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)) {
+      if (this.left === false && red !== 0 && blue < 45 && red !== 72 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
         ctx.lineWidth = 8;
         ctx.lineCap = "round"
         newP.lineTo(e.offsetX, e.offsetY)
@@ -260,7 +260,7 @@ class GameScreen {
       }
     })
         canvas.addEventListener("mouseup", e=>{
-          if (this.hoverArray.length !==1 || ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)|| ctx.isPointInPath(resetButton,e.offsetX,e.offsetY) || ctx.isPointInPath(instructButton,e.offsetX,e.offsetY) || this.closed===true){
+          if (this.hoverArray.length !==1 || ctx.isPointInPath(resetButton,e.offsetX,e.offsetY) || ctx.isPointInPath(instructButton,e.offsetX,e.offsetY) || this.closed===true){
             
             carving=false;
             ctx.closePath()
