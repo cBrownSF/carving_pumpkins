@@ -18,15 +18,13 @@ class GameScreen {
     this.tempLineArray=[];
     this.pumpkinArray = [];
     this.lineArray=[];
-    this.unfinishedArray=[];
     this.buttonActions();
     this.carving = false;
     this.firstCarve()
+    this.offScreen()
     this.newPath;
-    this.diffPath
-    this.combinedPath;
-    this.down=false;
-    this.mouseUp=false;
+    this.left=false;
+   
   }
  
   tempArrayFunc(){
@@ -52,7 +50,7 @@ class GameScreen {
         this.tempLineArray = []
         this.tempPumpArray = []
         this.lineArray = []
-        this.unfinishedArray = []
+     
         this.newScreen()
         
         Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
@@ -75,7 +73,7 @@ class GameScreen {
         this.tempLineArray = []
         this.buttonClick()
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        console.log('hits undo')
+   
         this.pumpkinDrawArray()
         this.drawLineArray()
       }
@@ -84,7 +82,7 @@ class GameScreen {
         this.tempLineArray=[]
         this.buttonClick()
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        console.log('hits undo')
+ 
         this.pumpkinDrawArray()
         this.drawLineArray()
       }
@@ -178,28 +176,37 @@ class GameScreen {
       let green = imgData.data[index + 1];
       let blue = imgData.data[index + 2];
       let alpha = imgData.data[index + 3];
+      // console.log(`red:${red},green:${green},blue:${blue}, alpha:${alpha}`)
     if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) || ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) ||ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)){
       this.carving=false;
       return false;
     }
-    if (this.hoverArray.length ===1 && red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
+    if (this.hoverArray.length ===1 && red !== 0 && red!==72 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
       this.carving = true;
       this.newPath = new Path2D()
       ctx.beginPath()
       coordinatesArray.push(e.offsetX, e.offsetY);
-      this.down = true;
-      this.mouseUp=false;
       carving=true
      
     }
     if (carving){
         this.closed=false;
         this.carving = true;
+        this.left=false;
         this.carve()
       }else{
-        this.down=false;
         this.carving=false;
       }
+    })
+  }
+  offScreen(){
+    
+    this.canvas.addEventListener("mouseleave",e=>{
+      console.log('left')
+      this.ctx.closePath()
+      this.ctx.closePath(this.newPath)
+      this.carving=false;
+      this.left=true
     })
   }
   carve() {
@@ -211,21 +218,19 @@ class GameScreen {
     let instructButton = this.instructButton
     let undoButton=this.undoButton;
     let newP = this.newPath;
-   this.combinedPath = new Path2D()
-  
-    let combinePath = this.combinedPath;
-    let diffP=this.diffPath;
+ 
     canvas.addEventListener("mousemove", e => {
       if (!carving) return false;
       let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       let index = (e.offsetY * imgData.width + e.offsetX) * 4;
       let red = imgData.data[index];
       let blue = imgData.data[index + 2]
-      if (red !== 0 && blue < 45 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)) {
+      if (this.left === false && red !== 0 && blue < 45 && red !== 72 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)) {
         ctx.lineWidth = 8;
         ctx.lineCap = "round"
         newP.lineTo(e.offsetX, e.offsetY)
         ctx.stroke(newP)
+        console.log(this.left)
         coordinatesArray.push(e.offsetX, e.offsetY);
       }
       if (coordinatesArray.length > 10 && (e.offsetX - 3 < coordinatesArray[0] && e.offsetX + 3 > coordinatesArray[0]) && (e.offsetY - 3 < coordinatesArray[1] && e.offsetY + 3 > coordinatesArray[1])) {
@@ -239,22 +244,28 @@ class GameScreen {
         this.carveSound()
         carving=false
         this.closed=true;
-        this.down=false;
-        this.combinePath=null;
+        ctx.beginPath();
+        
+        return false;
+      }
+      if (this.left === true ){
+        this.left=false
+        carving = false
+        this.closed = true;
         ctx.beginPath();
         return false;
       }
     })
         canvas.addEventListener("mouseup", e=>{
           if (this.hoverArray.length !==1 || ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)|| ctx.isPointInPath(resetButton,e.offsetX,e.offsetY) || ctx.isPointInPath(instructButton,e.offsetX,e.offsetY) || this.closed===true){
-            this.down = false
+            debugger;
             carving=false;
             ctx.closePath()
-            
+            this.left=false
             coordinatesArray.splice(0, coordinatesArray.length)
             return false;
           } else{
-            console.log('else statement mouse')
+            this.left=false;
               coordinatesArray.splice(0, coordinatesArray.length)
               carving = false;
               ctx.closePath(newP);
@@ -279,7 +290,7 @@ class GameScreen {
   drawLineArray(){
     let ctx = this.ctx;
     let lines= this.lineArray.flat();
-    console.log(this.lineArray.length)
+ 
  
     for (let i = 0; i <lines.length; i++) {
       ctx.lineWidth = 8
@@ -297,12 +308,7 @@ class GameScreen {
     let array = this.pumpkinArray.flat();
     let ctx = this.ctx;
   
-  
-    let i = 0;
-   
     for (let i = 0; i < array.length; i++) {
-      
-      console.log('hit')
       ctx.fillStyle = "#ffbd2e"
       ctx.lineWidth = 8
       ctx.beginPath()
@@ -314,7 +320,6 @@ class GameScreen {
     }
     ctx.closePath()
     this.carving=false;
- 
   }
 }
 
