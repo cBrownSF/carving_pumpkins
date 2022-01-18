@@ -176,7 +176,7 @@ class GameScreen {
       let green = imgData.data[index + 1];
       let blue = imgData.data[index + 2];
       let alpha = imgData.data[index + 3];
-      // console.log(`red:${red},green:${green},blue:${blue}, alpha:${alpha}`)
+      console.log(`red:${red},green:${green},blue:${blue}, alpha:${alpha}`)
     if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) || ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) ||ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)){
       this.carving=false;
       return false;
@@ -190,9 +190,10 @@ class GameScreen {
      
     }
     if (carving){
+      console.log('hitting is carving')
         this.closed=false;
         this.carving = true;
-        this.left=false;
+        console.log(this.newPath)
         this.carve()
       }else{
         this.carving=false;
@@ -202,9 +203,7 @@ class GameScreen {
   offScreen(){
     
     this.canvas.addEventListener("mouseleave",e=>{
-      console.log('left')
-      this.ctx.closePath()
-      this.ctx.closePath(this.newPath)
+     
       this.carving=false;
       this.left=true
     })
@@ -225,16 +224,17 @@ class GameScreen {
       let index = (e.offsetY * imgData.width + e.offsetX) * 4;
       let red = imgData.data[index];
       let blue = imgData.data[index + 2]
+      let green = imgData.data[index + 1];
       if (this.left === false && red !== 0 && blue < 45 && red !== 72 && !ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && !ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)) {
         ctx.lineWidth = 8;
         ctx.lineCap = "round"
         newP.lineTo(e.offsetX, e.offsetY)
         ctx.stroke(newP)
-        console.log(this.left)
         coordinatesArray.push(e.offsetX, e.offsetY);
       }
       if (coordinatesArray.length > 10 && (e.offsetX - 3 < coordinatesArray[0] && e.offsetX + 3 > coordinatesArray[0]) && (e.offsetY - 3 < coordinatesArray[1] && e.offsetY + 3 > coordinatesArray[1])) {
         coordinatesArray.splice(0, coordinatesArray.length)
+        console.log('connected')
         carving=false
         ctx.fillStyle = "#ffbd2e"
         ctx.fill(newP)
@@ -248,7 +248,8 @@ class GameScreen {
         
         return false;
       }
-      if (this.left === true ){
+      if (this.left === true || green === 189){
+        console.log('hitting new condition')
         this.left=false
         carving = false
         this.closed = true;
@@ -258,7 +259,7 @@ class GameScreen {
     })
         canvas.addEventListener("mouseup", e=>{
           if (this.hoverArray.length !==1 || ctx.isPointInPath(undoButton, e.offsetX, e.offsetY)|| ctx.isPointInPath(resetButton,e.offsetX,e.offsetY) || ctx.isPointInPath(instructButton,e.offsetX,e.offsetY) || this.closed===true){
-            debugger;
+            
             carving=false;
             ctx.closePath()
             this.left=false
@@ -275,13 +276,13 @@ class GameScreen {
                 this.tempArrayFunc()
                 this.tempLineArray.push(newP)
                 carving = false;
-                ctx.beginPath();
+                // ctx.beginPath();
                 
             
              
               this.mouseUp = true;
               carving = false;
-              ctx.beginPath();
+              
               return false;
           }
         }, { once: true })
