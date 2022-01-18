@@ -193,6 +193,7 @@ class GameScreen {
       console.log('hitting is carving')
         this.closed=false;
         this.carving = true;
+        this.left=false;
         console.log(this.newPath)
         this.carve()
       }else{
@@ -249,6 +250,7 @@ class GameScreen {
         return false;
       }
       if (this.left === true || green === 189){
+        debugger;
         console.log('hitting new condition')
         this.left=false
         carving = false
