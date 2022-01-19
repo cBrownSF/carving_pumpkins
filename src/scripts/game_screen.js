@@ -11,8 +11,9 @@ class GameScreen {
     this.newScreen();
     this.resetButton;
     this.instructButton;
-    // this.undoButton;
+    // this.soundButton;
     this.closed=false;
+    // this.sound=true;
     this.coordinatesArray = []
     this.tempPumpArray=[];
     this.tempLineArray=[];
@@ -38,7 +39,7 @@ class GameScreen {
     let ctx = this.ctx;
     let canvas = this.canvas
     let resetButton = this.resetButton;
-    // let undoButton=this.undoButton;
+    // let soundButton=this.soundButton;
     let instructButton = this.instructButton
     let textSize = this.canvas.height / 15.47 / 2.0
     canvas.addEventListener("click", e => {
@@ -57,18 +58,6 @@ class GameScreen {
       }
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
     
-        // this.buttonClick()
-        // ctx.closePath(this.newP)
-        // ctx.closePath()
-        // this.newScreen()
-        // ctx.clearRect(0, 0, canvas.width, canvas.height)
-        // this.pumpkinArray=[]
-        // this.tempLineArray=[]
-        // this.tempPumpArray=[]
-        // this.lineArray=[]
-        // this.unfinishedArray=[]
-        // hoverArray.splice(0, 1)
-        // new Instructions(canvas)
         this.tempPumpArray = []
         this.tempLineArray = []
         this.buttonClick()
@@ -78,7 +67,14 @@ class GameScreen {
         this.drawLineArray()
         Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#E66C2C", "Undo", 3.77, .945);
       }
-      // if (ctx.isPointInPath(undoButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+      // if (ctx.isPointInPath(soundButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+      //    if (this.sound=false){
+      //      Defaults.buttonStyles(ctx, canvas, soundButton, textSize, "#ffae42", "Sound On", 1.77, .945)
+      //     this.sound=true;
+      //    }else{
+      //      Defaults.buttonStyles(ctx, canvas, soundButton, textSize, "#ffae42", "Sound Off", 1.77, .945)
+      //      this.sound=false
+      //    }
       //   this.tempPumpArray=[]
       //   this.tempLineArray=[]
       //   this.buttonClick()
@@ -138,15 +134,15 @@ class GameScreen {
     Defaults.buttonStyles(ctx, canvas, instructionButton, textSize, "#ffae42", "Undo", 3.77, .945)
     this.instructButton = instructionButton;
   }
-  // drawUndoButton(){
+  // drawSoundButton(){
   //   let ctx = this.ctx
   //   let canvas = this.canvas
-  //   let undoButton = new Path2D()
+  //   let soundButton = new Path2D()
   //   let textSize = this.canvas.height / 15.47 / 2.0
 
-  //   undoButton.arc(canvas.width * .945, canvas.height / 2.0, canvas.height / 15.47, 0, Math.PI * 2, true);
-  //   Defaults.buttonStyles(ctx, canvas, undoButton, textSize, "#ffae42", "Undo", 1.77, .945)
-  //   this.undoButton = undoButton;
+  //   soundButton.arc(canvas.width * .945, canvas.height / 2.0, canvas.height / 15.47, 0, Math.PI * 2, true);
+  //   Defaults.buttonStyles(ctx, canvas, soundButton, textSize, "#ffae42", "Sound Off", 1.77, .945)
+  //   this.soundButton = soundButton;
   // }
   newScreen() {
     let wide = document.getElementById("widePumpkin");
@@ -156,6 +152,7 @@ class GameScreen {
     this.carving=false;
     this.drawInstructionButton()
     this.drawResetButton()
+    // this.drawSoundButton()
   }
  
   firstCarve() {
