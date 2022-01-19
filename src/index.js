@@ -31,7 +31,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
   // canvas.addEventListener("mousemove", carve)
   // canvas.addEventListener("mouseup", finishCarve)
   // canvas.addEventListener("mousedown", beginCarve)
-
+ 
 
   function loadInstructions(e){
     if (e.code === 'Space') {
@@ -41,6 +41,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
     }
   }
 
+ 
   // function loadGameScreen(e){
   //   mouseTrack.x = e.clientX - ctx.canvas.offsetLeft;
   //   mouseTrack.y = e.clientY - ctx.canvas.offsetTop;

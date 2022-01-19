@@ -10,8 +10,14 @@ import Instructions from './instructions.js';
     this.populateCandyArray();
     this.start();
     this.drawTitle()
+    this.getmouseCoord()
   }
- 
+  getmouseCoord(){
+    this.canvas.addEventListener("mousemove", e => {
+      console.log(this.canvas.width)
+      console.log(`X':${e.offsetX},Y:${e.offsetY}`)
+    })
+  }
   populateCandyArray() { 
     const canvas = this.canvas;
     for (let i = 0; i < this.NUM_CANDY; i++) {
