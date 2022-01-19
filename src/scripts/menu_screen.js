@@ -28,7 +28,7 @@ import Instructions from './instructions.js';
           }
        }
     }
-    let corn = new CandyCorn(x, y,velX,velY,canvas);
+    let corn = new CandyCorn(x, y,velX,velY);
     this.candyArray.push(corn);
     }
   }

@@ -1,16 +1,15 @@
 class CandyCorn {
  
-  constructor(x,y,velX,velY,canvas){
+  constructor(x,y,velX,velY){
     this.x = x;
     this.y = y;
     this.velX = velX;
     this.velY = velY;
-    this.canvas = canvas
   }
 
   drawCorn(ctx) {
       const candyImg = document.getElementById("corn");
-      ctx.drawImage(candyImg, this.x, this.y,this.canvas.width/33.3,this.canvas.height/14.05);
+      ctx.drawImage(candyImg, this.x, this.y);
   }
 
   getDist(x1, y1, x2, y2) {
@@ -41,10 +40,10 @@ class CandyCorn {
   checkWalls() {
     const canvas = document.getElementById("mycanvas");
     let ctx = canvas.getContext('2d');
-    if (this.x > canvas.width -50|| this.x < 0) {
+    if (this.x > canvas.width - 50|| this.x < 0) {
       this.velX = (this.velX * -1)
     }
-    if (this.y > canvas.height -69|| this.y < 0) {
+    if (this.y > canvas.height - 69|| this.y < 0) {
       this.velY = (this.velY * -1)
     }
   }
