@@ -23,11 +23,45 @@ class GameScreen {
     this.carving = false;
     this.firstCarve()
     this.offScreen()
-    // this.newPath;
+    this.interval=null;
     this.left=false;
-   
+    this.counter=0;
+    this.timeLeft=15;
+    this.timeRemaining;
+    // setInterval(this.countdown.bind(this), 1000)
   }
- 
+
+  countdown() {
+    let counter = this.counter
+    this.counter ++
+    
+    let timeLeft = this.timeLeft
+    
+    let convert = this.convertSecondstoMin
+    let correctTime=convert(timeLeft - counter)
+    let timeRemaining=timeLeft-counter;
+    this.timeRemaining=timeRemaining;
+    document.getElementById('time').innerHTML=correctTime
+    console.log(correctTime)
+    if(timeLeft-counter ===0){
+      clearInterval(this.interval)
+      this.counter=0
+    }
+  }
+  runTime(){
+    this.interval=setInterval(
+      this.countdown.bind(this)
+    ,1000)
+  }
+  convertSecondstoMin(secs) {
+    let minutes = Math.floor(secs / 60);
+    let seconds = secs % 60;
+    seconds = seconds < 10 ? '0' + seconds : seconds
+    let canvas = document.getElementById('mycanvas')
+    let ctx = canvas.getContext('2d')
+    return`0${minutes} : ${seconds}`
+  }
+  
   tempArrayFunc(){
     this.pumpkinArray.push(this.tempPumpArray)
     this.lineArray.push(this.tempLineArray)
@@ -50,14 +84,15 @@ class GameScreen {
         this.pumpkinArray = []
         this.tempLineArray = []
         this.tempPumpArray = []
-        this.lineArray = []
-     
+        this.lineArray = [];
         this.newScreen()
         
         Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-    
+        this.runTime()
+        // setInterval(this.countdown.bind(this), 1000)
+        
         this.tempPumpArray = []
         this.tempLineArray = []
         this.buttonClick()

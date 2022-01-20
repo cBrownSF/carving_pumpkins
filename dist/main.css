@@ -18,14 +18,29 @@ body {
   margin: 0;
 }
 
-#mycanvas {
+canvas {
   background: #c4ddc4;
 }
 
 #raven {
   display: none;
 }
-
+#div{
+  position:relative;
+}
+/* #div canvas, #time{
+  position:absolute;
+  margin-right: 0;
+  margin-left: 0;
+} */
+#time{
+  position:relative;
+  display:flex;
+  justify-content: center;
+  z-index:1;
+  width:500;
+  height:500;
+}
 #corn {
   display: none;
 }
