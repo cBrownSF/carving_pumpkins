@@ -1,23 +1,25 @@
 # Carvin' Pumpkins
 <h2>Project Link</h2>
 
-<p><a href="https://cbrownsf.github.io/carving_pumpkins/">Carving Pumpkins Project</a></p>
+<p><a href="https://cbrownsf.github.io/carving_pumpkins/">Carvin' Pumpkins Project</a></p>
 <br>
 <h2>Background</h2>
-<p> Users can practice their pumpkin carving skills
-while playing Carvin' Pumpkins! Users carve their pumpkin of choice by scrolling their mouse over the pumpkin. The carve is finished when the user moves the line back to the original starting point and lets go. It's important to be precise! Pumpkin marks can be cleared when the user finishes carving.</p>
-<h2>Functionality & MVPs</h2>
+<p> It's Halloween season, beads of sweat are passing over your furrowed brow.You only have one chance to get your pumpkin carved right. Sike! Carvin' Pumpkins gives you ample oppurtunites to practice carving your pumpkin. With a smooth carving function, an accurate carving area, and the generous ability to undo a carve or reset your pumpkin, you'll be creating the perfect pumpkin this year!
+</p>
+<h2>Functionality </h2>
 
-<p>In Carving Pumpkins, users can:
+<p>In Carvin' Pumpkins, users can:
 </p>
 <ul>
   <li>Carve the pumpkin with their mouse</li>
   <li>Reset the pumpkin to the original template</li>
+  <li>Undo their last carve.</li>
 </ul>
  <p>In addition this project includes:</p>
  <ul>
   <li>a README page </li>
   <li>A short list of instructions</li>
+  <li>Animated candy corns bouncing around the home page</li>
 </ul>
 
 <h2>Technologies, Libraries, APIs</h2>
