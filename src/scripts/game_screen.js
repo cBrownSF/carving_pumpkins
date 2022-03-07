@@ -90,7 +90,7 @@ class GameScreen {
         Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-        this.runTime()
+        // this.runTime()
         // setInterval(this.countdown.bind(this), 1000)
         
         this.tempPumpArray = []
