@@ -24,7 +24,7 @@ import Instructions from './instructions.js';
       console.log(`y:${y}, canvas.width:${canvas.height}` )
       if (i !== 0) {
         for (let j = 0; j < this.candyArray.length; j++) {
-          if (this.getDist(x, y, this.candyArray[j].x, this.candyArray[j].y) < 70) {
+          if (this.getDist(x, y, this.candyArray[j].x, this.candyArray[j].y) < 70 || x <80 || y<80) {
             x = Math.random() * (canvas.width - 200);
             y = Math.random() * (canvas.height - 200);
             j = -1;    
