@@ -34,6 +34,7 @@ window.addEventListener("DOMContentLoaded", ()=> {
  
 
   function loadInstructions(e){
+    debugger;
     if (e.code === 'Space') {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       window.cancelAnimationFrame(menuScreen.frame);

@@ -13,12 +13,15 @@ import Instructions from './instructions.js';
   }
   
   populateCandyArray() { 
+    console.log('populating')
     const canvas = this.canvas;
     for (let i = 0; i < this.NUM_CANDY; i++) {
       let x = Math.random() * (canvas.width - 200);
       let y = Math.random() * (canvas.height - 200);
       let velX = Math.floor((Math.random() * 5) + 3);
       let velY = Math.floor((Math.random() * 5) + 3);
+      console.log(`x:${x}, canvas.width:${canvas.width}` )
+      console.log(`y:${y}, canvas.width:${canvas.height}` )
       if (i !== 0) {
         for (let j = 0; j < this.candyArray.length; j++) {
           if (this.getDist(x, y, this.candyArray[j].x, this.candyArray[j].y) < 70) {
@@ -56,6 +59,7 @@ import Instructions from './instructions.js';
   }
 
   drawMenu(){
+    console.log('draw')
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     for (let i = 0; i < this.candyArray.length; i ++){
       this.candyArray[i].drawCorn(this.ctx);
