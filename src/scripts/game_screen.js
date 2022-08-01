@@ -202,7 +202,6 @@ class GameScreen {
         return false;
       }
       if (this.left === true || green === 189) {
-        debugger;
         console.log('hitting new condition')
         this.left = false
         carving = false
@@ -248,7 +247,6 @@ class GameScreen {
     console.log(this.lineArray.length)
 
     for (let i = 0; i < lines.length; i++) {
-      debugger;
       ctx.lineWidth = 8
       ctx.beginPath()
       ctx.stroke(new Path2D(lines[i]))

@@ -20,13 +20,14 @@ window.addEventListener("DOMContentLoaded", ()=> {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   const global = false;
+  debugger;
+  console.log('hello')
   let menuScreen = new MenuScreen(canvas);
 
   window.addEventListener('keydown', loadInstructions,{once:true})
  
 
   function loadInstructions(e){
-    debugger;
     if (e.code === 'Space') {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       window.cancelAnimationFrame(menuScreen.frame);

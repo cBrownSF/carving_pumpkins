@@ -1,8 +1,8 @@
 import CandyCorn from './candy_corn.js'
-import Instructions from './instructions.js';
  class MenuScreen{
    
   constructor(canvas){
+    console.log('work')
     this.NUM_CANDY = 25;
     this.candyArray = [];
     this.canvas = canvas;
@@ -13,8 +13,10 @@ import Instructions from './instructions.js';
   }
   
   populateCandyArray() { 
+    console.log('hello')
     const canvas = this.canvas;
     for (let i = 0; i < this.NUM_CANDY; i++) {
+      debugger;
       let x = Math.random() * (canvas.width - 200);
       let y = Math.random() * (canvas.height - 200);
       let velX = Math.floor((Math.random() * 5) + 3);
@@ -28,9 +30,11 @@ import Instructions from './instructions.js';
           }
        }
     }
+    debugger;
     let corn = new CandyCorn(x, y,velX,velY);
     this.candyArray.push(corn);
     }
+    console.log(candyArray)
   }
   getDist(x1, y1, x2, y2) {
     return Math.sqrt(

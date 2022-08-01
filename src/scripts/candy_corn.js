@@ -40,7 +40,9 @@ class CandyCorn {
   checkWalls() {
     const canvas = document.getElementById("mycanvas");
     let ctx = canvas.getContext('2d');
-    if (this.x > canvas.width - 50|| this.x < 0) {
+    console.log(this.getDist(this.x,this.y,canvas.width, canvas.height))
+    if (this.x > canvas.width - 55|| this.x < 0) {
+      debugger
       this.velX = (this.velX * -1)
     }
     if (this.y > canvas.height - 69|| this.y < 0) {
