@@ -9,6 +9,7 @@ class CandyCorn {
 
   drawCorn(ctx) {
       const candyImg = document.getElementById("corn");
+  
       ctx.drawImage(candyImg, this.x, this.y);
   }
 
@@ -40,13 +41,21 @@ class CandyCorn {
   checkWalls() {
     const canvas = document.getElementById("mycanvas");
     let ctx = canvas.getContext('2d');
-    console.log(this.getDist(this.x,this.y,canvas.width, canvas.height))
-    if (this.x > canvas.width - 55|| this.x < 0) {
-      debugger
+    // console.log(this.getDist(this.x, this.y, canvas.width, canvas.height))
+    if (this.getDist(this.x, this.y, canvas.width, canvas.height) < 100){
+      console.log(this.getDist(this.x,this.y,canvas.width, canvas.height))
+    }
+    console.log(this.velX)
+    if (this.x + this.velX > canvas.width - 55 || this.x + this.velX <= 0) {
+        // console.log(this.x,this.y)
+        // console.log(canvas.width)
       this.velX = (this.velX * -1)
     }
-    if (this.y > canvas.height - 69|| this.y < 0) {
+    if (this.y + this.velY> canvas.height - 69|| this.velY + this.y <= 0) {
+      // console.log( this.y)
+      // console.log(canvas.height)
       this.velY = (this.velY * -1)
+      
     }
   }
 

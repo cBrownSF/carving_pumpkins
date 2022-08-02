@@ -3,7 +3,7 @@ import CandyCorn from './candy_corn.js'
    
   constructor(canvas){
     console.log('work')
-    this.NUM_CANDY = 25;
+    this.NUM_CANDY = 15;
     this.candyArray = [];
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
@@ -13,10 +13,8 @@ import CandyCorn from './candy_corn.js'
   }
   
   populateCandyArray() { 
-    console.log('hello')
     const canvas = this.canvas;
     for (let i = 0; i < this.NUM_CANDY; i++) {
-      debugger;
       let x = Math.random() * (canvas.width - 200);
       let y = Math.random() * (canvas.height - 200);
       let velX = Math.floor((Math.random() * 5) + 3);
@@ -30,11 +28,9 @@ import CandyCorn from './candy_corn.js'
           }
        }
     }
-    debugger;
     let corn = new CandyCorn(x, y,velX,velY);
     this.candyArray.push(corn);
     }
-    console.log(candyArray)
   }
   getDist(x1, y1, x2, y2) {
     return Math.sqrt(
@@ -59,7 +55,7 @@ import CandyCorn from './candy_corn.js'
   animate(time){
     const timeDelta = time - this.lastTime;
     this.moveObjects(timeDelta)
-    this.checkCollisions();
+    // this.checkCollisions();
     this.drawMenu()
     this.lastTime = time;
     this.frame = requestAnimationFrame(this.animate.bind(this));
@@ -71,16 +67,16 @@ import CandyCorn from './candy_corn.js'
     })
   }
 
-  checkCollisions() {
-      for (let i = 0; i < this.candyArray.length; i++) {
-        for (let j = 1; j < this.candyArray.length; j++) {
-          const candy1 = this.candyArray[i];
-          const candy2 = this.candyArray[j];
-          if (candy1.isCollidedWith(candy2)) { 
-          }
-        }
-      }
-    };
+  // checkCollisions() {
+  //     for (let i = 0; i < this.candyArray.length; i++) {
+  //       for (let j = 1; j < this.candyArray.length; j++) {
+  //         const candy1 = this.candyArray[i];
+  //         const candy2 = this.candyArray[j];
+  //         if (candy1.isCollidedWith(candy2)) { 
+  //         }
+  //       }
+  //     }
+  //   };
 
   drawTitle() {
     const titleImage = document.getElementById("title");

@@ -20,7 +20,6 @@ window.addEventListener("DOMContentLoaded", ()=> {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   const global = false;
-  debugger;
   console.log('hello')
   let menuScreen = new MenuScreen(canvas);
 
