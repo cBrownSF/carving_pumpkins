@@ -135,7 +135,6 @@ class GameScreen {
       let green = imgData.data[index + 1];
       let blue = imgData.data[index + 2];
       let alpha = imgData.data[index + 3];
-      console.log(`red:${red},green:${green},blue:${blue}, alpha:${alpha}`)
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) || ctx.isPointInPath(resetButton, e.offsetX, e.offsetY)) {
         this.carving = false;
         return false;
@@ -149,7 +148,6 @@ class GameScreen {
         this.closed = false;
         this.carving = true;
         this.left = false;
-        console.log(this.newPath)
         this.carve()
       } else {
         this.carving = false;
@@ -187,7 +185,6 @@ class GameScreen {
       }
       if (coordinatesArray.length > 10 && (e.offsetX - 3 < coordinatesArray[0] && e.offsetX + 3 > coordinatesArray[0]) && (e.offsetY - 3 < coordinatesArray[1] && e.offsetY + 3 > coordinatesArray[1])) {
         coordinatesArray.splice(0, coordinatesArray.length)
-        console.log('connected')
         carving = false
         ctx.fillStyle = "#ffbd2e"
         ctx.fill(newP)
@@ -202,7 +199,6 @@ class GameScreen {
         return false;
       }
       if (this.left === true || green === 189) {
-        console.log('hitting new condition')
         this.left = false
         carving = false
         this.closed = true;
@@ -244,7 +240,6 @@ class GameScreen {
   drawLineArray() {
     let ctx = this.ctx;
     let lines = this.lineArray.flat();
-    console.log(this.lineArray.length)
 
     for (let i = 0; i < lines.length; i++) {
       ctx.lineWidth = 8

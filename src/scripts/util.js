@@ -27,10 +27,7 @@ const Defaults = {
     }
     if (coordinatesArray.length > 10 && (e.offsetX - 3 < coordinatesArray[0] && e.offsetX + 3 > coordinatesArray[0]) && (e.offsetY - 3 < coordinatesArray[1] && e.offsetY + 3 > coordinatesArray[1])) {
       // ctx.lineTo(coordinatesArray[0], coordinatesArray[1])
-      console.log(`offset y:${e.offsetY}`)
-      console.log(`offset x:${e.offsetX}`)
-      console.log(`x coord: ${coordinatesArray[0]}`)
-      console.log(`y coord: ${coordinatesArray[1]}`)
+
 
       carving = false;
 

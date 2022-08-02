@@ -2,7 +2,6 @@ import CandyCorn from './candy_corn.js'
  class MenuScreen{
    
   constructor(canvas){
-    console.log('work')
     this.NUM_CANDY = 15;
     this.candyArray = [];
     this.canvas = canvas;

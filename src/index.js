@@ -20,7 +20,6 @@ window.addEventListener("DOMContentLoaded", ()=> {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   const global = false;
-  console.log('hello')
   let menuScreen = new MenuScreen(canvas);
 
   window.addEventListener('keydown', loadInstructions,{once:true})

@@ -34,26 +34,19 @@ class CandyCorn {
     this.checkWalls()
     let offsetX = this.velX * velocityScale;
     let offsetY = this.velY * velocityScale;
-    this.x =this.x +offsetX
+    this.x =this.x + offsetX
     this.y =this.y + offsetY
   }
 
   checkWalls() {
     const canvas = document.getElementById("mycanvas");
     let ctx = canvas.getContext('2d');
-    // console.log(this.getDist(this.x, this.y, canvas.width, canvas.height))
-    if (this.getDist(this.x, this.y, canvas.width, canvas.height) < 100){
-      console.log(this.getDist(this.x,this.y,canvas.width, canvas.height))
-    }
-    console.log(this.velX)
-    if (this.x + this.velX > canvas.width - 55 || this.x + this.velX <= 0) {
-        // console.log(this.x,this.y)
-        // console.log(canvas.width)
+
+
+    if (this.x + this.velX > canvas.width - 55 || this.x + this.velX < 0) {
       this.velX = (this.velX * -1)
     }
-    if (this.y + this.velY> canvas.height - 69|| this.velY + this.y <= 0) {
-      // console.log( this.y)
-      // console.log(canvas.height)
+    if (this.y + this.velY > canvas.height - 69|| this.velY + this.y <= 0) {
       this.velY = (this.velY * -1)
       
     }
