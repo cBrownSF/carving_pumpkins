@@ -34,12 +34,16 @@ class Instructions {
     let button = this.startButton;
     let textSize = this.canvas.height / 15.47 / 2.0
     this.canvas.addEventListener('mousemove', e => {
+  
       if (ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')) { 
+        e.target.style.cursor = 'pointer'
         this.hovered = true; 
         Defaults.buttonStyles(ctx, canvas, button, textSize, "#E66C2C", "Start", 1.2121, .5)
 
       }
       if (!ctx.isPointInPath(button, e.offsetX, e.offsetY) && clickArray.includes('instruct')){
+        e.target.style.cursor = 'default'
+
         this.hovered = false;
         Defaults.buttonStyles(ctx, canvas, button, textSize, "#ffae42", "Start", 1.2121, .5)
       }

@@ -53,7 +53,7 @@ class GameScreen {
         Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
       if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-
+        
         this.tempPumpArray = []
         this.tempLineArray = []
         this.buttonClick()
@@ -66,17 +66,25 @@ class GameScreen {
     })
 
     canvas.addEventListener("mousemove", e => {
-      if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-        Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
+      if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+        e.target.style.cursor = 'default'
+        
+        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#ffae42", "Undo", 3.77, .945)
       }
       if (!ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+        e.target.style.cursor = 'default'
+        
         Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#ffae42", "Reset", 8.43, .945)
       }
-      if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#E66C2C", "Undo", 3.77, .945)
+      if (ctx.isPointInPath(resetButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+        e.target.style.cursor = 'pointer'
+        console.log(e)
+        Defaults.buttonStyles(ctx, canvas, resetButton, textSize, "#E66C2C", "Reset", 8.43, .945)
       }
-      if (!ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
-        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#ffae42", "Undo", 3.77, .945)
+      if (ctx.isPointInPath(instructButton, e.offsetX, e.offsetY) && hoverArray.length === 1) {
+        e.target.style.cursor = 'pointer'
+
+        Defaults.buttonStyles(ctx, canvas, instructButton, textSize, "#E66C2C", "Undo", 3.77, .945)
       }
     })
   }
